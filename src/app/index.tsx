@@ -84,7 +84,7 @@ function Content() {
 
   return (
     <>
-      <Text color="red" size="5xl">
+      <Text color="red" bw="3xl" br="sm" bc="green" size="5xl">
         Allo
       </Text>
     </>

@@ -4,6 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { PropsWithChildren } from "react";
 import { StyleSystemVariants } from "./defaultStyles";
 import { baseColors, extendedTextColors } from "./budge-colors";
+import { baseVariant } from "./budge-ui-styling/src/theme/BudgeBaseVariants";
 
 type TTextColorVariants =
   | keyof typeof baseColors
@@ -26,6 +27,7 @@ export const textColorVariants: Record<TTextColorVariants, string> = {
 };
 
 const textStyles = tv({
+  extend: baseVariant,
   variants: {
     size: {
       xs: "text-xs",
