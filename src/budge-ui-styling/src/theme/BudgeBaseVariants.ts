@@ -1,17 +1,11 @@
-import {
-  baseColors,
-  extendedBackgroundColors,
-  extendedBorderColors,
-} from "./BudgeColors";
-import { tv } from "tailwind-variants";
+import { ViewProps, ViewStyle } from "react-native";
+import { TColors, TExtendedBorderColors } from "./BudgeColors";
+import { VariantProps, tv } from "tailwind-variants";
+import { PropsWithChildren } from "react";
 
-type TBgColorVariants =
-  | keyof typeof baseColors
-  | keyof typeof extendedBackgroundColors;
-
-const bgColorVariants: Record<TBgColorVariants, string> = {
-  primary: "bg-primary",
-  disabled: "bg-disabled",
+/* VIEW */
+const bgColorVariants: Record<TColors, string> = {
+  primary: "bg-primary-500",
   dark: "bg-dark-500",
   gray: "bg-gray-500",
   red: "bg-red-500",
@@ -22,15 +16,43 @@ const bgColorVariants: Record<TBgColorVariants, string> = {
   yellow: "bg-yellow-500",
   brown: "bg-brown-500",
   water: "bg-water-500",
+  white: "bg-white",
+  black: "bg-black",
+  transparent: "bg-transparent",
+  info: "bg-info",
+  success: "bg-success",
+  warning: "bg-warning",
+  error: "bg-error",
 };
 
-type TBorderColorVariants =
-  | keyof typeof baseColors
-  | keyof typeof extendedBorderColors;
+const shadowColorVariants: Record<TColors, string> = {
+  primary: "shadow-primary-500",
+  dark: "shadow-dark-500",
+  gray: "shadow-gray-500",
+  red: "shadow-red-500",
+  green: "shadow-green-500",
+  blue: "shadow-blue-500",
+  orange: "shadow-orange-500",
+  purple: "shadow-purple-500",
+  yellow: "shadow-yellow-500",
+  brown: "shadow-brown-500",
+  water: "shadow-water-500",
+  white: "shadow-white",
+  black: "shadow-black",
+  transparent: "shadow-transparent",
+  info: "shadow-info",
+  success: "shadow-success",
+  warning: "shadow-warning",
+  error: "shadow-error",
+};
 
-const borderColorVariants: Record<TBorderColorVariants, string> = {
-  primary: "border-default",
+const borderColorVariants: Record<
+  TColors | keyof TExtendedBorderColors,
+  string
+> = {
+  primary: "border-primary-500",
   disabled: "border-disabled",
+  default: "border-default",
   dark: "border-dark-500",
   gray: "border-gray-500",
   red: "border-red-500",
@@ -41,9 +63,16 @@ const borderColorVariants: Record<TBorderColorVariants, string> = {
   yellow: "border-yellow-500",
   brown: "border-brown-500",
   water: "border-water-500",
+  white: "border-white",
+  black: "border-black",
+  transparent: "border-transparent",
+  info: "border-info",
+  success: "border-success",
+  warning: "border-warning",
+  error: "border-error",
 };
 
-export const baseVariant = tv({
+export const viewVariant = tv({
   variants: {
     bg: bgColorVariants,
     f: {
@@ -166,6 +195,7 @@ export const baseVariant = tv({
       "2xl": "mt-8", // 32px
       "3xl": "mt-10", // 40px
       "4xl": "mt-12", // 48px
+      auto: "mt-auto",
     },
     mb: {
       0: "mb-0",
@@ -178,6 +208,7 @@ export const baseVariant = tv({
       "2xl": "mb-8", // 32px
       "3xl": "mb-10", // 40px
       "4xl": "mb-12", // 48px
+      auto: "mb-auto",
     },
     ml: {
       0: "ml-0",
@@ -190,6 +221,7 @@ export const baseVariant = tv({
       "2xl": "ml-8", // 32px
       "3xl": "ml-10", // 40px
       "4xl": "ml-12", // 48px
+      auto: "ml-auto",
     },
     mr: {
       0: "mr-0",
@@ -202,6 +234,7 @@ export const baseVariant = tv({
       "2xl": "mr-8", // 32px
       "3xl": "mr-10", // 40px
       "4xl": "mr-12", // 48px
+      auto: "mr-auto",
     },
     mx: {
       0: "mx-0",
@@ -214,6 +247,7 @@ export const baseVariant = tv({
       "2xl": "mx-8", // 32px
       "3xl": "mx-10", // 40px
       "4xl": "mx-12", // 48px
+      auto: "mx-auto",
     },
     my: {
       0: "my-0",
@@ -226,6 +260,7 @@ export const baseVariant = tv({
       "2xl": "my-8", // 32px
       "3xl": "my-10", // 40px
       "4xl": "my-12", // 48px
+      auto: "my-auto",
     },
     p: {
       0: "p-0",
@@ -388,7 +423,7 @@ export const baseVariant = tv({
       visible: "overflow-visible",
       hidden: "overflow-hidden",
     },
-    br: {
+    radius: {
       0: "rounded-none",
       sm: "rounded-sm",
       md: "rounded",
@@ -450,5 +485,32 @@ export const baseVariant = tv({
       "3xl": "border-b-[10px]", // 10px
     },
     bc: borderColorVariants,
+    shadow: {
+      xs: "shadow-sm",
+      sm: "shadow",
+      md: "shadow-md",
+      lg: "shadow-lg",
+      xl: "shadow-xl",
+      "2xl": "shadow-2xl",
+      none: "shadow-none",
+    },
+    shadowc: shadowColorVariants,
   },
 });
+
+export type TBaseCustomStyleProps = {
+  w: ViewStyle["width"];
+  miw: ViewStyle["minWidth"];
+  maw: ViewStyle["maxWidth"];
+  h: ViewStyle["height"];
+  mih: ViewStyle["minHeight"];
+  mah: ViewStyle["maxHeight"];
+};
+
+export type TViewVariantProps = VariantProps<typeof viewVariant> &
+  Partial<TBaseCustomStyleProps> &
+  PropsWithChildren<{
+    style?: ViewProps["style"];
+    className?: ViewProps["className"];
+    viewProps?: Omit<ViewProps, "style" | "className" | "children">;
+  }>;

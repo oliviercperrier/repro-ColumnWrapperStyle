@@ -1,4 +1,7 @@
 const baseColors = {
+  transparent: 'transparent',
+  black: '#000',
+  white: '#fff',
   dark: {
     50: "#F4F4F4",
     100: "#E9E9EA",
@@ -46,18 +49,6 @@ const baseColors = {
     700: "#06777F",
     800: "#055A5F",
     900: "#033C3F",
-  },
-  purple: {
-    50: "#F8F3FB",
-    100: "#F1E7F8",
-    200: "#DCC2ED",
-    300: "#C79EE2",
-    400: "#9D55CC",
-    500: "#730CB6",
-    600: "#680BA4",
-    700: "#45076D",
-    800: "#340552",
-    900: "#230437",
   },
   blue: {
     50: "#F6F9FD",
@@ -119,40 +110,61 @@ const baseColors = {
     800: "#732E29",
     900: "#4D1F1B",
   },
+  purple: {
+    50: "#F8F3FB",
+    100: "#F1E7F8",
+    200: "#DCC2ED",
+    300: "#C79EE2",
+    400: "#9D55CC",
+    500: "#730CB6",
+    600: "#680BA4",
+    700: "#45076D",
+    800: "#340552",
+    900: "#230437",
+  },
+  get primary() {
+    return this.purple
+  },
+  get info() {
+    return this.blue[500]
+  },
+  get success() {
+    return this.green[500]
+  },
+  get warning() {
+    return this.yellow[500]
+  },
+  get error() {
+    return this.red[500]
+  },
 };
 
+export type TColors =
+  | keyof typeof baseColors
+  | "white"
+  | "black"
+  | "transparent";
+
 /** TEXT COLORS */
-const extendedTextColors: {
-  primary: string;
+export type TExtendedTextColors = {
+  default: string;
   secondary: string;
   disabled: string;
-} = {
-  primary: baseColors.dark[500],
+};
+const extendedTextColors: TExtendedTextColors = {
+  default: baseColors.dark[500],
   secondary: baseColors.gray[400],
   disabled: baseColors.gray[200],
 };
 
-/** BG COLORS */
-const extendedBackgroundColors: {
-  primary: string;
-  disabled: string;
-} = {
-  primary: baseColors.gray[100],
-  disabled: baseColors.gray[200],
-};
-
 /** BORDER COLORS */
-const extendedBorderColors: {
-  primary: string;
+export type TExtendedBorderColors = {
+  default: string;
   disabled: string;
-} = {
-  primary: baseColors.gray[100],
+};
+const extendedBorderColors: TExtendedBorderColors = {
+  default: baseColors.gray[100],
   disabled: baseColors.gray[100],
 };
 
-export {
-  baseColors,
-  extendedTextColors,
-  extendedBackgroundColors,
-  extendedBorderColors,
-};
+export { baseColors, extendedTextColors, extendedBorderColors };

@@ -4,11 +4,12 @@ import { FlatList, Pressable, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { tv } from "tailwind-variants";
 import { twMerge } from "tailwind-merge";
-import Text from "@/Text";
+import Text from "@/components/Text";
+import Box from "@/components/Box";
 
 export default function Page() {
   return (
-    <View className="flex flex-1">
+    <View>
       <Header />
       <Content />
       <Footer />
@@ -76,18 +77,10 @@ const button = tv({
 });
 
 function Content() {
-  const { root, text } = button({
-    variant: "outlined",
-    color: "primary",
-    size: "xs",
-  });
-
   return (
-    <>
-      <Text color="red" bw="3xl" br="sm" bc="green" size="5xl">
-        Allo
-      </Text>
-    </>
+    <Box>
+      <Text color="success">Allo</Text>
+    </Box>
   );
 }
 
