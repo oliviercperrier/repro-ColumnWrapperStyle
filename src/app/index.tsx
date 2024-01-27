@@ -6,6 +6,7 @@ import { tv } from "tailwind-variants";
 import { twMerge } from "tailwind-merge";
 import Text from "@/components/Text";
 import Box from "@/components/Box";
+import { Circle, Path, Svg } from "react-native-svg";
 
 export default function Page() {
   return (
@@ -53,7 +54,7 @@ const button = tv({
       variant: "filled",
       color: "primary",
       className: {
-        root: "bg-blue-500 border border-blue-500 hover:bg-blue-600 hover:border-blue-600",
+        root: "bg-blue border border-blue hover:bg-blue-600 hover:border-blue-600",
         text: "text-white",
       },
     },
@@ -62,15 +63,15 @@ const button = tv({
       color: "primary",
       className: {
         root: "bg-white border border-[#5314c7] active:bg-[#d6a2131a]",
-        text: "text-blue-500",
+        text: "text-blue",
       },
     },
     {
       variant: "subtle",
       color: "primary",
       className: {
-        root: "bg-white border border-white hover:bg-blue-500/15",
-        text: "text-blue-500",
+        root: "bg-white border border-white hover:bg-blue/15",
+        text: "text-blue",
       },
     },
   ],
@@ -78,8 +79,31 @@ const button = tv({
 
 function Content() {
   return (
-    <Box>
-      <Text color="success">Allo</Text>
+    <Box bg="water" w={500} className="disabled">
+      <Text size="2xl" ml="2xl" color="white" tdl="underline">
+        Allo
+      </Text>
+      <Pressable disabled>
+        <Svg
+          className="animate-spin mr-3 h-5 w-5 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <Circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+            opacity={0.25}
+          ></Circle>
+          <Path
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            opacity={0.75}
+          ></Path>
+        </Svg>
+      </Pressable>
     </Box>
   );
 }
@@ -87,7 +111,7 @@ function Content() {
 function Header() {
   const { top } = useSafeAreaInsets();
   return (
-    <View style={{ paddingTop: top }} className="bg-red-500">
+    <View style={{ paddingTop: top }} className="bg-red">
       <View className="px-4 lg:px-6 h-14 flex items-center flex-row justify-between ">
         <Link className="font-bold flex-1 items-center justify-center" href="#">
           ACME
