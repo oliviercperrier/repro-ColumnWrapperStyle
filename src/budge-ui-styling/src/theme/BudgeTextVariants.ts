@@ -149,10 +149,12 @@ export const textVariant = tv({
   },
 });
 
-export type TTextVariantProps = VariantProps<typeof textVariant> &
-  Partial<TBaseCustomStyleProps> &
+export type TDefaultTextProps<T> = Partial<TBaseCustomStyleProps> &
   PropsWithChildren<{
     style?: TextProps["style"];
     className?: TextProps["className"];
     textProps?: Omit<TextProps, "style" | "className" | "children">;
-  }>;
+  }> &
+  T;
+
+export type TTextVariantProps = VariantProps<typeof textVariant>;

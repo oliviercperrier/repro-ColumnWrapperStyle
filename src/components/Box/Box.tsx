@@ -24,10 +24,9 @@ const Box = forwardRef<View, TBoxProps>(
         ref={ref}
         style={extractedStyleProp}
         className={twMerge(viewVariant(variantProps), className)}
+        children={children}
         {...viewProps}
-      >
-        {children}
-      </View>
+      />
     );
   }
 );

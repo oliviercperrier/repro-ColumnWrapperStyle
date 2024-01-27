@@ -77,9 +77,9 @@ const SvgIcon = forwardRef<Svg, TSvgIconProps>(
         viewBox={viewBox}
         style={parsedStyleProps}
         className={twMerge(svgVariant(variantProps), className)}
-      >
-        {children}
-      </Svg>
+        children={children}
+        {...viewProps}
+      />
     );
   }
 );

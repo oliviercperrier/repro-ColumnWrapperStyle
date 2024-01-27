@@ -96,7 +96,7 @@ function Content() {
             cy="12"
             r="10"
             stroke="currentColor"
-            stroke-width="4"
+            strokeWidth="4"
             opacity={0.25}
           ></Circle>
           <Path
