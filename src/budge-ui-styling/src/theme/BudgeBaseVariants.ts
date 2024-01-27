@@ -508,10 +508,12 @@ export type TBaseCustomStyleProps = {
   mah: ViewStyle["maxHeight"];
 };
 
-export type TViewVariantProps = VariantProps<typeof viewVariant> &
-  Partial<TBaseCustomStyleProps> &
+export type TDefaultViewProps<T> = Partial<TBaseCustomStyleProps> &
   PropsWithChildren<{
     style?: ViewProps["style"];
     className?: ViewProps["className"];
     viewProps?: Omit<ViewProps, "style" | "className" | "children">;
-  }>;
+  }> &
+  T;
+
+export type TViewVariantProps = VariantProps<typeof viewVariant>;

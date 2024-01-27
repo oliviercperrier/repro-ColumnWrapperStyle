@@ -5,9 +5,9 @@ import {
   TTextVariantProps,
   textVariant,
 } from "../budge-ui-styling/src/theme/BudgeTextVariants";
-import useOtherStyleProps, {
-  extractOtherStyleProps,
-} from "@/budge-ui-styling/src/utils/useCustomStyleProps";
+import useParseStyleProps, {
+  extractStyleProps,
+} from "@/budge-ui-styling/src/utils/useParseStyleProps";
 
 type TTextProps = TTextVariantProps & {
   className?: string;
@@ -19,9 +19,9 @@ const Text = ({
   children,
   ...variantProps
 }: PropsWithChildren<TTextProps>) => {
-  const extractedStyleProp = useOtherStyleProps({
+  const extractedStyleProp = useParseStyleProps({
     style,
-    styleProps: extractOtherStyleProps(variantProps),
+    styleProps: extractStyleProps(variantProps),
   });
 
   return (

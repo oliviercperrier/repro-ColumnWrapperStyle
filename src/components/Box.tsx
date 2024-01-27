@@ -1,21 +1,22 @@
 import { View, Text } from "react-native";
 import React, { forwardRef, memo } from "react";
 import {
+  TDefaultViewProps,
   TViewVariantProps,
   viewVariant,
 } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
-import useOtherStyleProps, {
-  extractOtherStyleProps,
-} from "@/budge-ui-styling/src/utils/useCustomStyleProps";
+import useParseStyleProps, {
+  extractStyleProps,
+} from "@/budge-ui-styling/src/utils/useParseStyleProps";
 import { twMerge } from "tailwind-merge";
 
-export type TBoxProps = TViewVariantProps;
+export type TBoxProps = TDefaultViewProps<TViewVariantProps>;
 
 const Box = forwardRef<View, TBoxProps>(
   ({ style, className, children, viewProps, ...variantProps }, ref) => {
-    const extractedStyleProp = useOtherStyleProps({
+    const extractedStyleProp = useParseStyleProps({
       style,
-      styleProps: extractOtherStyleProps(variantProps),
+      styleProps: extractStyleProps(variantProps),
     });
 
     return (

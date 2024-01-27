@@ -1,6 +1,7 @@
 import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import {
   TBaseCustomStyleProps,
+  TDefaultViewProps,
   TViewVariantProps,
 } from "../theme/BudgeBaseVariants";
 
@@ -14,8 +15,8 @@ const OtherStylePropsMap: Record<keyof TBaseCustomStyleProps, keyof ViewStyle> =
     mih: "minHeight",
   };
 
-export const extractOtherStyleProps = (
-  props: TViewVariantProps
+export const extractStyleProps = <T,>(
+  props: TDefaultViewProps<T>
 ): TBaseCustomStyleProps => {
   const { w, miw, maw, h, mah, mih } = props;
 
@@ -29,7 +30,7 @@ export const extractOtherStyleProps = (
   };
 };
 
-const useOtherStyleProps = <T,>({
+const useParseStyleProps = <T,>({
   style,
   styleProps,
 }: {
@@ -43,4 +44,4 @@ const useOtherStyleProps = <T,>({
   StyleSheet.flatten(style),
 ];
 
-export default useOtherStyleProps;
+export default useParseStyleProps;
