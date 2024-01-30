@@ -1,25 +1,21 @@
-import { DefaultProps, TNumberSize } from "@budgeinc/budge-ui-styling";
-import { View, ViewStyle } from "react-native";
 import { ForwardedRef, PropsWithChildren, ReactNode } from "react";
 import { TBoxProps } from "../Box";
+import { VariantProps } from "tailwind-variants";
+import { stackVariant } from "./Stack.Variant";
+import { TDefaultViewProps } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
 
-export type TStackProps = Omit<DefaultProps<ViewStyle>, "fdirection" | "gap" | "rGap" | "cGap"> & {
-  spacing?: TNumberSize;
-  radius?: TNumberSize | "default";
-  ref?: React.ForwardedRef<View>;
-  onLayout?: TBoxProps["onLayout"];
-};
+export type TStackProps = TDefaultViewProps<
+  Omit<VariantProps<typeof stackVariant>, "fdir" | "gap" | "rGap" | "cGap">
+>;
 
-export type TStackHorizontalProps = Omit<DefaultProps<ViewStyle>, "fdirection" | "gap" | "rGap" | "cGap"> & {
-  spacing?: TNumberSize;
-  grow?: boolean;
-  children: ReactNode;
-  radius?: TNumberSize | "default";
-  onLayout?: TBoxProps["onLayout"];
-};
-
-export type TStackComponent = ((props: PropsWithChildren<TStackProps> & { ref?: ForwardedRef<any> }) => JSX.Element) & {
+export type TStackComponent = ((
+  props: PropsWithChildren<TStackProps> & { ref?: ForwardedRef<any> }
+) => JSX.Element) & {
   Horizontal: React.MemoExoticComponent<
-    (props: PropsWithChildren<TStackHorizontalProps> & { ref?: ForwardedRef<any> }) => JSX.Element
+    (
+      props: PropsWithChildren<TStackProps> & {
+        ref?: ForwardedRef<any>;
+      }
+    ) => JSX.Element
   >;
 };

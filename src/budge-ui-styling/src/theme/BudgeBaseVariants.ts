@@ -100,6 +100,18 @@ export const viewVariant = tv({
       col: "flex-col",
       "col-reverse": "flex-col-reverse",
     },
+    w100: {
+      true: "w-full"
+    },
+    miw100: {
+      true: "min-w-full"
+    },
+    h100: {
+      true: "h-full"
+    },
+    mih100: {
+      true: "min-h-full"
+    },
     justifyContent: {
       normal: "justify-normal",
       start: "justify-start",

@@ -6,19 +6,17 @@ import React, {
 } from "react";
 import { View } from "react-native";
 import { Box } from "../Box";
-import { tv, VariantProps } from "tailwind-variants";
 import {
-  TDefaultViewProps,
   viewVariant,
 } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
 import { twMerge } from "tailwind-merge";
 import useParseStyleProps, {
   extractStyleProps,
 } from "@/budge-ui-styling/src/utils/useParseStyleProps";
-import { stackVariant } from "./Stack.Variant";
 import { TStackProps } from "./Stack.types";
+import { stackVariant } from "./Stack.Variant";
 
-const Stack = forwardRef<View, PropsWithChildren<TStackProps>>(
+const StackHorizontal = forwardRef<View, TStackProps>(
   ({ style, className, children, viewProps, ...variantProps }, ref) => {
     const extractedStyleProp = useParseStyleProps({
       style,
@@ -31,7 +29,7 @@ const Stack = forwardRef<View, PropsWithChildren<TStackProps>>(
     return (
       <Box
         ref={ref}
-        style={[extractedStyleProp, { flexDirection: "column" }]}
+        style={[extractedStyleProp, { flexDirection: "row" }]}
         className={twMerge(stackVariant(variantProps), className)}
         {...viewProps}
       >
@@ -41,4 +39,4 @@ const Stack = forwardRef<View, PropsWithChildren<TStackProps>>(
   }
 );
 
-export default memo(Stack);
+export default memo(StackHorizontal);

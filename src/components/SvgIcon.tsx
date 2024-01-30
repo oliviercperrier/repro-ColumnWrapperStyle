@@ -12,6 +12,7 @@ import { twMerge } from "tailwind-merge";
 import useParseStyleProps, {
   extractStyleProps,
 } from "@/budge-ui-styling/src/utils/useParseStyleProps";
+import { textVariant } from "@/budge-ui-styling/src/theme/BudgeTextVariants";
 
 const fillColorVariants: Record<TColors | "none" | "current", string> = {
   current: "fill-current",
@@ -36,10 +37,10 @@ const fillColorVariants: Record<TColors | "none" | "current", string> = {
   error: "fill-error",
 };
 
-const svgVariant = tv({
+export const svgVariant = tv({
   extend: viewVariant,
   variants: {
-    fill: fillColorVariants,
+    color: textVariant.variants.color,
     size: {
       xs: "w-3", // 12px
       sm: "w-4", // 16px

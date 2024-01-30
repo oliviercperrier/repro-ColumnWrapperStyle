@@ -5,9 +5,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { tv } from "tailwind-variants";
 import { twMerge } from "tailwind-merge";
 import Text from "@/components/Text";
-import Box from "@/components/Box";
 import { Circle, Path, Svg } from "react-native-svg";
 import SvgIcon from "@/components/SvgIcon";
+import { Stack } from "@/components/Stack";
+import { Box } from "@/components/Box";
+import Spinner from "@/components/Spinner/Spinner";
 
 export default function Page() {
   return (
@@ -80,32 +82,13 @@ const button = tv({
 
 function Content() {
   return (
-    <Box bg="water" w={500} className="disabled">
-      <Text size="2xl" ml="2xl" color="white" tdl="underline">
-        Allo
-      </Text>
-      <Pressable disabled>
-        <SvgIcon
-          className="animate-spin text-white"
-          fill="red"
-          viewBox="0 0 24 24"
-          size="2xl"
-        >
-          <Circle
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-            opacity={0.25}
-          ></Circle>
-          <Path
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            opacity={0.75}
-          ></Path>
-        </SvgIcon>
-      </Pressable>
+    <Box
+      h={500}
+      alignItems="center"
+      justifyContent="center"
+      className="disabled"
+    >
+      <Spinner color="green" />
     </Box>
   );
 }
