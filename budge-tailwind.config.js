@@ -1,7 +1,6 @@
 const {
   baseColors,
   extendedTextColors,
-  extendedBackgroundColors,
   extendedBorderColors,
 } = require("./src/budge-ui-styling/src/theme/BudgeColors");
 

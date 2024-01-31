@@ -15,11 +15,8 @@ import Animated, {
 import Text from "../Text";
 import useFocus from "@/budge-ui-hooks/src/useFocus";
 import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
-import { inputVariant } from "./Input.variant";
+import { inputVariant } from "./Input.variants";
 import { TInputProps } from "./Input.types";
-import useStyleProps, {
-  extractStyleProps,
-} from "@/budge-ui-styling/src/utils/useStyleProps";
 
 export const LINE_HEIGHT = 18;
 export const INPUT_MARGIN_TOP = 30;
@@ -51,11 +48,8 @@ const Input = ({
   const { isFocused, focusProps } = useFocus();
   const _inputRef = inputRef || useRef<TextInput>(null);
 
-  const { viewVariantProps, rest } = extractViewVariantProps(others);
-  const extractedStyleProps = useStyleProps({
-    style,
-    styleProps: extractStyleProps(rest),
-  });
+  const { styleProps, viewVariantProps, rest } =
+    extractViewVariantProps(others);
 
   const isTextarea = rest?.multiline || false;
   const nbLines = rest?.numberOfLines || 1;
@@ -64,6 +58,7 @@ const Input = ({
     (isTextarea && !showLabel ? 24 : INPUT_MARGIN_TOP + INPUT_MARGIN_BOTTOM);
 
   const variantStyles = inputVariant({
+    variant,
     disabled,
     editable,
     errored: errored || hasError,
@@ -88,8 +83,8 @@ const Input = ({
         fontSize: 12,
       },
       {
-        duration: 350,
-        easing: Easing.elastic(),
+        duration: 125,
+        easing: Easing.linear,
       }
     );
   };
@@ -100,8 +95,8 @@ const Input = ({
 
     if (!e.nativeEvent.text) {
       textTranslateShared.value = withTiming(baseLabelAnimatedStyle, {
-        duration: 350,
-        easing: Easing.elastic(),
+        duration: 125,
+        easing: Easing.linear,
       });
     }
   };
@@ -123,7 +118,7 @@ const Input = ({
   return (
     <Box
       h={inputRootHeight}
-      style={extractedStyleProps}
+      style={styleProps}
       className={variantStyles.base({ className })}
     >
       {leftSection && <Box mr="md">{leftSection}</Box>}
@@ -134,10 +129,8 @@ const Input = ({
             lineHeight: LINE_HEIGHT,
             ...labelAnimatedStyle,
           }}
-          textProps={{
-            numberOfLines: 1,
-            accessibilityLabel: label,
-          }}
+          numberOfLines={1}
+          accessibilityLabel="label"
         >
           {label}
         </AnimatedText>

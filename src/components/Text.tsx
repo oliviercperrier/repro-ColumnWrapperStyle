@@ -9,23 +9,21 @@ import {
 import useStyleProps, {
   extractStyleProps,
 } from "@/budge-ui-styling/src/utils/useStyleProps";
+import { extractTextVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
 
 type TTextProps = TDefaultTextProps<TTextVariantProps>;
 
 const Text = forwardRef<RNText, TTextProps>(
-  ({ style, className, textProps, children, ...variantProps }, ref) => {
-    const extractedStyleProp = useStyleProps({
-      style,
-      styleProps: extractStyleProps(variantProps),
-    });
+  ({ className, children, ...others }, ref) => {
+    const { styleProps, textVariantProps, rest } = extractTextVariantProps(others);
 
     return (
       <RNText
         ref={ref}
-        style={extractedStyleProp}
-        className={twMerge(textVariant(variantProps), className)}
+        style={styleProps}
+        className={textVariant({ ...textVariantProps, className })}
         children={children}
-        {...textProps}
+        {...rest}
       />
     );
   }

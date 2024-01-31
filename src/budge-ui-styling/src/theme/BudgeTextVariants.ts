@@ -1,10 +1,7 @@
 import { VariantProps, tv } from "tailwind-variants";
 import { TBaseCustomStyleProps, viewVariant } from "./BudgeBaseVariants";
-import {
-  TColors,
-  TExtendedTextColors,
-} from "./BudgeColors";
-import { TextProps } from "react-native";
+import { TColors, TExtendedTextColors } from "./BudgeColors";
+import { TextInputProps, TextProps } from "react-native";
 import { PropsWithChildren } from "react";
 
 /* TEXT */
@@ -152,8 +149,16 @@ export type TDefaultTextProps<T> = Partial<TBaseCustomStyleProps> &
   PropsWithChildren<{
     style?: TextProps["style"];
     className?: TextProps["className"];
-    textProps?: Omit<TextProps, "style" | "className" | "children">;
   }> &
+  Omit<TextProps, "style" | "className" | "children"> &
+  T;
+
+export type TDefaultTextInputProps<T> = Partial<TBaseCustomStyleProps> &
+  PropsWithChildren<{
+    style?: TextInputProps["style"];
+    className?: TextInputProps["className"];
+  }> &
+  Omit<TextInputProps, "style" | "className" | "children" | "editable"> &
   T;
 
 export type TTextVariantProps = VariantProps<typeof textVariant>;

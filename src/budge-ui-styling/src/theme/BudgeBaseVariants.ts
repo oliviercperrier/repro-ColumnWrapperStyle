@@ -523,19 +523,7 @@ export type TBaseCustomStyleProps = {
 };
 
 export type TDefaultViewProps<T> = Partial<TBaseCustomStyleProps> &
-  PropsWithChildren<{
-    style?: ViewProps["style"];
-    className?: ViewProps["className"];
-    viewProps?: Omit<ViewProps, "style" | "className" | "children">;
-  }> &
-  T;
-
-export type TDefaultTextInputProps<T> = Partial<TBaseCustomStyleProps> &
-  PropsWithChildren<{
-    style?: TextInputProps["style"];
-    className?: TextInputProps["className"];
-  }> &
-  Omit<TextInputProps, "style" | "className" | "children" | "editable"> &
+  ViewProps &
   T;
 
 export type TViewVariantProps = VariantProps<typeof viewVariant>;

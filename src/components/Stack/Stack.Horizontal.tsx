@@ -1,27 +1,14 @@
-import React, {
-  forwardRef,
-  memo,
-  PropsWithChildren,
-  ReactElement,
-} from "react";
+import React, { forwardRef, memo, ReactElement } from "react";
 import { View } from "react-native";
 import { Box } from "../Box";
-import {
-  viewVariant,
-} from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
-import { twMerge } from "tailwind-merge";
-import useStyleProps, {
-  extractStyleProps,
-} from "@/budge-ui-styling/src/utils/useStyleProps";
 import { TStackProps } from "./Stack.types";
-import { stackVariant } from "./Stack.Variant";
+import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
+import { stackVariant } from "./Stack.variants";
 
 const StackHorizontal = forwardRef<View, TStackProps>(
-  ({ style, className, children, viewProps, ...variantProps }, ref) => {
-    const extractedStyleProp = useStyleProps({
-      style,
-      styleProps: extractStyleProps(variantProps),
-    });
+  ({ className, children, spacing, ...others }, ref) => {
+    const { styleProps, viewVariantProps, rest } =
+      extractViewVariantProps(others);
     const filteredChildren = (
       React.Children.toArray(children) as ReactElement[]
     ).filter(Boolean);
@@ -29,9 +16,13 @@ const StackHorizontal = forwardRef<View, TStackProps>(
     return (
       <Box
         ref={ref}
-        style={[extractedStyleProp, { flexDirection: "row" }]}
-        className={twMerge(stackVariant(variantProps), className)}
-        {...viewProps}
+        style={[styleProps, { flexDirection: "row" }]}
+        className={stackVariant({
+          ...viewVariantProps,
+          spacing,
+          className,
+        })}
+        {...rest}
       >
         {filteredChildren}
       </Box>
