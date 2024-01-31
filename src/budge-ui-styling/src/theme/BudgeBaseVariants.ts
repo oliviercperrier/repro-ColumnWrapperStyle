@@ -1,7 +1,9 @@
-import { ViewProps, ViewStyle } from "react-native";
+import { TextInputProps, ViewProps, ViewStyle } from "react-native";
 import { TColors, TExtendedBorderColors } from "./BudgeColors";
 import { VariantProps, tv } from "tailwind-variants";
 import { PropsWithChildren } from "react";
+import { TextProps } from "react-native-svg";
+import { filterProps } from "../utils/filterProps";
 
 /* VIEW */
 const bgColorVariants: Record<TColors, string> = {
@@ -101,16 +103,16 @@ export const viewVariant = tv({
       "col-reverse": "flex-col-reverse",
     },
     w100: {
-      true: "w-full"
+      true: "w-full",
     },
     miw100: {
-      true: "min-w-full"
+      true: "min-w-full",
     },
     h100: {
-      true: "h-full"
+      true: "h-full",
     },
     mih100: {
-      true: "min-h-full"
+      true: "min-h-full",
     },
     justifyContent: {
       normal: "justify-normal",
@@ -526,6 +528,14 @@ export type TDefaultViewProps<T> = Partial<TBaseCustomStyleProps> &
     className?: ViewProps["className"];
     viewProps?: Omit<ViewProps, "style" | "className" | "children">;
   }> &
+  T;
+
+export type TDefaultTextInputProps<T> = Partial<TBaseCustomStyleProps> &
+  PropsWithChildren<{
+    style?: TextInputProps["style"];
+    className?: TextInputProps["className"];
+  }> &
+  Omit<TextInputProps, "style" | "className" | "children" | "editable"> &
   T;
 
 export type TViewVariantProps = VariantProps<typeof viewVariant>;

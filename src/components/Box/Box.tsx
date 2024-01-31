@@ -5,19 +5,21 @@ import {
   TViewVariantProps,
   viewVariant,
 } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
-import useParseStyleProps, {
+import useStyleProps, {
   extractStyleProps,
-} from "@/budge-ui-styling/src/utils/useParseStyleProps";
+} from "@/budge-ui-styling/src/utils/useStyleProps";
 import { twMerge } from "tailwind-merge";
 
 export type TBoxProps = TDefaultViewProps<TViewVariantProps>;
 
 const Box = forwardRef<View, TBoxProps>(
   ({ style, className, children, viewProps, ...variantProps }, ref) => {
-    const extractedStyleProp = useParseStyleProps({
+    const extractedStyleProp = useStyleProps({
       style,
       styleProps: extractStyleProps(variantProps),
     });
+
+    console.log(twMerge(viewVariant(variantProps), className))
 
     return (
       <View

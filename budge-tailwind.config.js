@@ -11,7 +11,6 @@ module.exports = {
     colors: baseColors,
     extend: {
       textColor: extendedTextColors,
-      backgroundColor: extendedBackgroundColors,
       borderColor: extendedBorderColors,
       colors: {
         primary: {

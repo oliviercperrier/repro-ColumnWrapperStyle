@@ -6,15 +6,15 @@ import {
   TTextVariantProps,
   textVariant,
 } from "../budge-ui-styling/src/theme/BudgeTextVariants";
-import useParseStyleProps, {
+import useStyleProps, {
   extractStyleProps,
-} from "@/budge-ui-styling/src/utils/useParseStyleProps";
+} from "@/budge-ui-styling/src/utils/useStyleProps";
 
 type TTextProps = TDefaultTextProps<TTextVariantProps>;
 
 const Text = forwardRef<RNText, TTextProps>(
   ({ style, className, textProps, children, ...variantProps }, ref) => {
-    const extractedStyleProp = useParseStyleProps({
+    const extractedStyleProp = useStyleProps({
       style,
       styleProps: extractStyleProps(variantProps),
     });

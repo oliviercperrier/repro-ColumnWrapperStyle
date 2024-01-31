@@ -162,9 +162,9 @@ export type TExtendedTextColors = {
   disabled: string;
 };
 const extendedTextColors: TExtendedTextColors = {
-  default: baseColors.dark.DEFAULT,
-  secondary: baseColors.gray[400],
-  disabled: baseColors.gray[200],
+  "default": baseColors.dark.DEFAULT,
+  "secondary": baseColors.gray[5],
+  "disabled": baseColors.gray[2],
 };
 
 /** BORDER COLORS */
@@ -173,8 +173,8 @@ export type TExtendedBorderColors = {
   disabled: string;
 };
 const extendedBorderColors: TExtendedBorderColors = {
-  default: baseColors.gray[100],
-  disabled: baseColors.gray[100],
+  default: baseColors.gray[1],
+  disabled: baseColors.gray[1],
 };
 
 export { baseColors, extendedTextColors, extendedBorderColors };

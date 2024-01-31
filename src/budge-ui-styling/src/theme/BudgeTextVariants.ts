@@ -3,7 +3,6 @@ import { TBaseCustomStyleProps, viewVariant } from "./BudgeBaseVariants";
 import {
   TColors,
   TExtendedTextColors,
-  extendedTextColors,
 } from "./BudgeColors";
 import { TextProps } from "react-native";
 import { PropsWithChildren } from "react";

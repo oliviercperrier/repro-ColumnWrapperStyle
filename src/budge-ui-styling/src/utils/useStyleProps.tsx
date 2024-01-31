@@ -30,7 +30,7 @@ export const extractStyleProps = <T,>(
   };
 };
 
-const useParseStyleProps = <T,>({
+const useStyleProps = <T,>({
   style,
   styleProps,
 }: {
@@ -38,10 +38,11 @@ const useParseStyleProps = <T,>({
   styleProps: TBaseCustomStyleProps;
 }): StyleProp<ViewStyle> => [
   Object.entries(styleProps).reduce((prev, [propName, value]) => {
+    /* @ts-ignore */
     prev[OtherStylePropsMap[propName]] = value;
     return prev;
-  }, {}),
+  }, {} as any),
   StyleSheet.flatten(style),
 ];
 
-export default useParseStyleProps;
+export default useStyleProps;

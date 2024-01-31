@@ -9,9 +9,9 @@ import { Svg, SvgProps } from "react-native-svg";
 import { VariantProps, tv } from "tailwind-variants";
 import { TColors } from "@/budge-ui-styling/src/theme/BudgeColors";
 import { twMerge } from "tailwind-merge";
-import useParseStyleProps, {
+import useStyleProps, {
   extractStyleProps,
-} from "@/budge-ui-styling/src/utils/useParseStyleProps";
+} from "@/budge-ui-styling/src/utils/useStyleProps";
 import { textVariant } from "@/budge-ui-styling/src/theme/BudgeTextVariants";
 
 const fillColorVariants: Record<TColors | "none" | "current", string> = {
@@ -66,7 +66,7 @@ const SvgIcon = forwardRef<Svg, TSvgIconProps>(
     { title, viewBox, style, className, children, viewProps, ...variantProps },
     ref
   ) => {
-    const parsedStyleProps = useParseStyleProps({
+    const parsedStyleProps = useStyleProps({
       style,
       styleProps: extractStyleProps(variantProps),
     });

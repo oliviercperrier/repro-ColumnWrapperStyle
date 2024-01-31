@@ -10,6 +10,7 @@ import SvgIcon from "@/components/SvgIcon";
 import { Stack } from "@/components/Stack";
 import { Box } from "@/components/Box";
 import Spinner from "@/components/Spinner/Spinner";
+import Input from "@/components/Input/Input";
 
 export default function Page() {
   return (
@@ -82,14 +83,12 @@ const button = tv({
 
 function Content() {
   return (
-    <Box
-      h={500}
-      alignItems="center"
-      justifyContent="center"
-      className="disabled"
-    >
-      <Spinner color="green" />
-    </Box>
+    <Stack p="md">
+      <Input label="Account Id" />
+      <Input label="Not Editable" editable={false} />
+      <Input label="Disabled" disabled />
+      <Input label="Errored" errored />
+    </Stack>
   );
 }
 

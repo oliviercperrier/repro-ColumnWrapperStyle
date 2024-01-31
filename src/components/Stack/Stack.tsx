@@ -12,15 +12,15 @@ import {
   viewVariant,
 } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
 import { twMerge } from "tailwind-merge";
-import useParseStyleProps, {
+import useStyleProps, {
   extractStyleProps,
-} from "@/budge-ui-styling/src/utils/useParseStyleProps";
+} from "@/budge-ui-styling/src/utils/useStyleProps";
 import { stackVariant } from "./Stack.Variant";
 import { TStackProps } from "./Stack.types";
 
 const Stack = forwardRef<View, PropsWithChildren<TStackProps>>(
   ({ style, className, children, viewProps, ...variantProps }, ref) => {
-    const extractedStyleProp = useParseStyleProps({
+    const extractedStyleProp = useStyleProps({
       style,
       styleProps: extractStyleProps(variantProps),
     });

@@ -2,7 +2,6 @@ import React from "react";
 import SvgIcon, { TSvgIconProps } from "../SvgIcon";
 import { Circle, Path } from "react-native-svg";
 import { twMerge } from "tailwind-merge";
-import { viewVariant } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
 
 const Spinner = ({ className, ...props }: TSvgIconProps) => (
   <SvgIcon
