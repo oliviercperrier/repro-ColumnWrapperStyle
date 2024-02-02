@@ -1,5 +1,5 @@
 import React from "react";
-import SvgIcon, { TSvgIconProps } from "../SvgIcon";
+import SvgIcon, { TSvgIconProps } from "../SvgIcon/SvgIcon";
 import { Circle, Path } from "react-native-svg";
 import { twMerge } from "tailwind-merge";
 
