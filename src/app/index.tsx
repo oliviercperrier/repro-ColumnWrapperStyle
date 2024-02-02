@@ -6,22 +6,24 @@ import { Path, Svg } from "react-native-svg";
 import Stack from "@/budge-ui-core/src/components/Stack/Stack";
 import Button from "@/budge-ui-core/src/components/Button/Button";
 import SvgIcon, { TSvgIconProps } from "@/budge-ui-core/src/components/SvgIcon/SvgIcon";
+import Table from "@/budge-ui-core/src/components/Table/Table";
+import { Box } from "@/budge-ui-core/src/components/Box";
 
 export default function Page() {
   return (
-    <View>
+    <Box h100>
       <Header />
       <Content />
       <Footer />
-    </View>
+    </Box>
   );
 }
 
 function Content() {
   return (
-    <Stack p="md">
-      <Button rightIcon={Icon} color="yellow" variant="filled" alignSelf="start" title="Button" />
-    </Stack>
+    <Box p="xl" h100 className="bg-gray-1">
+      <Table />
+    </Box>
   );
 }
 

@@ -6,7 +6,7 @@ import { buttonVariant } from "./Button.variants";
 import { Box } from "../Box";
 import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
 import Pressable, { TPressableProps } from "../Pressable/Pressable";
-import Text from "../Text";
+import Text from "../../components/Text/Text";
 import { TMemoRefIconProps } from "../SvgIcon/SvgIcon";
 
 export type TButtonProps = Omit<
