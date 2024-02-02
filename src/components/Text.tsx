@@ -1,14 +1,10 @@
 import { Text as RNText } from "react-native";
-import { twMerge } from "tailwind-merge";
 import { forwardRef } from "react";
 import {
   TDefaultTextProps,
   TTextVariantProps,
   textVariant,
 } from "../budge-ui-styling/src/theme/BudgeTextVariants";
-import useStyleProps, {
-  extractStyleProps,
-} from "@/budge-ui-styling/src/utils/useStyleProps";
 import { extractTextVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
 
 type TTextProps = TDefaultTextProps<TTextVariantProps>;

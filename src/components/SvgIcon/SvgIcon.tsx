@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { ForwardRefExoticComponent, MemoExoticComponent, forwardRef, memo } from "react";
 import {
   TDefaultViewProps,
 } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
@@ -9,6 +9,8 @@ import { svgVariant } from "./SvgIcon.variants";
 
 export type TSvgIconProps = TDefaultViewProps<VariantProps<typeof svgVariant>> &
   Pick<SvgProps, "viewBox" | "title">;
+
+export type TMemoRefIconProps = MemoExoticComponent<ForwardRefExoticComponent<TSvgIconProps>>;
 
 const SvgIcon = forwardRef<Svg, TSvgIconProps>(
   ({ title, viewBox, className, children, color, size, ...others }, ref) => {
@@ -34,4 +36,4 @@ const SvgIcon = forwardRef<Svg, TSvgIconProps>(
   }
 );
 
-export default SvgIcon;
+export default memo(SvgIcon);

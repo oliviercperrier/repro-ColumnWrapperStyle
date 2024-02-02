@@ -1,12 +1,9 @@
-import { TextInputProps, ViewProps, ViewStyle } from "react-native";
+import { ViewProps, ViewStyle } from "react-native";
 import { TColors, TExtendedBorderColors } from "./BudgeColors";
 import { VariantProps, tv } from "tailwind-variants";
-import { PropsWithChildren } from "react";
-import { TextProps } from "react-native-svg";
-import { filterProps } from "../utils/filterProps";
 
 /* VIEW */
-const bgColorVariants: Record<TColors, string> = {
+export const bgColorVariants: Record<TColors, string> = {
   primary: "bg-primary",
   dark: "bg-dark",
   gray: "bg-gray",
@@ -27,7 +24,7 @@ const bgColorVariants: Record<TColors, string> = {
   error: "bg-error",
 };
 
-const shadowColorVariants: Record<TColors, string> = {
+export const shadowColorVariants: Record<TColors, string> = {
   primary: "shadow-primary",
   dark: "shadow-dark",
   gray: "shadow-gray",
@@ -522,7 +519,7 @@ export type TBaseCustomStyleProps = {
   mah: ViewStyle["maxHeight"];
 };
 
-export type TDefaultViewProps<T> = Partial<TBaseCustomStyleProps> &
+export type TDefaultViewProps<T = any> = Partial<TBaseCustomStyleProps> &
   ViewProps &
   T;
 
