@@ -3,7 +3,6 @@ import React, { forwardRef } from "react";
 import { TDefaultViewProps } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
 import { VariantProps } from "tailwind-variants";
 import { buttonVariant } from "./Button.variants";
-import { Box } from "../Box";
 import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
 import Pressable, { TPressableProps } from "../Pressable/Pressable";
 import Text from "../../components/Text/Text";
@@ -29,6 +28,7 @@ const Button = forwardRef<View, TButtonProps>(
       size,
       variant,
       color,
+      hoverEffect = true,
       disabled = false,
       withPressEffect = true,
       ...others
@@ -42,9 +42,12 @@ const Button = forwardRef<View, TButtonProps>(
       variant,
       size,
       color,
+      hoverEffect: disabled ? false : hoverEffect,
       withIcon: LeftIcon ? "left" : RightIcon ? "right" : undefined,
       ...viewVariantProps,
     });
+
+    console.log(variantStyles.base({ className }))
 
     return (
       <Pressable

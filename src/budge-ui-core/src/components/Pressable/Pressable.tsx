@@ -57,6 +57,7 @@ const Pressable = forwardRef<View, TPressableProps>(
         onPressOut={composeEventHandlers(onPressOut, pressProps.onPressOut)}
         onHoverIn={composeEventHandlers(onHoverIn, hoverProps.onHoverIn)}
         onHoverOut={composeEventHandlers(onHoverOut, hoverProps.onHoverOut)}
+        pointerEvents="auto"
         {...rest}
       >
         {typeof children === "function"

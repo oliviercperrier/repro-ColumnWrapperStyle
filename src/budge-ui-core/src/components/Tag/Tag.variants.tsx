@@ -2,32 +2,32 @@ import { viewVariant } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
 import { viewColorVariant } from "@/budge-ui-styling/src/theme/ColorVariant";
 import { tv } from "tailwind-variants";
 
-export const buttonVariant = tv({
+export const tagVariant = tv({
   extend: viewVariant,
   slots: {
-    base: "rounded-md items-center flex-row gap-1",
+    base: "rounded-md items-center max-w-full",
     text: "",
     icon: "",
   },
   variants: {
     size: {
       xs: {
-        base: "px-2 py-1",
+        base: "h-5 px-1.5",
+        text: "text-xs",
+        icon: "w-3.5 h-3.5",
+      },
+      sm: {
+        base: "h-6 px-2",
         text: "text-sm",
         icon: "w-4 h-4",
       },
-      sm: {
-        base: "px-3 py-1.5",
-        text: "text-sm",
-        icon: "w-5 h-5",
-      },
       md: {
-        base: "px-3.5 py-2",
+        base: "h-7 px-2.5",
         text: "text-base",
         icon: "w-5 h-5",
       },
       lg: {
-        base: "px-5 py-2.5",
+        base: "h-8 px-3",
         text: "text-lg",
         icon: "w-6 h-6",
       },
@@ -44,28 +44,28 @@ export const buttonVariant = tv({
       size: "xs",
       withIcon: "left",
       className: {
-        base: "pl-1.5",
+        base: "pl-1",
       },
     },
     {
       size: "sm",
       withIcon: "left",
       className: {
-        base: "pl-2",
+        base: "pl-1.5",
       },
     },
     {
       size: "md",
       withIcon: "left",
       className: {
-        base: "pl-2.5",
+        base: "pl-2",
       },
     },
     {
       size: "lg",
       withIcon: "left",
       className: {
-        base: "pl-3.5",
+        base: "pl-2.5",
       },
     },
     // With Right Icon
@@ -73,28 +73,28 @@ export const buttonVariant = tv({
       size: "xs",
       withIcon: "right",
       className: {
-        base: "pr-1.5",
+        base: "pr-1",
       },
     },
     {
       size: "sm",
       withIcon: "right",
       className: {
-        base: "pr-2",
+        base: "pr-1.5",
       },
     },
     {
       size: "md",
       withIcon: "right",
       className: {
-        base: "pr-2.5",
+        base: "pr-2",
       },
     },
     {
       size: "lg",
       withIcon: "right",
       className: {
-        base: "pr-3.5",
+        base: "pr-2.5",
       },
     },
     ...viewColorVariant.compoundVariants,
@@ -102,6 +102,6 @@ export const buttonVariant = tv({
   defaultVariants: {
     variant: "default",
     color: "primary",
-    size: "lg",
+    size: "sm",
   },
 });

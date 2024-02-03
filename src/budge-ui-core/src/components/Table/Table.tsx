@@ -99,7 +99,7 @@ const Table = () => {
 
   const table = useReactTable({
     data,
-    state: {sorting},
+    state: { sorting },
     columns: [
       {
         accessorKey: "firstName",
@@ -160,18 +160,6 @@ const Table = () => {
                     <Button title="sort" onPress={header.column.getToggleSortingHandler()} />
                   ) : null}
                 </Text>
-                <Box
-                  h100
-                  w={4}
-                  position="absolute"
-                  right={0}
-                  className={`hover:cursor-col-resize ${
-                    header.column.getIsResizing() ? "bg-primary" : "bg-transparent"
-                  }`}
-                  // @ts-ignore
-                  onMouseDown={header.getResizeHandler()}
-                  onTouchStart={header.getResizeHandler()}
-                />
               </Box>
             ))}
           </Stack.Horizontal>

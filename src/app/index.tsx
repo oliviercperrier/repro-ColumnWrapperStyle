@@ -8,6 +8,8 @@ import Button from "@/budge-ui-core/src/components/Button/Button";
 import SvgIcon, { TSvgIconProps } from "@/budge-ui-core/src/components/SvgIcon/SvgIcon";
 import Table from "@/budge-ui-core/src/components/Table/Table";
 import { Box } from "@/budge-ui-core/src/components/Box";
+import Tag from "@/budge-ui-core/src/components/Tag/Tag";
+import { CloseIcon } from "@/budge-ui-core/src/components/Icon";
 
 export default function Page() {
   return (
@@ -21,8 +23,11 @@ export default function Page() {
 
 function Content() {
   return (
-    <Box p="xl" h100 className="bg-gray-1">
-      <Table />
+    <Box p="xl" h100 className="bg-white">
+      <Button title="Button" disabled color="primary" variant="filled" />
+      <Box alignItems="start">
+      <Tag  icon={CloseIcon} color="red" variant="filled" value="Olivier" />
+      </Box>
     </Box>
   );
 }
