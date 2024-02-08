@@ -5,7 +5,7 @@ import { TextInput } from "react-native";
 import { TDefaultTextInputProps } from "@budgeinc/budge-ui-styling";
 
 export type TInputProps = TDefaultTextInputProps<
-  VariantProps<typeof inputVariant>
+  Omit<VariantProps<typeof inputVariant>, "labeled">
 > & {
   label?: string;
   showLabel?: boolean;

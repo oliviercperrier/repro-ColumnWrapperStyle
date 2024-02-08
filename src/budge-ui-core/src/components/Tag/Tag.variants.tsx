@@ -99,7 +99,7 @@ export const tagVariant = tv({
     ...viewColorVariant.compoundVariants,
   ],
   defaultVariants: {
-    variant: "default",
+    variant: "light",
     color: "primary",
     size: "sm",
   },

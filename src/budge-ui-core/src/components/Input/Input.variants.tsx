@@ -4,9 +4,9 @@ import { tv } from "tailwind-variants";
 export const inputVariant = tv({
   extend: viewVariant,
   slots: {
-    base: "flex-row items-center h-full border-2",
+    base: "flex-row items-center border-2",
     label: "absolute text-secondary",
-    input: "h-full outline-none z-10",
+    input: "outline-none z-10",
   },
   variants: {
     variant: {

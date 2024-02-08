@@ -1,16 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { View } from "react-native";
-import Button from "./Button";
+import Tag from "./Tag";
 import { Box } from "../Box";
+import { SuccessIcon } from "../Icon";
 
 const meta = {
-  title: "Buttons/Button",
-  component: Button,
+  title: "Data Display/Tag",
+  component: Tag,
   args: {
-    title: "Button",
-    color: "primary",
-    variant: "filled",
+    value: "Success",
+    color: "green",
+    icon: SuccessIcon
   },
   decorators: [
     Story => (
@@ -19,7 +20,7 @@ const meta = {
       </Box>
     ),
   ],
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Tag>;
 
 export default meta;
 
