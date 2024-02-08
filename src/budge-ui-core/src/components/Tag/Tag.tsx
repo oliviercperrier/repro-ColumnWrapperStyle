@@ -1,12 +1,11 @@
 import { View, Text } from "react-native";
 import React, { forwardRef } from "react";
-import { TDefaultViewProps } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
+import { TDefaultViewProps, extractViewVariantProps } from "@budgeinc/budge-ui-styling";
 import { VariantProps } from "tailwind-variants";
 import { tagVariant } from "./Tag.variants";
-import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
-import { TMemoRefIconProps } from "../SvgIcon/SvgIcon";
+import { TMemoRefIconProps } from "../SvgIcon";
 import { Stack } from "../Stack";
-import Pressable from "../Pressable/Pressable";
+import { Pressable } from "../Pressable";
 import { CloseIcon } from "../Icon";
 
 export type TTagProps = TDefaultViewProps<Omit<VariantProps<typeof tagVariant>, "hoverEffect">> & {
@@ -34,7 +33,7 @@ const Tag = forwardRef<View, TTagProps>(
     ref
   ) => {
     const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
-    
+
     const variantStyles = tagVariant({
       variant,
       size,
@@ -50,7 +49,6 @@ const Tag = forwardRef<View, TTagProps>(
         style={styleProps}
         className={variantStyles.base({ className })}
         spacing="xs"
-        //pointerEvents="none"
         {...rest}
       >
         {iconPosition === "left" && Icon && <Icon className={variantStyles.icon()} />}

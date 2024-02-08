@@ -1,0 +1,42 @@
+{
+  "name": "@budgeinc/budge-ui-styling",
+  "version": "2.0.99",
+  "description": "Styling system for react-native",
+  "react-native": "src/index.ts",
+  "main": "esm/index.js",
+  "module": "src/index.ts",
+  "types": "lib/index.d.ts",
+  "files": [
+    "src",
+    "cjs",
+    "esm",
+    "lib",
+    "index.ts"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "url": "https://github.com/budgeinc/budge-ui.git",
+    "type": "git",
+    "directory": "src/budge-ui-styling"
+  },
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "author": "Olivier Castro-Perrier (@oliviercperrier)",
+  "license": "ISC",
+  "peerDependencies": {
+    "color": ">=4.2.3",
+    "react": ">=18.2.0",
+    "react-native": ">=0.72.3",
+    "@emotion/native": ">=11.10.0",
+    "@emotion/react": ">=11.10.5",
+    "@budgeinc/budge-ui-utils": "2.0.99"
+  },
+  "devDependencies": {
+    "@types/color": "^3.0.3",
+    "@types/react": "^18.0.27"
+  },
+  "engines": {
+    "node": ">= 16"
+  }
+}

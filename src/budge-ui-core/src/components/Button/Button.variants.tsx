@@ -1,5 +1,4 @@
-import { viewVariant } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
-import { viewColorVariant } from "@/budge-ui-styling/src/theme/ColorVariant";
+import { viewVariant, viewColorVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
 
 export const buttonVariant = tv({

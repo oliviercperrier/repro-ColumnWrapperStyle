@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["./src"],
+  "exclude": ["./lib", "./esm", "./cjs", "index.ts"],
+  "compilerOptions": {
+    "jsx": "react-native",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "outDir": "lib",
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "lib",
+    "composite": true,
+    "strict": true,
+    "paths": {
+      "@budgeinc/budge-ui-styling": ["../budge-ui-styling/src"]
+    }
+  },
+  "references": [{ "path": "../budge-ui-styling" }]
+}

@@ -1,0 +1,31 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["./src"],
+  "exclude": [
+    "./lib",
+    "./esm",
+    "./cjs",
+    "**/__tests__",
+    "**/__fixtures__",
+    "**/__mocks__",
+    "**/*.stories.js",
+    "**/*.stories.tsx",
+    "**/*.stories.data.ts"
+  ],
+  "compilerOptions": {
+    "rootDir": "src",
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "jsx": "react-native",
+    "composite": true,
+    "strict": false,
+    "paths": {
+      "@budgeinc/budge-ui-styling": ["../budge-ui-styling/src"],
+      "@budgeinc/budge-ui-hooks": ["../budge-ui-hooks/src"],
+      "@budgeinc/budge-ui-utils": ["../budge-ui-utils/src"]
+    }
+  },
+  "references": [{ "path": "../budge-ui-styling" }, { "path": "../budge-ui-hooks" }, { "path": "../budge-ui-utils" }]
+}

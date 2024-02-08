@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["./src", "../../app.d.ts"],
+  "exclude": ["./dist"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "jsx": "react-native",
+    "composite": true,
+    "strict": true,
+    "paths": {
+      "@budgeinc/budge-ui-styling": ["../budge-ui-styling/src"],
+      "@budgeinc/budge-ui-hooks": ["../budge-ui-hooks/src"],
+      "@budgeinc/budge-ui-utils": ["../budge-ui-utils/src"]
+    }
+  },
+  "references": [
+    { "path": "../budge-ui-styling" },
+    { "path": "../budge-ui-hooks" },
+    { "path": "../budge-ui-utils" }
+  ]
+}

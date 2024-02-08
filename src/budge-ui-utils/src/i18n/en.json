@@ -1,0 +1,206 @@
+{
+  "ok": "Ok",
+  "cancel": "Cancel",
+  "save": "Save",
+  "edit": "Edit",
+  "close": "Close",
+  "utils": {
+    "yup": {
+      "mixed": {
+        "default": "This field is required",
+        "required": "This field is required",
+        "notType": "This field must be a ${type}"
+      },
+      "number": {
+        "min": {
+          "one": "Must be at least %{count} digit",
+          "other": "Must be at least %{count} digits"
+        },
+        "max": {
+          "one": "Must be a maximum of %{count} digit",
+          "other": "Must be a maximum of %{count} digits"
+        },
+        "lessThan": "Must be less than %{less}",
+        "moreThan": "Must be greater than %{more}"
+      },
+      "string": {
+        "email": "Enter a valid email",
+        "length": {
+          "one": "Must be exactly %{count} character",
+          "other": "Must be exactly %{count} characters"
+        },
+        "min": {
+          "one": "Must be at least %{count} character",
+          "other": "Must be at least %{count} characters"
+        },
+        "max": {
+          "one": "Must be a maximum of %{count} character",
+          "other": "Must be a maximum of %{count} characters"
+        },
+        "url": "Enter a valid URL",
+        "uuid": "Enter a valid UUID"
+      },
+      "other": {
+        "passwordIsTooWeak": "Passwords is too weak",
+        "passwordMustMatch": "Passwords must match",
+        "enterValidDate": "Please enter a valid date",
+        "endDateMustBeAfter": "End date has to be after the start date",
+        "enterValidSsn": "Please enter a valid SSN",
+        "invalidSsn": "This SSN is invalid",
+        "enterValidPhone": "This phone number is invalid",
+        "invalidPhone": "Please enter a valid phone number",
+        "invalidEmail": "Invalid email"
+      }
+    }
+  },
+  "ui-core": {
+    "notification": {
+      "iconTooltip": "Notifications",
+      "emptyDescription": "You have no notifications",
+      "timeAgo": "%{date} ago"
+    },
+    "empty": {
+      "title": "No data"
+    },
+    "address": {
+      "line1": "Address Line 1",
+      "line2": "Address Line 2 (optional)",
+      "city": "City",
+      "state": "State",
+      "zip": "Zip"
+    },
+    "infiniteScrollList": {
+      "local": {
+        "noMoreItems": "No more items to load"
+      }
+    },
+    "idleMonitoring": {
+      "keepMeSignIn": "Keep me signed in",
+      "signMeOut": "Sign out now",
+      "sessionExpire": "Your session has expired!",
+      "sessionAboutToExpire": "Your session is about to expire!",
+      "youWillBeLoggedOutIn": "You will be automatically logged out in",
+      "second": {
+        "one": "second",
+        "other": "seconds"
+      }
+    },
+    "pages": {
+      "maintenance": {
+        "title": "We're Temporarily Offline!"
+      },
+      "404": {
+        "title": "Page Not Found",
+        "description": "The page you're looking for does not seem to exist"
+      },
+      "500": {
+        "title": "Something went wrong"
+      }
+    },
+    "error": {
+      "defaultErrorMsg": "A system error occured. Please reach out to the Budge success team for assistance"
+    },
+    "enums": {
+      "program": {
+        "frequency": {
+          "short": "paycheck",
+          "long": "Recurring every pay period"
+        },
+        "type": {
+          "employee": "Employee Contribution",
+          "employer": "Employer Contribution",
+          "other": "Contribution"
+        }
+      },
+      "goal": {
+        "type": {
+          "creditCard": "Credit Card",
+          "studentLoan": "Student Loan",
+          "savingsAccount": "Savings Account",
+          "other": "Account"
+        }
+      },
+      "accountType": {
+        "creditCard": {
+          "zero": "Credit Card",
+          "one": "Credit Card",
+          "other": "Credit Cards"
+        },
+        "studentLoan": {
+          "zero": "Student Loan",
+          "one": "Student Loan",
+          "other": "Student Loans"
+        },
+        "savingsAccount": {
+          "zero": "Savings Account",
+          "one": "Savings Account",
+          "other": "Savings Accounts"
+        },
+        "autoLoan": {
+          "zero": "Auto Loan",
+          "one": "Auto Loan",
+          "other": "Auto Loans"
+        },
+        "mortgage": {
+          "zero": "Mortgage",
+          "one": "Mortgage",
+          "other": "Mortgages"
+        },
+        "personalLoan": {
+          "zero": "Personal Loan",
+          "one": "Personal Loan",
+          "other": "Personal Loans"
+        },
+        "loan": {
+          "zero": "Loan",
+          "one": "Loan",
+          "other": "Loans"
+        },
+        "other": {
+          "zero": "Other",
+          "one": "Other",
+          "other": "Others"
+        }
+      }
+    },
+    "passwordStrength": {
+      "weak": "Weak",
+      "fair": "Fair",
+      "good": "Good",
+      "strong": "Strong",
+      "minLengthSuggestion": {
+        "one": "Add %{count} more character",
+        "other": "Add %{count} more characters"
+      }
+    }
+  },
+  "enums": {
+    "payFrequency": {
+      "WEEKLY": "Weekly",
+      "BI_WEEKLY": "Bi-weekly",
+      "SEMI_MONTHLY": "Semi-monthly",
+      "MONTHLY": "Monthly"
+    },
+    "weekDay": {
+      "MONDAY": "Monday",
+      "TUESDAY": "Tuesday",
+      "WEDNESDAY": "Wednesday",
+      "THURSDAY": "Thursday",
+      "FRIDAY": "Friday",
+      "shortAbrv": {
+        "MONDAY": "M",
+        "TUESDAY": "T",
+        "WEDNESDAY": "W",
+        "THURSDAY": "Th",
+        "FRIDAY": "F"
+      },
+      "abrv": {
+        "MONDAY": "Mon",
+        "TUESDAY": "Tue",
+        "WEDNESDAY": "Wed",
+        "THURSDAY": "Thu",
+        "FRIDAY": "Fri"
+      }
+    }
+  }
+}

@@ -1,8 +1,7 @@
 import { ForwardedRef, PropsWithChildren, ReactNode } from "react";
-import { TBoxProps } from "../Box";
 import { VariantProps } from "tailwind-variants";
 import { stackVariant } from "./Stack.variants";
-import { TDefaultViewProps } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
+import { TDefaultViewProps } from "@budgeinc/budge-ui-styling";
 
 export type TStackProps = TDefaultViewProps<
   Omit<VariantProps<typeof stackVariant>, "fdir" | "gap" | "rGap" | "cGap">

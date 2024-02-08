@@ -1,9 +1,4 @@
-import { viewVariant } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
-import {
-  TColors,
-  TExtendedTextColors,
-} from "@/budge-ui-styling/src/theme/BudgeColors";
-import { textVariant } from "@/budge-ui-styling/src/theme/BudgeTextVariants";
+import { TColors, viewVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
 
 export const fillColorVariants: Record<TColors, string> = {

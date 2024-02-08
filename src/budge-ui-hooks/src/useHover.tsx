@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useHover = () => {
+export const useHover = () => {
   const [isHovered, setHovered] = useState(false);
   return {
     hoverProps: {
@@ -10,5 +10,3 @@ const useHover = () => {
     isHovered,
   };
 };
-
-export default useHover;

@@ -1,11 +1,11 @@
 import { View } from "react-native";
-import React, { forwardRef, memo } from "react";
+import React, { forwardRef } from "react";
 import {
   TDefaultViewProps,
   TViewVariantProps,
   viewVariant,
-} from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
-import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
+  extractViewVariantProps
+} from "@budgeinc/budge-ui-styling";
 
 export type TBoxProps = TDefaultViewProps<TViewVariantProps>;
 
@@ -19,11 +19,12 @@ const Box = forwardRef<View, TBoxProps>(
         ref={ref}
         style={styleProps}
         className={viewVariant({ ...viewVariantProps, className })}
-        children={children}
         {...rest}
-      />
+      >
+        {children}
+      </View>
     );
   }
 );
 
-export default memo(Box);
+export default Box;

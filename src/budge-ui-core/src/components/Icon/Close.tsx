@@ -1,6 +1,6 @@
 import React, { forwardRef, memo } from "react";
 import Svg, { Path } from "react-native-svg";
-import SvgIcon, { TSvgIconProps } from "../SvgIcon/SvgIcon";
+import {SvgIcon, TSvgIconProps } from "../SvgIcon";
 
 const CloseIcon = forwardRef<Svg, TSvgIconProps>((props, ref) => (
   <SvgIcon ref={ref} {...props} viewBox="0 0 24 24">

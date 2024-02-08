@@ -2,7 +2,7 @@ import React, { forwardRef, memo, ReactElement } from "react";
 import { View } from "react-native";
 import { Box } from "../Box";
 import { TStackProps } from "./Stack.types";
-import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
+import { extractViewVariantProps } from "@budgeinc/budge-ui-styling";
 import { stackVariant } from "./Stack.variants";
 
 const StackHorizontal = forwardRef<View, TStackProps>(

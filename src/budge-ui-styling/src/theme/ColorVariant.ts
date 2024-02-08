@@ -1,4 +1,4 @@
-import { bgColorVariants } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
+import { bgColorVariants } from "./BudgeBaseVariants";
 
 export type TViewColorVariant = "filled" | "light" | "outlined" | "subtle" | "default" | "defaultBordered";
 

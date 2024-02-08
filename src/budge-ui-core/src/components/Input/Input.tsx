@@ -12,9 +12,9 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import Text from "../Text";
-import useFocus from "@/budge-ui-hooks/src/useFocus";
-import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
+import { Text } from "../Text";
+import { useFocus } from "@budgeinc/budge-ui-hooks";
+import { extractViewVariantProps } from "@budgeinc/budge-ui-styling";
 import { inputVariant } from "./Input.variants";
 import { TInputProps } from "./Input.types";
 

@@ -2,7 +2,7 @@ import { inputVariant } from "./Input.variants";
 import { VariantProps } from "tailwind-variants";
 import { RefObject } from "react";
 import { TextInput } from "react-native";
-import { TDefaultTextInputProps } from "@/budge-ui-styling/src/theme/BudgeTextVariants";
+import { TDefaultTextInputProps } from "@budgeinc/budge-ui-styling";
 
 export type TInputProps = TDefaultTextInputProps<
   VariantProps<typeof inputVariant>

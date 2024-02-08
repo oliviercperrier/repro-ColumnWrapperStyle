@@ -1,21 +1,17 @@
 import { View } from "react-native";
 import React, { forwardRef } from "react";
-import { TDefaultViewProps } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
+import { TDefaultViewProps, extractViewVariantProps } from "@budgeinc/budge-ui-styling";
 import { VariantProps } from "tailwind-variants";
 import { buttonVariant } from "./Button.variants";
-import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
-import Pressable, { TPressableProps } from "../Pressable/Pressable";
-import Text from "../../components/Text/Text";
-import { TMemoRefIconProps } from "../SvgIcon/SvgIcon";
+import { Pressable, TPressableProps } from "../Pressable";
+import { Text } from "../Text";
+import { TMemoRefIconProps } from "../SvgIcon";
 
-export type TButtonProps = Omit<
-  TDefaultViewProps<TPressableProps>,
-  "children"
-> &
+export type TButtonProps = Omit<TDefaultViewProps<TPressableProps>, "children"> &
   Omit<VariantProps<typeof buttonVariant>, "withIcon"> & {
     title: string;
     leftIcon?: TMemoRefIconProps;
-    rightIcon?: TMemoRefIconProps
+    rightIcon?: TMemoRefIconProps;
   };
 
 const Button = forwardRef<View, TButtonProps>(
@@ -35,8 +31,7 @@ const Button = forwardRef<View, TButtonProps>(
     },
     ref
   ) => {
-    const { styleProps, viewVariantProps, rest } =
-      extractViewVariantProps(others);
+    const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
 
     const variantStyles = buttonVariant({
       variant,
@@ -46,8 +41,6 @@ const Button = forwardRef<View, TButtonProps>(
       withIcon: LeftIcon ? "left" : RightIcon ? "right" : undefined,
       ...viewVariantProps,
     });
-
-    console.log(variantStyles.base({ className }))
 
     return (
       <Pressable

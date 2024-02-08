@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "moduleResolution": "Node",
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "composite": true,
+    "strict": true
+  },
+  "include": ["./src", "src/**/*.json", "**/i18n/*.json"],
+  "exclude": ["node_modules", "src/**/test/**"]
+}

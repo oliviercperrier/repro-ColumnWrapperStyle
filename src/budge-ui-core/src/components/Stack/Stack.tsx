@@ -8,7 +8,7 @@ import { View } from "react-native";
 import { Box } from "../Box";
 import { stackVariant } from "./Stack.variants";
 import { TStackProps } from "./Stack.types";
-import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
+import { extractViewVariantProps } from "@budgeinc/budge-ui-styling";
 
 const Stack = forwardRef<View, PropsWithChildren<TStackProps>>(
   ({ style, className, children, spacing, ...others }, ref) => {

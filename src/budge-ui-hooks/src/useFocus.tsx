@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useFocus = () => {
+export const useFocus = () => {
   const [isFocused, setFocused] = useState(false);
   return {
     focusProps: {
@@ -10,5 +10,3 @@ const useFocus = () => {
     isFocused,
   };
 };
-
-export default useFocus;

@@ -1,8 +1,4 @@
-const {
-  baseColors,
-  extendedTextColors,
-  extendedBorderColors,
-} = require("./src/budge-ui-styling/src/theme/BudgeColors");
+const { baseColors, extendedTextColors, extendedBorderColors } = require("./BudgeColors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -13,8 +9,8 @@ module.exports = {
       borderColor: extendedBorderColors,
       colors: {
         primary: {
-          ...baseColors.purple
-        }
+          ...baseColors.purple,
+        },
       },
       screens: {
         /* width breakpoints */
@@ -24,7 +20,7 @@ module.exports = {
         md: { raw: "(min-width: 768px)" },
         lg: { raw: "(min-width: 992px)" },
         xl: { raw: "(min-width: 1200px)" },
-        "2xlh": { raw: "(min-width: 1600px)" },
+        "2xl": { raw: "(min-width: 1600px)" },
         /* height breakpoints */
         xxsh: { raw: "(min-height: 0px)" },
         xsh: { raw: "(min-height: 575px)" },

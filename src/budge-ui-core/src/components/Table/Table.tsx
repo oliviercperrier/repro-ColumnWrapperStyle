@@ -10,7 +10,6 @@ import React, { useState } from "react";
 import Text from "../Text/Text";
 import { Box } from "../Box";
 import { Stack } from "../Stack";
-import { ScrollView } from "react-native";
 import Button from "../Button/Button";
 
 const data = [

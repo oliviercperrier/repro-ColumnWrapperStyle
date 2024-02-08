@@ -1,4 +1,4 @@
-import { viewVariant } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
+import { viewVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
 
 export const inputVariant = tv({

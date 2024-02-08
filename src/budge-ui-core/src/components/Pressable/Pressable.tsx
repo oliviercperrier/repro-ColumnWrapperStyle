@@ -1,10 +1,11 @@
 import { View, Pressable as RNPressable, PressableProps } from "react-native";
 import React, { forwardRef } from "react";
-import { TDefaultViewProps } from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
-import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
-import useHover from "@/budge-ui-hooks/src/useHover";
-import usePress from "@/budge-ui-hooks/src/usePress";
-import { composeEventHandlers } from "@/budge-ui-styling/src/utils/mergeRef";
+import {
+  TDefaultViewProps,
+  extractViewVariantProps,
+  composeEventHandlers,
+} from "@budgeinc/budge-ui-styling";
+import { useHover, usePress } from "@budgeinc/budge-ui-hooks";
 import { pressableVariant } from "./Pressable.variants";
 import { VariantProps } from "tailwind-variants";
 

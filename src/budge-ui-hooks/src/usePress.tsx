@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const usePress = () => {
+export const usePress = () => {
   const [isPressed, setPressed] = useState(false);
   return {
     pressProps: {
@@ -10,5 +10,3 @@ const usePress = () => {
     isPressed,
   };
 };
-
-export default usePress;

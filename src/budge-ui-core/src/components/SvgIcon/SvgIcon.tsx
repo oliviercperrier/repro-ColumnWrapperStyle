@@ -1,10 +1,10 @@
 import React, { ForwardRefExoticComponent, MemoExoticComponent, forwardRef, memo } from "react";
 import {
   TDefaultViewProps,
-} from "@/budge-ui-styling/src/theme/BudgeBaseVariants";
+  extractViewVariantProps
+} from "@budgeinc/budge-ui-styling"
 import { Svg, SvgProps } from "react-native-svg";
 import { VariantProps } from "tailwind-variants";
-import { extractViewVariantProps } from "@/budge-ui-styling/src/utils/extractVariantProps";
 import { svgVariant } from "./SvgIcon.variants";
 
 export type TSvgIconProps = TDefaultViewProps<VariantProps<typeof svgVariant>> &
