@@ -1,24 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { View } from "react-native";
-import Button from "./Button";
+import Spinner from "./Spinner";
 
 const meta = {
-  title: "Buttons/Button",
-  component: Button,
+  title: "Feedback/Spinner",
+  component: Spinner,
   args: {
-    title: "Button",
     color: "primary",
-    variant:"filled"
+    size: "md"
   },
   decorators: [
-    (Story) => (
+    Story => (
       <View style={{ padding: 16, alignItems: "flex-start" }}>
         <Story />
       </View>
     ),
   ],
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Spinner>;
 
 export default meta;
 

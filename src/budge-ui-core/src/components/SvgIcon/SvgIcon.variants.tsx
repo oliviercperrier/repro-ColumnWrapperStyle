@@ -1,31 +1,10 @@
-import { TColors, viewVariant } from "@budgeinc/budge-ui-styling";
+import { TColors, textColorVariants, viewVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
-
-export const fillColorVariants: Record<TColors, string> = {
-  primary: "fill-primary",
-  dark: "fill-dark",
-  gray: "fill-gray",
-  red: "fill-red",
-  green: "fill-green",
-  blue: "fill-blue",
-  orange: "fill-orange",
-  purple: "fill-purple",
-  yellow: "fill-yellow",
-  brown: "fill-brown",
-  water: "fill-water",
-  white: "fill-white",
-  black: "fill-black",
-  transparent: "fill-transparent",
-  info: "fill-info",
-  success: "fill-success",
-  warning: "fill-warning",
-  error: "fill-error",
-};
 
 export const svgVariant = tv({
   extend: viewVariant,
   variants: {
-    color: fillColorVariants,
+    color: textColorVariants,
     size: {
       xs: "w-3 h-3", // 12px
       sm: "w-4 h-4", // 16px

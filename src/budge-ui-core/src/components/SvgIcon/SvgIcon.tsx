@@ -1,21 +1,18 @@
-import React, { ForwardRefExoticComponent, MemoExoticComponent, forwardRef, memo } from "react";
-import {
-  TDefaultViewProps,
-  extractViewVariantProps
-} from "@budgeinc/budge-ui-styling"
+import React, { ForwardRefExoticComponent, MemoExoticComponent, PropsWithChildren, forwardRef, memo } from "react";
+import { TBaseCustomStyleProps, extractViewVariantProps } from "@budgeinc/budge-ui-styling";
 import { Svg, SvgProps } from "react-native-svg";
 import { VariantProps } from "tailwind-variants";
 import { svgVariant } from "./SvgIcon.variants";
 
-export type TSvgIconProps = TDefaultViewProps<VariantProps<typeof svgVariant>> &
-  Pick<SvgProps, "viewBox" | "title">;
+export type TSvgIconProps = Partial<TBaseCustomStyleProps> &
+  VariantProps<typeof svgVariant> &
+  Omit<SvgProps, "color" | "height" | "width">;
 
 export type TMemoRefIconProps = MemoExoticComponent<ForwardRefExoticComponent<TSvgIconProps>>;
 
 const SvgIcon = forwardRef<Svg, TSvgIconProps>(
   ({ title, viewBox, className, children, color, size, ...others }, ref) => {
-    const { styleProps, viewVariantProps, rest } =
-      extractViewVariantProps(others);
+    const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
 
     return (
       <Svg

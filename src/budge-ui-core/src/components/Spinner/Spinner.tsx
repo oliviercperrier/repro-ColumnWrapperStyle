@@ -3,7 +3,9 @@ import { SvgIcon, TSvgIconProps } from "../SvgIcon";
 import { Circle, Path } from "react-native-svg";
 import { twMerge } from "tailwind-merge";
 
-const Spinner = ({ className, ...props }: TSvgIconProps) => (
+export type TSpinnerProps = TSvgIconProps;
+
+const Spinner = ({ className, ...props }: TSpinnerProps) => (
   <SvgIcon size="md" color="primary" {...props} viewBox="0 0 24 24" className={twMerge(className, "animate-spin")}>
     <Circle cx="12" cy="12" r="10" fill="transparent" stroke="currentColor" strokeWidth="4" opacity={0.25} />
     <Path
