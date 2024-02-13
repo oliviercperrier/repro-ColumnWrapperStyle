@@ -45,10 +45,7 @@ export const shadowColorVariants: Record<TColors, string> = {
   error: "shadow-error",
 };
 
-const borderColorVariants: Record<
-  TColors | keyof TExtendedBorderColors,
-  string
-> = {
+const borderColorVariants: Record<TColors | keyof TExtendedBorderColors, string> = {
   primary: "border-primary",
   disabled: "border-disabled",
   default: "border-default",
@@ -435,7 +432,7 @@ export const viewVariant = tv({
       visible: "overflow-visible",
       hidden: "overflow-hidden",
     },
-    radius: {
+    r: {
       0: "rounded-none",
       sm: "rounded-sm",
       md: "rounded",
@@ -445,6 +442,50 @@ export const viewVariant = tv({
       "3xl": "rounded-3xl",
       "4xl": "rounded-4xl",
       full: "rounded-full",
+    },
+    blr: {
+      0: "rounded-bl-none",
+      sm: "rounded-bl-sm",
+      md: "rounded-bl",
+      lg: "rounded-bl-lg",
+      xl: "rounded-bl-xl",
+      "2xl": "rounded-bl-2xl",
+      "3xl": "rounded-bl-3xl",
+      "4xl": "rounded-bl-4xl",
+      full: "rounded-bl-full",
+    },
+    brr: {
+      0: "rounded-br-none",
+      sm: "rounded-br-sm",
+      md: "rounded-br",
+      lg: "rounded-br-lg",
+      xl: "rounded-br-xl",
+      "2xl": "rounded-br-2xl",
+      "3xl": "rounded-br-3xl",
+      "4xl": "rounded-br-4xl",
+      full: "rounded-br-full",
+    },
+    tlr: {
+      0: "rounded-tl-none",
+      sm: "rounded-tl-sm",
+      md: "rounded-tl",
+      lg: "rounded-tl-lg",
+      xl: "rounded-tl-xl",
+      "2xl": "rounded-tl-2xl",
+      "3xl": "rounded-tl-3xl",
+      "4xl": "rounded-tl-4xl",
+      full: "rounded-tl-full",
+    },
+    trr: {
+      0: "rounded-tr-none",
+      sm: "rounded-tr-sm",
+      md: "rounded-tr",
+      lg: "rounded-tr-lg",
+      xl: "rounded-tr-xl",
+      "2xl": "rounded-tr-2xl",
+      "3xl": "rounded-tr-3xl",
+      "4xl": "rounded-tr-4xl",
+      full: "rounded-tr-full",
     },
     bw: {
       0: "border-0",
@@ -519,8 +560,6 @@ export type TBaseCustomStyleProps = {
   mah: ViewStyle["maxHeight"];
 };
 
-export type TDefaultViewProps<T = any> = Partial<TBaseCustomStyleProps> &
-  ViewProps &
-  T;
+export type TDefaultViewProps<T = any> = Partial<TBaseCustomStyleProps> & ViewProps & T;
 
 export type TViewVariantProps = VariantProps<typeof viewVariant>;

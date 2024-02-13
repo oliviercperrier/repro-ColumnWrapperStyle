@@ -141,7 +141,7 @@ const Table = () => {
 
   return (
     <Box className="max-w-full overflow-x-scroll overflow-y-hidden">
-      <Box radius="md" overflow="hidden" w100>
+      <Box r="md" overflow="hidden" w100>
         {table.getHeaderGroups().map(headerGroup => (
           <Stack.Horizontal key={headerGroup.id} px="lg">
             {headerGroup.headers.map(header => (
@@ -165,7 +165,7 @@ const Table = () => {
         ))}
         <Stack spacing="sm">
           {table.getRowModel().rows.map(row => (
-            <Stack.Horizontal key={row.id} bg="white" radius="lg" px="lg">
+            <Stack.Horizontal key={row.id} bg="white" r="lg" px="lg">
               {row.getVisibleCells().map(cell => {
                 return (
                   <Box

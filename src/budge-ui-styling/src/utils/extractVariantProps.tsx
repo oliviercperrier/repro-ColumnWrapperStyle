@@ -1,24 +1,16 @@
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import {
-  TBaseCustomStyleProps,
-  TDefaultViewProps,
-  TViewVariantProps,
-} from "../theme/BudgeBaseVariants";
-import {
-  TDefaultTextProps,
-  TTextVariantProps,
-} from "../theme/BudgeTextVariants";
+import { TBaseCustomStyleProps, TDefaultViewProps, TViewVariantProps } from "../theme/v3/BudgeBaseVariants";
+import { TDefaultTextProps, TTextVariantProps } from "../theme/v3/BudgeTextVariants";
 import { filterProps } from "./filterProps";
 
-const OtherStylePropsMap: Record<keyof TBaseCustomStyleProps, keyof ViewStyle> =
-  {
-    w: "width",
-    maw: "maxWidth",
-    miw: "minWidth",
-    h: "height",
-    mah: "maxHeight",
-    mih: "minHeight",
-  };
+const OtherStylePropsMap: Record<keyof TBaseCustomStyleProps, keyof ViewStyle> = {
+  w: "width",
+  maw: "maxWidth",
+  miw: "minWidth",
+  h: "height",
+  mah: "maxHeight",
+  mih: "minHeight",
+};
 
 export const extractStyleProps = <T,>({
   style,
@@ -38,7 +30,7 @@ export const extractStyleProps = <T,>({
   ];
 };
 
-export const extractViewVariantProps = <T extends Record<string, any>>(
+export const extractViewVariantProps = <T extends TViewVariantProps & Record<string, any>>(
   others: TDefaultViewProps<T>
 ): {
   styleProps: StyleProp<ViewStyle>;
@@ -85,7 +77,11 @@ export const extractViewVariantProps = <T extends Record<string, any>>(
     right,
     display,
     overflow,
-    radius,
+    r,
+    tlr,
+    trr,
+    blr,
+    brr,
     bw,
     blw,
     brw,
@@ -155,7 +151,11 @@ export const extractViewVariantProps = <T extends Record<string, any>>(
     right,
     display,
     overflow,
-    radius,
+    r,
+    tlr,
+    trr,
+    blr,
+    brr,
     bw,
     blw,
     brw,
@@ -180,8 +180,7 @@ export const extractTextVariantProps = <T extends Record<string, any>>(
   textVariantProps: TTextVariantProps;
   rest: Omit<T, keyof TTextVariantProps>;
 } => {
-  const { styleProps, viewVariantProps, rest } =
-    extractViewVariantProps(others);
+  const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
 
   const { color, ta, tdl, tds, tt, fs, fw, lclamp, lh, size } = rest;
 

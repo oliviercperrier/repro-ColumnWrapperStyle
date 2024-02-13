@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.sb-show-main.sb-main-padded {
+    padding: 0;
+}
+
+html, body, #storybook-root {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#storybook-root {
+    display: flex;
+}

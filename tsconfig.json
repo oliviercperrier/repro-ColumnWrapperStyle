@@ -4,6 +4,7 @@
     "src/budge-ui-*/src",
     "./scripts",
     "./configuration",
+    "app.d.ts",
   ],
   "exclude": [
     ".cache", 

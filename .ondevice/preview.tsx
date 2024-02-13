@@ -1,11 +1,20 @@
 // Import your global CSS file
-import "../global.css"
+import "../global.css";
 
+import React from "react";
 import { withBackgrounds } from "@storybook/addon-ondevice-backgrounds";
 import type { Preview } from "@storybook/react";
+import StorybookWrapper from "../StorybookWrapper";
 
 const preview: Preview = {
-  decorators: [withBackgrounds],
+  decorators: [
+    withBackgrounds,
+    Story => (
+      <StorybookWrapper>
+        <Story />
+      </StorybookWrapper>
+    ),
+  ],
 
   parameters: {
     backgrounds: {

@@ -5,3 +5,5 @@ export * from "./Box";
 export * from "./Pressable";
 export * from "./Tag";
 export * from "./Text";
+export * from "./Provider";
+export * from "./Portal";
