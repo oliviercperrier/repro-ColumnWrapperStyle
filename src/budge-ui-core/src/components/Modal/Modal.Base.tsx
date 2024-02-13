@@ -62,7 +62,7 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
       transform: [
         {
           translateY: withSpring(
-            modalSv.value === "opened" ? 0 : modalSv.value === "closing" ? 25 : -25,
+            modalSv.value === "opened" ? 0 : modalSv.value === "closing" ? 50 : -50,
             {
               damping: 100,
               stiffness: 300,
