@@ -1,9 +1,9 @@
 import { ViewProps, ViewStyle } from "react-native";
-import { TColors, TExtendedBorderColors } from "./BudgeColors";
+import { TColors, TExtendedBackgroundColors, TExtendedBorderColors } from "./BudgeColors";
 import { VariantProps, tv } from "tailwind-variants";
 
 /* VIEW */
-export const bgColorVariants: Record<TColors, string> = {
+export const bgColorVariants: Record<TColors | keyof TExtendedBackgroundColors, string> = {
   primary: "bg-primary",
   dark: "bg-dark",
   gray: "bg-gray",
@@ -22,6 +22,8 @@ export const bgColorVariants: Record<TColors, string> = {
   success: "bg-success",
   warning: "bg-warning",
   error: "bg-error",
+  disabled: "bg-disabled",
+  default: "bg-default"
 };
 
 export const shadowColorVariants: Record<TColors, string> = {

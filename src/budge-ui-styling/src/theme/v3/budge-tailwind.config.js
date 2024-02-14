@@ -1,4 +1,4 @@
-const { baseColors, extendedTextColors, extendedBorderColors } = require("./BudgeColors");
+const { baseColors, extendedTextColors, extendedBorderColors, extendedBackgroundColors } = require("./BudgeColors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,11 +7,7 @@ module.exports = {
     extend: {
       textColor: extendedTextColors,
       borderColor: extendedBorderColors,
-      colors: {
-        primary: {
-          ...baseColors.purple,
-        },
-      },
+      backgroundColor: extendedBackgroundColors,
       screens: {
         /* width breakpoints */
         xxs: { raw: "(min-width: 0px)" },

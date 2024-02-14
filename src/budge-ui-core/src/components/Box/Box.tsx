@@ -3,13 +3,17 @@ import React, { forwardRef } from "react";
 import { TDefaultViewProps, TViewVariantProps, viewVariant, extractViewVariantProps } from "@budgeinc/budge-ui-styling";
 import Animated from "react-native-reanimated";
 
-export type TBoxProps = TDefaultViewProps<TViewVariantProps>;
+export type TBoxProps = TDefaultViewProps<TViewVariantProps> & {
+  shouldRender?: boolean;
+};
 
-const Box = forwardRef<View, TBoxProps>(({ className, children, ...others }, ref) => {
+const Box = forwardRef<View, TBoxProps>(({ className, children, shouldRender = true, ...others }, ref) => {
   const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
 
+  if (!shouldRender) return null;
+
   return (
-    <View ref={ref} style={styleProps} className={viewVariant({ ...viewVariantProps, className })} {...rest}>
+    <View ref={ref} style={styleProps} className={viewVariant({ ...viewVariantProps, className,  })} {...rest}>
       {children}
     </View>
   );

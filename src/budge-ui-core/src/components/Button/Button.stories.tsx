@@ -1,17 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { View } from "react-native";
-import Button from "./Button";
+import { Button } from "../Button";
 import { Box } from "../Box";
 
 const meta = {
   title: "Buttons/Button",
   component: Button,
-  args: {
-    title: "Button",
-    color: "primary",
-    variant: "filled",
-  },
+  args: {},
   decorators: [
     Story => (
       <Box alignItems="start">
@@ -25,4 +20,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Basic: Story = {};
+export const Basic: Story = {
+  args: {
+    title: "Button",
+    color: "primary",
+    variant: "filled",
+    loading: false,
+    disabled: false,
+    size: "md",
+  }
+};

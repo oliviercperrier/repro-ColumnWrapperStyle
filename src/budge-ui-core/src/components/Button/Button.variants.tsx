@@ -4,9 +4,10 @@ import { tv } from "tailwind-variants";
 export const buttonVariant = tv({
   extend: viewVariant,
   slots: {
-    base: "rounded-md items-center flex-row gap-1",
+    base: "rounded-md overflow-hidden",
     text: "",
     icon: "",
+    contentWrapper: "items-center flex-row gap-1",
   },
   variants: {
     size: {
@@ -34,6 +35,11 @@ export const buttonVariant = tv({
     withIcon: {
       left: "",
       right: "",
+    },
+    loading: {
+      true: {
+        contentWrapper: "opacity-0"
+      }
     },
     ...viewColorVariant.variants,
   },

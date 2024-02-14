@@ -1,6 +1,6 @@
 export * from "./components";
 //export * from "./pages";
-//export * from "./utils";
+export * from "./utils";
 //export * from "./redux";
 
 export * from "@budgeinc/budge-ui-hooks";

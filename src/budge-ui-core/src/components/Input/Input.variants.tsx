@@ -11,7 +11,7 @@ export const inputVariant = tv({
   variants: {
     variant: {
       default: {
-        base: "bg-gray-1 border-gray-1",
+        base: "bg-gray-0 border-gray-0",
       },
       white: {
         base: "bg-white border-white",
@@ -29,7 +29,7 @@ export const inputVariant = tv({
     },
     disabled: {
       true: {
-        base: "bg-gray-0 border-gray-0 cursor-not-allowed",
+        base: "bg-disabled border-disabled cursor-not-allowed",
         label: "text-gray-3",
       },
     },
@@ -48,8 +48,8 @@ export const inputVariant = tv({
   defaultVariants: {
     variant: "default",
     px: "md",
-    radius: "md",
     disabled: false,
     editable: true,
+    r: "lg"
   },
 });

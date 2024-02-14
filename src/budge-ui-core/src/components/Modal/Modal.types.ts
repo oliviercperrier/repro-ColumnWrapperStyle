@@ -1,3 +1,5 @@
+import { ReactChild } from "src/utils";
+
 export type TModalBaseProps = {
   id?: number | string;
   opened?: boolean;
@@ -7,4 +9,11 @@ export type TModalBaseProps = {
   size?: number;
   closeOnEscape?: boolean;
   closeOnOverlayTap?: boolean;
+};
+
+export type TModalHeaderProps = {
+  title?: ReactChild;
+  titleDescription?: ReactChild;
+  withCloseButton?: boolean;
+  handleClose?: () => void;
 };
