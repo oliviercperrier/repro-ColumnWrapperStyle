@@ -1,6 +1,11 @@
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { TBaseCustomStyleProps, TDefaultViewProps, TViewVariantProps } from "../theme/v3/BudgeBaseVariants";
-import { TDefaultTextProps, TTextVariantProps } from "../theme/v3/BudgeTextVariants";
+import {
+  TDefaultTextProps,
+  TTextVariantProps,
+  TBaseCustomStyleProps,
+  TDefaultViewProps,
+  TViewVariantProps,
+} from "../theme/v3/style-system.types";
 import { filterProps } from "./filterProps";
 
 const OtherStylePropsMap: Record<keyof TBaseCustomStyleProps, keyof ViewStyle> = {

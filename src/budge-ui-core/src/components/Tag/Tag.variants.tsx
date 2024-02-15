@@ -1,4 +1,4 @@
-import { viewVariant, viewColorVariant } from "@budgeinc/budge-ui-styling";
+import { viewVariant, buttonColorVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
 
 export const tagVariant = tv({
@@ -35,7 +35,7 @@ export const tagVariant = tv({
       left: "",
       right: "",
     },
-    ...viewColorVariant.variants,
+    ...buttonColorVariant.variants,
   },
   compoundVariants: [
     // With Left Icon
@@ -96,7 +96,7 @@ export const tagVariant = tv({
         base: "pr-2.5",
       },
     },
-    ...viewColorVariant.compoundVariants,
+    ...buttonColorVariant.compoundVariants,
   ],
   defaultVariants: {
     variant: "light",

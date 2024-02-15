@@ -1,4 +1,4 @@
-import { TColors, textColorVariants, viewVariant } from "@budgeinc/budge-ui-styling";
+import { textColorVariants, viewVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
 
 export const svgVariant = tv({

@@ -159,8 +159,6 @@ const baseColors = {
   },
 };
 
-export type TColors = keyof typeof baseColors | "white" | "black" | "transparent";
-
 /** TEXT COLORS */
 export type TExtendedTextColors = {
   default: string;

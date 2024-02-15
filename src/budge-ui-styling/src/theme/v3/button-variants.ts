@@ -1,11 +1,11 @@
-import { bgColorVariants } from "./BudgeBaseVariants";
+import { backgroundColorVariants } from "./color-variants";
 
-export type TViewColorVariant = "filled" | "light" | "outlined" | "subtle" | "default" | "defaultBordered";
+export type TButtonStyleVariant = "filled" | "light" | "outlined" | "subtle" | "default" | "defaultBordered";
 
-export const viewColorVariant: {
+export const buttonColorVariant: {
   variants: {
-    variant: Record<TViewColorVariant, string>;
-    color: typeof bgColorVariants;
+    variant: Record<TButtonStyleVariant, string>;
+    color: typeof backgroundColorVariants;
     hoverEffect: {
       true: "";
     };
@@ -15,8 +15,8 @@ export const viewColorVariant: {
   };
   compoundVariants: {
     disabled: boolean;
-    variant?: TViewColorVariant[] | TViewColorVariant;
-    color?: (keyof typeof bgColorVariants)[] | keyof typeof bgColorVariants;
+    variant?: TButtonStyleVariant[] | TButtonStyleVariant;
+    color?: (keyof typeof backgroundColorVariants)[] | keyof typeof backgroundColorVariants;
     hoverEffect?: boolean;
     className: {
       base?: string;
@@ -34,7 +34,7 @@ export const viewColorVariant: {
       default: "",
       defaultBordered: "",
     },
-    color: bgColorVariants,
+    color: backgroundColorVariants,
     hoverEffect: {
       true: "",
     },

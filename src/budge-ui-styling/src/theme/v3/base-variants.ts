@@ -1,78 +1,10 @@
-import { ViewProps, ViewStyle } from "react-native";
-import { TColors, TExtendedBackgroundColors, TExtendedBorderColors } from "./BudgeColors";
-import { VariantProps, tv } from "tailwind-variants";
-
-/* VIEW */
-export const bgColorVariants: Record<TColors | keyof TExtendedBackgroundColors, string> = {
-  primary: "bg-primary",
-  dark: "bg-dark",
-  gray: "bg-gray",
-  red: "bg-red",
-  green: "bg-green",
-  blue: "bg-blue",
-  orange: "bg-orange",
-  purple: "bg-purple",
-  yellow: "bg-yellow",
-  brown: "bg-brown",
-  water: "bg-water",
-  white: "bg-white",
-  black: "bg-black",
-  transparent: "bg-transparent",
-  info: "bg-info",
-  success: "bg-success",
-  warning: "bg-warning",
-  error: "bg-error",
-  disabled: "bg-disabled",
-  default: "bg-default"
-};
-
-export const shadowColorVariants: Record<TColors, string> = {
-  primary: "shadow-primary",
-  dark: "shadow-dark",
-  gray: "shadow-gray",
-  red: "shadow-red",
-  green: "shadow-green",
-  blue: "shadow-blue",
-  orange: "shadow-orange",
-  purple: "shadow-purple",
-  yellow: "shadow-yellow",
-  brown: "shadow-brown",
-  water: "shadow-water",
-  white: "shadow-white",
-  black: "shadow-black",
-  transparent: "shadow-transparent",
-  info: "shadow-info",
-  success: "shadow-success",
-  warning: "shadow-warning",
-  error: "shadow-error",
-};
-
-const borderColorVariants: Record<TColors | keyof TExtendedBorderColors, string> = {
-  primary: "border-primary",
-  disabled: "border-disabled",
-  default: "border-default",
-  dark: "border-dark",
-  gray: "border-gray",
-  red: "border-red",
-  green: "border-green",
-  blue: "border-blue",
-  orange: "border-orange",
-  purple: "border-purple",
-  yellow: "border-yellow",
-  brown: "border-brown",
-  water: "border-water",
-  white: "border-white",
-  black: "border-black",
-  transparent: "border-transparent",
-  info: "border-info",
-  success: "border-success",
-  warning: "border-warning",
-  error: "border-error",
-};
+import { tv } from "tailwind-variants";
+import { backgroundColorVariants, borderColorVariants } from "./color-variants";
+import { shadowColorVariants } from "./shadow-variants";
 
 export const viewVariant = tv({
   variants: {
-    bg: bgColorVariants,
+    bg: backgroundColorVariants,
     f: {
       1: "flex-1",
       none: "flex-none",
@@ -552,16 +484,3 @@ export const viewVariant = tv({
     shadowc: shadowColorVariants,
   },
 });
-
-export type TBaseCustomStyleProps = {
-  w: ViewStyle["width"];
-  miw: ViewStyle["minWidth"];
-  maw: ViewStyle["maxWidth"];
-  h: ViewStyle["height"];
-  mih: ViewStyle["minHeight"];
-  mah: ViewStyle["maxHeight"];
-};
-
-export type TDefaultViewProps<T = any> = Partial<TBaseCustomStyleProps> & ViewProps & T;
-
-export type TViewVariantProps = VariantProps<typeof viewVariant>;

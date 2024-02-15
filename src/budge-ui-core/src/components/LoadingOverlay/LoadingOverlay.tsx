@@ -1,5 +1,5 @@
 import React from "react";
-import { TColor, TColors, TNumberSize } from "@budgeinc/budge-ui-styling";
+import { TColors, TNumberSize } from "@budgeinc/budge-ui-styling";
 import { Box, TBoxProps } from "../Box";
 import { StyleSheet } from "react-native";
 import { Spinner, TSpinnerProps } from "../Spinner";

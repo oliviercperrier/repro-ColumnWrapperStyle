@@ -1,4 +1,4 @@
-import { ReactChild } from "src/utils";
+import { ReactChild } from "../../utils";
 
 export type TModalBaseProps = {
   id?: number | string;
