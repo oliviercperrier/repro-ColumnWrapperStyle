@@ -8,6 +8,7 @@ import { Text } from "../Text";
 import { TMemoRefIconProps } from "../SvgIcon";
 import { Box } from "../Box";
 import { LoadingOverlay } from "../LoadingOverlay";
+import { twMerge } from "tailwind-merge";
 
 export type TButtonProps = Omit<TDefaultViewProps<TPressableProps>, "children"> &
   Omit<VariantProps<typeof buttonVariant>, "withIcon"> & {
@@ -16,6 +17,7 @@ export type TButtonProps = Omit<TDefaultViewProps<TPressableProps>, "children"> 
     rightIcon?: TMemoRefIconProps;
     extra?: ReactNode;
     loading?: boolean;
+    hoverEffect?: boolean;
   };
 
 const Button = forwardRef<View, TButtonProps>(
@@ -39,17 +41,18 @@ const Button = forwardRef<View, TButtonProps>(
     ref
   ) => {
     const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
-
+    const hasHoverEffect = disabled || loading ? false : hoverEffect;
     const variantStyles = buttonVariant({
       variant,
       size,
       color,
       disabled,
       loading,
-      hoverEffect: disabled || loading ? false : hoverEffect,
       withIcon: LeftIcon ? "left" : RightIcon ? "right" : undefined,
       ...viewVariantProps,
     });
+
+    console.log(variantStyles.background(), variantStyles.hover())
 
     return (
       <Pressable
@@ -57,18 +60,23 @@ const Button = forwardRef<View, TButtonProps>(
         style={styleProps}
         disabled={disabled || loading}
         withPressEffect={withPressEffect}
-        className={variantStyles.base({ className })}
+        className={twMerge(
+          variantStyles.base({ className }),
+          variantStyles.background(),
+          variantStyles.hover(),
+          variantStyles.active()
+        )}
         {...rest}
       >
         <Box className={variantStyles.contentWrapper()}>
           {LeftIcon && <LeftIcon className={variantStyles.icon()} />}
-          <Text selectable={false} className={variantStyles.text()}>
+          <Text selectable={false} className={variantStyles.color()}>
             {title}
           </Text>
-          {RightIcon && <RightIcon className={variantStyles.icon()} />}
+          {RightIcon && <RightIcon className={twMerge(variantStyles.icon(), variantStyles.color())} />}
           {extra || null}
         </Box>
-        {loading && <LoadingOverlay spinnerClassName={variantStyles.icon()} />}
+        {loading && <LoadingOverlay spinnerClassName={twMerge(variantStyles.icon(), variantStyles.color())} />}
       </Pressable>
     );
   }

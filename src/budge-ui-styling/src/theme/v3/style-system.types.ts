@@ -5,7 +5,11 @@ import { textVariant } from "./text-variants";
 import { viewVariant } from "./base-variants";
 import { baseColors } from "./theme-colors";
 
+export type TColorShades = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 export type TColors = keyof typeof baseColors | "white" | "black" | "transparent";
+export type TBackgroundColors = TColors | keyof TExtendedBackgroundColors;
+export type TBorderColors = TColors | keyof TExtendedBorderColors;
+export type TTextColors = TColors | keyof TExtendedTextColors;
 
 export type TBaseCustomStyleProps = {
   w: ViewStyle["width"];
@@ -37,3 +41,18 @@ export type TDefaultTextInputProps<T> = Partial<TBaseCustomStyleProps> &
   T;
 
 export type TTextVariantProps = VariantProps<typeof textVariant>;
+
+// EXTENDED COLORS
+export type TExtendedBackgroundColors = {
+  default: string;
+  disabled: string;
+};
+export type TExtendedTextColors = {
+  default: string;
+  secondary: string;
+  disabled: string;
+};
+export type TExtendedBorderColors = {
+  default: string;
+  disabled: string;
+};

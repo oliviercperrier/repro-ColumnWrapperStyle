@@ -1,8 +1,6 @@
-import { TColors } from "./style-system.types";
-import { TExtendedBackgroundColors, TExtendedBorderColors } from "./theme-colors";
-import { TExtendedTextColors } from "./theme-colors";
+import { TBackgroundColors, TBorderColors, TColorShades, TColors, TTextColors } from "./style-system.types";
 
-export const backgroundColorVariants: Record<TColors | keyof TExtendedBackgroundColors, string> = {
+export const backgroundColorVariants: Record<TBackgroundColors, `bg-${TTextColors}`> = {
   primary: "bg-primary",
   dark: "bg-dark",
   gray: "bg-gray",
@@ -25,7 +23,7 @@ export const backgroundColorVariants: Record<TColors | keyof TExtendedBackground
   default: "bg-default",
 };
 
-export const borderColorVariants: Record<TColors | keyof TExtendedBorderColors, string> = {
+export const borderColorVariants: Record<TBorderColors, string> = {
   primary: "border-primary",
   disabled: "border-disabled",
   default: "border-default",
@@ -48,7 +46,7 @@ export const borderColorVariants: Record<TColors | keyof TExtendedBorderColors, 
   error: "border-error",
 };
 
-export const textColorVariants: Record<TColors | keyof TExtendedTextColors, string> = {
+export const textColorVariants: Record<TTextColors, `text-${TTextColors}`> = {
   primary: "text-primary",
   default: "text-default",
   secondary: "text-secondary",
@@ -72,7 +70,7 @@ export const textColorVariants: Record<TColors | keyof TExtendedTextColors, stri
   error: "text-error",
 };
 
-export const textDecorationColorVariants: Record<TColors, string> = {
+export const textDecorationColorVariants: Record<TColors, `decoration-${TColors}`> = {
   primary: "decoration-primary",
   dark: "decoration-dark",
   gray: "decoration-gray",

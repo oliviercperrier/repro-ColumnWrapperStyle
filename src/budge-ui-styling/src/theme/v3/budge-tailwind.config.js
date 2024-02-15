@@ -1,4 +1,4 @@
-const { baseColors, extendedTextColors, extendedBorderColors, extendedBackgroundColors } = require("./BudgeColors");
+const { baseColors, extendedTextColors, extendedBorderColors, extendedBackgroundColors } = require("./theme-colors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

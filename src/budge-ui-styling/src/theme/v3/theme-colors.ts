@@ -1,3 +1,5 @@
+import { TExtendedBackgroundColors, TExtendedBorderColors, TExtendedTextColors } from "./style-system.types";
+
 const baseColors = {
   transparent: "transparent",
   black: "#000",
@@ -142,8 +144,19 @@ const baseColors = {
     9: "#620c97",
     10: "#440072",
   },
-  get primary() {
-    return this.purple.DEFAULT;
+  primary: {
+    0: "#fbf3ff",
+    1: "#f5e4ff",
+    2: "#eccfff",
+    3: "#dda9ff",
+    4: "#c872ff",
+    5: "#b43cff",
+    6: "#a117ff",
+    7: "#8d08e8",
+    8: "#730cb6",
+    DEFAULT: "#730cb6",
+    9: "#620c97",
+    10: "#440072",
   },
   get info() {
     return this.blue.DEFAULT;
@@ -160,11 +173,6 @@ const baseColors = {
 };
 
 /** TEXT COLORS */
-export type TExtendedTextColors = {
-  default: string;
-  secondary: string;
-  disabled: string;
-};
 const extendedTextColors: TExtendedTextColors = {
   default: baseColors.dark.DEFAULT,
   secondary: baseColors.gray[5],
@@ -172,20 +180,12 @@ const extendedTextColors: TExtendedTextColors = {
 };
 
 /** BORDER COLORS */
-export type TExtendedBorderColors = {
-  default: string;
-  disabled: string;
-};
 const extendedBorderColors: TExtendedBorderColors = {
   default: baseColors.gray[1],
   disabled: baseColors.gray[2],
 };
 
 /** BACKGROUND COLORS */
-export type TExtendedBackgroundColors = {
-  default: string;
-  disabled: string;
-};
 const extendedBackgroundColors: TExtendedBackgroundColors = {
   default: baseColors.gray[1],
   disabled: baseColors.gray[2],

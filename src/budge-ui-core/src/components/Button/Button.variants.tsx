@@ -5,9 +5,12 @@ export const buttonVariant = tv({
   extend: viewVariant,
   slots: {
     base: "rounded-md overflow-hidden",
-    text: "",
-    icon: "",
     contentWrapper: "items-center flex-row gap-1",
+    background: "",
+    color: "",
+    icon: "",
+    hover: "",
+    active: ""
   },
   variants: {
     size: {
