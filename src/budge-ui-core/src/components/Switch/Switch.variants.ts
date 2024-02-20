@@ -2,7 +2,6 @@ import { viewVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
 
 export const switchVariant = tv({
-  extend: viewVariant,
   slots: {
     base: "bg-dark-2 rounded-full",
     thumb: "bg-white rounded-full h-2 w-2 ease-in-out duration-300",

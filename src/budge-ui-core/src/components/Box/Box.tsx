@@ -13,8 +13,6 @@ const Box = forwardRef<View, TBoxProps>(({ className, children, shouldRender = t
 
   if (!shouldRender) return null;
 
-  console.log(styleProps)
-
   return (
     <View ref={ref} style={styleProps} className={twMerge(className, viewVariant(viewVariantProps))} {...rest}>
       {children}

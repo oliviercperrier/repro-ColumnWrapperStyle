@@ -8,7 +8,7 @@ export type TLoadingOverlayProps = Pick<TBoxProps, "left" | "right" | "top" | "b
   spinnerSize?: TSpinnerProps["size"];
   spinnerColor?: TSpinnerProps["color"];
   overlayColor?: TColors;
-  overlayOpacity?: TBoxProps["opacity"]
+  overlayOpacity?: TBoxProps["opacity"];
   spinnerClassName?: string;
 };
 

@@ -1,8 +1,7 @@
-import { viewVariant, buttonColorVariant } from "@budgeinc/budge-ui-styling";
+import { buttonColorVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
 
 export const tagVariant = tv({
-  extend: viewVariant,
   slots: {
     base: "rounded-md items-center max-w-full",
     background: "",
