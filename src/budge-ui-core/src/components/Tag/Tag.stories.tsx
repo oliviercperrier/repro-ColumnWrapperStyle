@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { View } from "react-native";
 import Tag from "./Tag";
 import { Box } from "../Box";
 import { SuccessIcon } from "../Icon";
@@ -11,7 +10,9 @@ const meta = {
   args: {
     value: "Success",
     color: "green",
-    icon: SuccessIcon
+    variant: "light",
+    size: "sm",
+    icon: SuccessIcon,
   },
   decorators: [
     Story => (

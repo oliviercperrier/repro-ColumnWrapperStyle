@@ -21,7 +21,7 @@ export const Basic: Story = () => {
 
   return (
     <>
-      <Button title="Open" onPress={show} />
+      <Button title="Open" alignSelf="start" onPress={show} />
       <Sheet ref={ref} onClose={action("onClose")} onOpened={action("onOpened")} onClosed={action("onClosed")}>
         <Stack p="xl" spacing="sm">
           <Text size="2xl">Welcome to Budge</Text>

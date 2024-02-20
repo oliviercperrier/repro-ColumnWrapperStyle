@@ -6,8 +6,9 @@ export const tagVariant = tv({
   slots: {
     base: "rounded-md items-center max-w-full",
     background: "",
-    text: "",
+    color: "",
     icon: "",
+    text: ""
   },
   variants: {
     size: {
@@ -32,7 +33,7 @@ export const tagVariant = tv({
         icon: "w-6 h-6",
       },
     },
-    withIcon: {
+    iconPosition: {
       left: "",
       right: "",
     },
@@ -42,28 +43,28 @@ export const tagVariant = tv({
     // With Left Icon
     {
       size: "xs",
-      withIcon: "left",
+      iconPosition: "left",
       className: {
         base: "pl-1",
       },
     },
     {
       size: "sm",
-      withIcon: "left",
+      iconPosition: "left",
       className: {
         base: "pl-1.5",
       },
     },
     {
       size: "md",
-      withIcon: "left",
+      iconPosition: "left",
       className: {
         base: "pl-2",
       },
     },
     {
       size: "lg",
-      withIcon: "left",
+      iconPosition: "left",
       className: {
         base: "pl-2.5",
       },
@@ -71,28 +72,28 @@ export const tagVariant = tv({
     // With Right Icon
     {
       size: "xs",
-      withIcon: "right",
+      iconPosition: "right",
       className: {
         base: "pr-1",
       },
     },
     {
       size: "sm",
-      withIcon: "right",
+      iconPosition: "right",
       className: {
         base: "pr-1.5",
       },
     },
     {
       size: "md",
-      withIcon: "right",
+      iconPosition: "right",
       className: {
         base: "pr-2",
       },
     },
     {
       size: "lg",
-      withIcon: "right",
+      iconPosition: "right",
       className: {
         base: "pr-2.5",
       },

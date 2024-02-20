@@ -1,7 +1,16 @@
 import { StyleSheet, View, Platform } from "react-native";
 import React, { PropsWithChildren, forwardRef, useCallback, useEffect, useRef, useState } from "react";
 import { AnimatedBox, Box } from "../Box";
-import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
+import {
+  Easing,
+  SlideInDown,
+  SlideInUp,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 import { Pressable } from "../Pressable";
 import { TModalBaseProps } from "./Modal.types";
 import { useWindowEvent } from "@budgeinc/budge-ui-hooks";
@@ -22,7 +31,8 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
     },
     ref
   ) => {
-    const animatedMountedRef = useRef(false);
+    const overlayAnimatedMountedRef = useRef(false);
+    const modalAnimatedMountedRef = useRef(false);
     const [isOpened, setOpened] = useState(false);
     const [isRendered, setRendered] = useState(false);
 
@@ -37,40 +47,43 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
     }
 
     const overlaySv = useSharedValue(false);
-    const modalSv = useSharedValue<"opened" | "closing" | "closed">("closed");
 
     const overlayAnimatedStyle = useAnimatedStyle(() => ({
-      opacity: withTiming(overlaySv.value ? 1 : 0, {}, finished => {
-        runOnJS(() => {
-          if (!animatedMountedRef.current) {
-            animatedMountedRef.current = true;
-            return;
-          }
+      opacity: withTiming(
+        overlaySv.value ? 1 : 0,
+        {
+          duration: 250,
+        },
+        finished => {
+          runOnJS(() => {
+            if (!overlayAnimatedMountedRef.current) {
+              overlayAnimatedMountedRef.current = true;
+              return;
+            }
 
-          if (!finished) return;
+            if (!finished) return;
 
-          if (!isOpened) {
-            onClosed?.();
-            setRendered(false);
-            modalSv.value = "closed";
-          }
-        })();
-      }),
+            if (!isOpened) {
+              onClosed?.();
+              setRendered(false);
+            }
+          })();
+        }
+      ),
     }));
 
     const modalAnimatedStyle = useAnimatedStyle(() => ({
       transform: [
         {
-          translateY: withSpring(
-            modalSv.value === "opened" ? 0 : modalSv.value === "closing" ? 50 : -50,
+          scale: withTiming(
+            overlaySv.value ? 1 : 0.85,
             {
-              damping: 100,
-              stiffness: 300,
+              duration: 250,
             },
             finished => {
               runOnJS(() => {
-                if (!animatedMountedRef.current) {
-                  animatedMountedRef.current = true;
+                if (!modalAnimatedMountedRef.current) {
+                  modalAnimatedMountedRef.current = true;
                   return;
                 }
 
@@ -90,7 +103,6 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
       if (o) {
         setRendered(true);
         overlaySv.value = true;
-        modalSv.value = "opened";
       }
 
       setOpened(o);
@@ -100,7 +112,6 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
       onClose?.();
       setOpened(false);
       overlaySv.value = false;
-      modalSv.value = "closing";
     }, [onClose]);
 
     useEffect(() => handleOpen(opened), [opened]);

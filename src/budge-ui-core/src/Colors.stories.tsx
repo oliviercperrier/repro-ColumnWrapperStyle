@@ -15,27 +15,37 @@ type Story = StoryFn<typeof meta>;
 export const Default: Story = () => (
   <Stack spacing="xl">
     {Object.entries(baseColors)
-      .filter(([colorName, values]) => typeof values === "object")
+      .filter(([_, values]) => typeof values === "object")
       .map(([colorName, values]) => (
         <Stack.Horizontal>
-          {Object.values(values).map((color, index) => (
-            <Stack spacing="xs" w={85}>
-              <Box
-                style={{
-                  backgroundColor: color,
-                }}
-                h={40}
-                w={40}
-                r="full"
-              />
-              <Text size="sm">
-                {colorName} {index}
-              </Text>
-              <Text size="sm" lh="normal" color="secondary">
-                {color}
-              </Text>
-            </Stack>
-          ))}
+          {Object.entries(values).map(([key, color], index) => {
+            const isDefault = key === "DEFAULT";
+
+            return (
+              <Stack
+                r="lg"
+                bw="sm"
+                bc={isDefault ? "dark" : "transparent"}
+                py="sm"
+                alignItems="center"
+                spacing="xs"
+                w={85}
+              >
+                <Box
+                  style={{
+                    backgroundColor: color,
+                  }}
+                  h={40}
+                  w={40}
+                  r="full"
+                />
+                <Text size="sm">{isDefault ? "DEFAULT" : `${colorName} ${index}`}</Text>
+                <Text size="sm" lh="normal" color="secondary">
+                  {color.toUpperCase()}
+                </Text>
+              </Stack>
+            );
+          })}
         </Stack.Horizontal>
       ))}
   </Stack>

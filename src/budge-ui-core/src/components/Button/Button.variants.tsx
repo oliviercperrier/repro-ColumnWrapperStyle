@@ -1,8 +1,7 @@
-import { viewVariant, buttonColorVariant } from "@budgeinc/budge-ui-styling";
+import { buttonColorVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
 
 export const buttonVariant = tv({
-  extend: viewVariant,
   slots: {
     base: "rounded-md overflow-hidden",
     contentWrapper: "items-center flex-row gap-1",

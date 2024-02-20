@@ -7,10 +7,10 @@ import { TMemoRefIconProps } from "../SvgIcon";
 import { Stack } from "../Stack";
 import { Pressable } from "../Pressable";
 import { CloseIcon } from "../Icon";
+import { twMerge } from "tailwind-merge";
 
-export type TTagProps = TDefaultViewProps<Omit<VariantProps<typeof tagVariant>, "hoverEffect">> & {
+export type TTagProps = TDefaultViewProps<VariantProps<typeof tagVariant>> & {
   icon?: TMemoRefIconProps;
-  iconPosition?: "left" | "right";
   value: string;
   closable?: boolean;
   onClose?: () => void;
@@ -23,6 +23,7 @@ const Tag = forwardRef<View, TTagProps>(
       icon: Icon,
       iconPosition = "right",
       closable = false,
+      disabled = false,
       onClose,
       value,
       size,
@@ -38,7 +39,8 @@ const Tag = forwardRef<View, TTagProps>(
       variant,
       size,
       color,
-      withIcon: !!Icon ? iconPosition : undefined,
+      disabled,
+      iconPosition: !!Icon ? iconPosition : undefined,
       ...viewVariantProps,
     });
 
@@ -46,15 +48,15 @@ const Tag = forwardRef<View, TTagProps>(
       <Stack.Horizontal
         ref={ref}
         style={styleProps}
-        className={variantStyles.base({ className })}
+        className={twMerge(variantStyles.base({ className }), variantStyles.background())}
         spacing="xs"
         {...rest}
       >
-        {iconPosition === "left" && Icon && <Icon className={variantStyles.icon()} />}
-        <Text selectable={false} className={variantStyles.text()}>
+        {iconPosition === "left" && Icon && <Icon className={twMerge(variantStyles.icon(), variantStyles.color())} />}
+        <Text selectable={false} className={twMerge(variantStyles.text(), variantStyles.color())}>
           {value}
         </Text>
-        {iconPosition === "right" && Icon && <Icon className={variantStyles.icon()} />}
+        {iconPosition === "right" && Icon && <Icon className={twMerge(variantStyles.icon(), variantStyles.color())} />}
         {closable && (
           <Pressable withPressEffect onPress={onClose}>
             <CloseIcon size="sm" />

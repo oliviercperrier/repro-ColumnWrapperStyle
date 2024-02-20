@@ -14,7 +14,6 @@ export const buttonColorVariant: {
     disabled: boolean;
     variant?: TButtonStyleVariant[] | TButtonStyleVariant;
     color?: (keyof typeof backgroundColorVariants)[] | keyof typeof backgroundColorVariants;
-    hoverEffect?: boolean;
     className: {
       background?: string;
       color?: string;

@@ -15,6 +15,9 @@ module.exports = {
         xl: "1200px",
         "2xl": "1600px",
       },
+      animation: {
+        'spin-fast': 'spin 0.6s linear infinite',
+      }
     },
   },
 };

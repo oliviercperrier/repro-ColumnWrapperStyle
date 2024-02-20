@@ -26,7 +26,6 @@ const AnimatedText = Animated.createAnimatedComponent(Text);
 
 const Input = ({
   inputRef,
-  style,
   className,
   children,
   label,
@@ -53,9 +52,8 @@ const Input = ({
     variant,
     disabled,
     editable,
+    focused: isFocused,
     errored: errored || hasError,
-    bc: isFocused ? "primary" : undefined,
-    ...viewVariantProps,
   });
 
   const focusSv = useSharedValue(value ? true : false);
@@ -108,7 +106,7 @@ const Input = ({
   };
 
   return (
-    <Box h={inputRootHeight} style={styleProps} className={variantStyles.base({ className })}>
+    <Box h={inputRootHeight} style={styleProps} className={variantStyles.base({ className })} {...viewVariantProps}>
       {leftSection && <Box mr="md">{leftSection}</Box>}
       <Box f={1}>
         <AnimatedText

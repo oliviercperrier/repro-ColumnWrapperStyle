@@ -7,7 +7,6 @@ export type TSwitchProps = VariantProps<typeof switchVariant> & {
 };
 
 export type TSwitchComponent = (props: TSwitchProps & { ref?: ForwardedRef<any> }) => JSX.Element;
-
 //& {
 // // Confirm: React.MemoExoticComponent<(props: TSwitchConfirmProps & { ref?: ForwardedRef<any> }) => JSX.Element>;
 //};

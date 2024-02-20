@@ -27,33 +27,28 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
   ({ responsive = true, opened = false, closeOnOverlayTap = true, onClose, onClosed, onOpened, children }, ref) => {
     const wDim = useWindowDimensions();
     const { top } = useSafeAreaInsets();
-    const animatedMountedRef = useRef(false);
+    const overlayAnimatedMountedRef = useRef(false);
+    const modalAnimatedMountedRef = useRef(false);
     const [isOpened, setOpened] = useState(false);
     const [isRendered, setRendered] = useState(false);
 
     const overlaySv = useSharedValue(false);
     const overlayAnimatedStyle = useAnimatedStyle(() => ({
-      opacity: withTiming(
-        overlaySv.value ? 1 : 0,
-        {
-          easing: Easing.linear,
-        },
-        finished => {
-          runOnJS(() => {
-            if (!animatedMountedRef.current) {
-              animatedMountedRef.current = true;
-              return;
-            }
+      opacity: withTiming(overlaySv.value ? 1 : 0, {}, finished => {
+        runOnJS(() => {
+          if (!overlayAnimatedMountedRef.current) {
+            overlayAnimatedMountedRef.current = true;
+            return;
+          }
 
-            if (!finished) return;
+          if (!finished) return;
 
-            if (!isOpened) {
-              onClosed?.();
-              setRendered(false);
-            }
-          })();
-        }
-      ),
+          if (!isOpened) {
+            onClosed?.();
+            setRendered(false);
+          }
+        })();
+      }),
     }));
 
     const sheetAnimatedStyle = useAnimatedStyle(() => ({
@@ -65,8 +60,8 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
         },
         finished => {
           runOnJS(() => {
-            if (!animatedMountedRef.current) {
-              animatedMountedRef.current = true;
+            if (!modalAnimatedMountedRef.current) {
+              modalAnimatedMountedRef.current = true;
               return;
             }
 
@@ -110,7 +105,7 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
     if (!isRendered) return null;
 
     // TODO change with theme breakpoint -> md
-    if (wDim.width > 768) {
+    if (responsive && wDim.width > 768) {
       return (
         <ModalBase opened={isOpened} onClose={handleClose}>
           {typeof children === "function" ? children({ hide: handleClose }) : children}
@@ -119,10 +114,7 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
     }
 
     return (
-      <AnimatedBox
-        className="bg-dark-9/40"
-        style={[overlayAnimatedStyle, StyleSheet.absoluteFill]}
-      >
+      <AnimatedBox className="bg-dark-9/40" style={[overlayAnimatedStyle, StyleSheet.absoluteFill]}>
         <Pressable style={StyleSheet.absoluteFill} noCursor onPress={closeOnOverlayTap ? handleClose : undefined} />
         <AnimatedBox
           position="absolute"

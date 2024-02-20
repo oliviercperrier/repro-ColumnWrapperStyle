@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 export type TSpinnerProps = TSvgIconProps;
 
 const Spinner = ({ className, ...props }: TSpinnerProps) => (
-  <SvgIcon size="md" color="primary" {...props} viewBox="0 0 24 24" className={twMerge(className, "animate-spin")}>
+  <SvgIcon size="md" color="primary" {...props} viewBox="0 0 24 24" className={twMerge(className, "animate-spin-fast")}>
     <Circle cx="12" cy="12" r="10" fill="transparent" stroke="currentColor" strokeWidth="4" opacity={0.25} />
     <Path
       fill="currentColor"

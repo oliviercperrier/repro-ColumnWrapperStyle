@@ -1,23 +1,14 @@
 import { View, Pressable as RNPressable, PressableProps } from "react-native";
 import React, { forwardRef } from "react";
-import {
-  TDefaultViewProps,
-  extractViewVariantProps,
-  composeEventHandlers,
-} from "@budgeinc/budge-ui-styling";
+import { TDefaultViewProps, extractViewVariantProps, composeEventHandlers } from "@budgeinc/budge-ui-styling";
 import { useHover, usePress } from "@budgeinc/budge-ui-hooks";
 import { pressableVariant } from "./Pressable.variants";
 import { VariantProps } from "tailwind-variants";
+import { twMerge } from "tailwind-merge";
 
-export type TPressableProps = Omit<
-  TDefaultViewProps<PressableProps>,
-  "children" | "disabled"
-> &
+export type TPressableProps = Omit<TDefaultViewProps<PressableProps>, "children" | "disabled"> &
   VariantProps<typeof pressableVariant> & {
-    children?:
-      | ((props: { isPressed: boolean; isHovered: boolean }) => JSX.Element)
-      | JSX.Element
-      | React.ReactNode;
+    children?: ((props: { isPressed: boolean; isHovered: boolean }) => JSX.Element) | JSX.Element | React.ReactNode;
   };
 
 const Pressable = forwardRef<View, TPressableProps>(
@@ -39,21 +30,22 @@ const Pressable = forwardRef<View, TPressableProps>(
     const { hoverProps, isHovered } = useHover();
     const { pressProps, isPressed } = usePress();
 
-    const { styleProps, viewVariantProps, rest } =
-      extractViewVariantProps(others);
+    const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
 
     return (
       <RNPressable
         ref={ref}
         style={styleProps}
         disabled={disabled}
-        className={pressableVariant({
-          noCursor,
-          disabled,
-          withPressEffect: disabled ? false : withPressEffect,
+        className={twMerge(
           className,
-          ...viewVariantProps,
-        })}
+          pressableVariant({
+            noCursor,
+            disabled,
+            withPressEffect: disabled ? false : withPressEffect,
+            ...viewVariantProps,
+          })
+        )}
         onPressIn={composeEventHandlers(onPressIn, pressProps.onPressIn)}
         onPressOut={composeEventHandlers(onPressOut, pressProps.onPressOut)}
         onHoverIn={composeEventHandlers(onHoverIn, hoverProps.onHoverIn)}
@@ -61,9 +53,7 @@ const Pressable = forwardRef<View, TPressableProps>(
         pointerEvents="auto"
         {...rest}
       >
-        {typeof children === "function"
-          ? children({ isPressed, isHovered })
-          : children}
+        {typeof children === "function" ? children({ isPressed, isHovered }) : children}
       </RNPressable>
     );
   }

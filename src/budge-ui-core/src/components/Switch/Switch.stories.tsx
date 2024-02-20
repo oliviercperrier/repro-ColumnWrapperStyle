@@ -26,7 +26,5 @@ type Story = StoryFn<typeof meta>;
 export const Basic: Story = args => {
   const [checked, setChecked] = useState(false);
 
-  console.log(args)
-
   return <Switch checked={checked} onChange={setChecked} {...args} />;
 };

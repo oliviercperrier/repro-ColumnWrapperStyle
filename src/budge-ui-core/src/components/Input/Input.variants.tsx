@@ -1,17 +1,15 @@
-import { viewVariant } from "@budgeinc/budge-ui-styling";
 import { tv } from "tailwind-variants";
 
 export const inputVariant = tv({
-  extend: viewVariant,
   slots: {
-    base: "flex-row items-center border-2",
-    label: "absolute text-secondary",
+    base: "flex-row items-center border-2 px-3 rounded-lg",
+    label: "absolute text-dark-6",
     input: "outline-none z-10",
   },
   variants: {
     variant: {
       default: {
-        base: "bg-dark-1 border-dark-1",
+        base: "bg-dark-0 border-dark-0",
       },
       white: {
         base: "bg-white border-white",
@@ -24,10 +22,14 @@ export const inputVariant = tv({
         input: "text-red",
       },
     },
+    focused: {
+      true: {
+        base: "border-primary",
+      },
+    },
     disabled: {
       true: {
         base: "bg-dark-2 border-transparent cursor-not-allowed",
-       
       },
     },
     editable: {
@@ -44,9 +46,7 @@ export const inputVariant = tv({
   ],
   defaultVariants: {
     variant: "default",
-    px: "md",
     disabled: false,
     editable: true,
-    r: "lg",
   },
 });
