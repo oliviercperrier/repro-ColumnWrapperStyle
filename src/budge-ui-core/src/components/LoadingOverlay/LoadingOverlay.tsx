@@ -8,6 +8,7 @@ export type TLoadingOverlayProps = Pick<TBoxProps, "left" | "right" | "top" | "b
   spinnerSize?: TSpinnerProps["size"];
   spinnerColor?: TSpinnerProps["color"];
   overlayColor?: TColors;
+  overlayOpacity?: TBoxProps["opacity"]
   spinnerClassName?: string;
 };
 
@@ -15,12 +16,13 @@ const LoadingOverlay = ({
   spinnerSize = "md",
   spinnerColor = "primary",
   overlayColor = "white",
+  overlayOpacity = 40,
   spinnerClassName,
   style,
   ...props
 }: TLoadingOverlayProps) => (
   <Box style={[{ overflow: "hidden" }, StyleSheet.absoluteFill, style]} {...props}>
-    <Box opacity={10} w="100%" h="100%" position="absolute" bg={overlayColor} />
+    <Box opacity={40} w="100%" h="100%" position="absolute" bg={overlayColor} />
     <Box left={0} position="absolute" w="100%" h="100%" alignItems="center" justifyContent="center">
       <Spinner size={spinnerSize} color={spinnerColor} className={spinnerClassName} />
     </Box>

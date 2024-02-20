@@ -1,4 +1,4 @@
-const { baseColors, extendedTextColors, extendedBorderColors, extendedBackgroundColors } = require("./theme-colors");
+const { baseColors, extendedTextColors, extendedBorderColors } = require("./theme-colors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,7 +7,6 @@ module.exports = {
     extend: {
       textColor: extendedTextColors,
       borderColor: extendedBorderColors,
-      backgroundColor: extendedBackgroundColors,
       screens: {
         xs: "425px",
         sm: "575px",

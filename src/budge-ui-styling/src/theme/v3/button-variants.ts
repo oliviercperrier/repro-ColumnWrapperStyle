@@ -42,7 +42,7 @@ export const buttonColorVariant: {
     {
       disabled: true,
       className: {
-        background: "bg-disabled border border-gray-2",
+        background: "bg-dark-2 border border-transparent",
         color: "text-white",
       },
     },

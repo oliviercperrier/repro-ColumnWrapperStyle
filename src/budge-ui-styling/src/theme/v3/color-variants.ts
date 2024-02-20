@@ -1,6 +1,6 @@
 import { TBackgroundColors, TBorderColors, TColorShades, TColors, TTextColors } from "./style-system.types";
 
-export const backgroundColorVariants: Record<TBackgroundColors, `bg-${TTextColors}`> = {
+export const backgroundColorVariants: Record<TBackgroundColors, `bg-${TTextColors}` | `bg-${TTextColors}/${number}`> = {
   primary: "bg-primary",
   dark: "bg-dark",
   gray: "bg-gray",
@@ -19,8 +19,6 @@ export const backgroundColorVariants: Record<TBackgroundColors, `bg-${TTextColor
   success: "bg-success",
   warning: "bg-warning",
   error: "bg-error",
-  disabled: "bg-disabled",
-  default: "bg-default",
 };
 
 export const borderColorVariants: Record<TBorderColors, string> = {
@@ -50,7 +48,6 @@ export const textColorVariants: Record<TTextColors, `text-${TTextColors}`> = {
   primary: "text-primary",
   default: "text-default",
   secondary: "text-secondary",
-  disabled: "text-disabled",
   dark: "text-dark",
   gray: "text-gray",
   red: "text-red",

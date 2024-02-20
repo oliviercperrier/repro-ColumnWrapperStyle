@@ -5,6 +5,7 @@ export const tagVariant = tv({
   extend: viewVariant,
   slots: {
     base: "rounded-md items-center max-w-full",
+    background: "",
     text: "",
     icon: "",
   },

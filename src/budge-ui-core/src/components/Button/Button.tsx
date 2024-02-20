@@ -41,7 +41,6 @@ const Button = forwardRef<View, TButtonProps>(
     ref
   ) => {
     const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
-    const hasHoverEffect = disabled || loading ? false : hoverEffect;
     const variantStyles = buttonVariant({
       variant,
       size,
@@ -51,8 +50,6 @@ const Button = forwardRef<View, TButtonProps>(
       withIcon: LeftIcon ? "left" : RightIcon ? "right" : undefined,
       ...viewVariantProps,
     });
-
-    console.log(variantStyles.background(), variantStyles.hover())
 
     return (
       <Pressable

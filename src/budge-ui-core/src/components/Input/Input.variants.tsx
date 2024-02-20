@@ -11,13 +11,10 @@ export const inputVariant = tv({
   variants: {
     variant: {
       default: {
-        base: "bg-gray-0 border-gray-0",
+        base: "bg-dark-1 border-dark-1",
       },
       white: {
         base: "bg-white border-white",
-      },
-      unstyled: {
-        base: "",
       },
     },
     errored: {
@@ -29,8 +26,8 @@ export const inputVariant = tv({
     },
     disabled: {
       true: {
-        base: "bg-disabled border-disabled cursor-not-allowed",
-        label: "text-gray-3",
+        base: "bg-dark-2 border-transparent cursor-not-allowed",
+       
       },
     },
     editable: {
@@ -50,6 +47,6 @@ export const inputVariant = tv({
     px: "md",
     disabled: false,
     editable: true,
-    r: "lg"
+    r: "lg",
   },
 });

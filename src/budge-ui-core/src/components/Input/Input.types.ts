@@ -8,7 +8,6 @@ export type TInputProps = TDefaultTextInputProps<
   Omit<VariantProps<typeof inputVariant>, "labeled">
 > & {
   label?: string;
-  showLabel?: boolean;
   leftSection?: React.ReactNode;
   rightSection?: React.ReactNode;
   inputRef?: RefObject<TextInput>;

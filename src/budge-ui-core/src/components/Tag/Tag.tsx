@@ -38,7 +38,6 @@ const Tag = forwardRef<View, TTagProps>(
       variant,
       size,
       color,
-      hoverEffect: false,
       withIcon: !!Icon ? iconPosition : undefined,
       ...viewVariantProps,
     });

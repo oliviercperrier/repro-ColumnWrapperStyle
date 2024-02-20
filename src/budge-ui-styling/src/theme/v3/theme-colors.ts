@@ -1,22 +1,22 @@
-import { TExtendedBackgroundColors, TExtendedBorderColors, TExtendedTextColors } from "./style-system.types";
+import { TExtendedBorderColors, TExtendedTextColors } from "./style-system.types";
 
 const baseColors = {
   transparent: "transparent",
   black: "#000",
   white: "#fff",
   dark: {
-    0: "#f7f8f8",
-    1: "#eeeef0",
-    2: "#d8d9df",
-    3: "#b7bac2",
-    4: "#8f93a1",
-    5: "#717686",
-    6: "#5b5f6e",
-    7: "#4b4e59",
-    8: "#40434c",
-    9: "#383a42",
-    10: "#25262b",
-    DEFAULT: "#25262b",
+    0: "#f6f7f8",
+    1: "#ebecee",
+    2: "#dbdde2",
+    3: "#c2c6ce",
+    4: "#a9aeb9",
+    5: "#8e93a3",
+    6: "#7d8193",
+    7: "#707385",
+    8: "#5f606e",
+    9: "#4e4f5a",
+    10: "#323339",
+    DEFAULT: "#323339",
   },
   gray: {
     0: "#f6f7f8",
@@ -158,16 +158,16 @@ const baseColors = {
     9: "#620c97",
     10: "#440072",
   },
-  get info() {
+  get info(): string {
     return this.blue.DEFAULT;
   },
-  get success() {
+  get success(): string {
     return this.green.DEFAULT;
   },
-  get warning() {
+  get warning(): string {
     return this.yellow.DEFAULT;
   },
-  get error() {
+  get error(): string {
     return this.red.DEFAULT;
   },
 };
@@ -175,20 +175,13 @@ const baseColors = {
 /** TEXT COLORS */
 const extendedTextColors: TExtendedTextColors = {
   default: baseColors.dark.DEFAULT,
-  secondary: baseColors.gray[5],
-  disabled: baseColors.gray[2],
+  secondary: baseColors.dark[3],
 };
 
 /** BORDER COLORS */
 const extendedBorderColors: TExtendedBorderColors = {
-  default: baseColors.gray[1],
-  disabled: baseColors.gray[2],
+  default: baseColors.dark[1],
+  disabled: baseColors.dark[1],
 };
 
-/** BACKGROUND COLORS */
-const extendedBackgroundColors: TExtendedBackgroundColors = {
-  default: baseColors.gray[1],
-  disabled: baseColors.gray[2],
-};
-
-export { baseColors, extendedTextColors, extendedBorderColors, extendedBackgroundColors };
+export { baseColors, extendedTextColors, extendedBorderColors };

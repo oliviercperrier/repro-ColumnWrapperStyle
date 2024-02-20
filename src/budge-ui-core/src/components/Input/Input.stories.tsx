@@ -7,6 +7,13 @@ import { Box } from "../Box";
 const meta = {
   title: "Data Entry/Input",
   component: Input,
+  args: {
+    editable: true,
+    disabled: false,
+    errored: false,
+    variant: "default",
+    label: ""
+  }
 } satisfies Meta<typeof Input>;
 
 export default meta;
@@ -15,12 +22,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
+    maw: 500,
     label: "Email",
   },
 };
 
 export const AutoFocus: Story = {
   args: {
+    maw: 500,
     label: "Email",
     autoFocus: true,
   },
@@ -28,6 +37,7 @@ export const AutoFocus: Story = {
 
 export const Textarea: Story = {
   args: {
+    maw: 500,
     label: "Html Shell",
     value: `<!DOCTYPE html>
     <html>
