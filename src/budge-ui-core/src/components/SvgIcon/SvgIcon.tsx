@@ -14,19 +14,21 @@ const SvgIcon = forwardRef<Svg, TSvgIconProps>(
   ({ title, viewBox, className, children, color, size, ...others }, ref) => {
     const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
 
+    const variantStyles = svgVariant({
+      ...viewVariantProps,
+      color,
+      size,
+      className,
+    });
+
     return (
       <Svg
         ref={ref}
         title={title}
         viewBox={viewBox}
         style={styleProps}
-        fill="dark"
-        className={svgVariant({
-          ...viewVariantProps,
-          color,
-          size,
-          className,
-        })}
+        fill="currentColor"
+        className={variantStyles}
         children={children}
         {...rest}
       />

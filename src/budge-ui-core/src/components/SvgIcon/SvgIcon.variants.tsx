@@ -17,7 +17,7 @@ export const svgVariant = tv({
     },
   },
   defaultVariants: {
-    fill: "current",
+    fill: "dark",
     size: "md",
   },
 });
