@@ -20,7 +20,7 @@ const SvgIcon = forwardRef<Svg, TSvgIconProps>(
         title={title}
         viewBox={viewBox}
         style={styleProps}
-        fill="currentColor"
+        fill="dark"
         className={svgVariant({
           ...viewVariantProps,
           color,

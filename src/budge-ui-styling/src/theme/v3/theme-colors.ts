@@ -175,7 +175,7 @@ const baseColors = {
 /** TEXT COLORS */
 const extendedTextColors: TExtendedTextColors = {
   default: baseColors.dark.DEFAULT,
-  secondary: baseColors.dark[3],
+  secondary: baseColors.dark[4],
 };
 
 /** BORDER COLORS */
