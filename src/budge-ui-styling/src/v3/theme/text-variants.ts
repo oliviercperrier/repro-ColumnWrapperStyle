@@ -1,5 +1,5 @@
 import { tv } from "tailwind-variants";
-import { viewVariant } from "./base-variants";
+import { viewVariant } from "./view-variants";
 import { textColorVariants } from "./color-variants";
 
 export const textVariant = tv({

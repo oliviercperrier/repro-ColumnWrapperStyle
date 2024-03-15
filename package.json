@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+    "@floating-ui/react-native": "^0.10.4",
     "@gorhom/portal": "^1.0.14",
     "@react-native-async-storage/async-storage": "1.21.0",
     "@react-native-community/datetimepicker": "7.6.1",

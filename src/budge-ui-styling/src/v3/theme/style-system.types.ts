@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import { TextInputProps, TextProps, ViewProps, ViewStyle } from "react-native";
 import { VariantProps } from "tailwind-variants";
 import { textVariant } from "./text-variants";
-import { viewVariant } from "./base-variants";
+import { viewVariant } from "./view-variants";
 import { baseColors } from "./theme-colors";
 
 export type TColorShades = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;

@@ -1,6 +1,6 @@
-import { TBackgroundColors, TBorderColors, TColorShades, TColors, TTextColors } from "./style-system.types";
+import { TBackgroundColors, TBorderColors, TColors, TTextColors } from "./style-system.types";
 
-export const backgroundColorVariants: Record<TBackgroundColors, `bg-${TTextColors}` | `bg-${TTextColors}/${number}`> = {
+export const backgroundColorVariants: Record<TBackgroundColors, `bg-${TTextColors}`> = {
   primary: "bg-primary",
   dark: "bg-dark",
   gray: "bg-gray",
@@ -21,7 +21,7 @@ export const backgroundColorVariants: Record<TBackgroundColors, `bg-${TTextColor
   error: "bg-error",
 };
 
-export const borderColorVariants: Record<TBorderColors, string> = {
+export const borderColorVariants: Record<TBorderColors, `border-${TBorderColors}`> = {
   primary: "border-primary",
   disabled: "border-disabled",
   default: "border-default",
@@ -86,4 +86,25 @@ export const textDecorationColorVariants: Record<TColors, `decoration-${TColors}
   success: "decoration-success",
   warning: "decoration-warning",
   error: "decoration-error",
+};
+
+export const shadowColorVariants: Record<TColors, `shadow-${TColors}`> = {
+  primary: "shadow-primary",
+  dark: "shadow-dark",
+  gray: "shadow-gray",
+  red: "shadow-red",
+  green: "shadow-green",
+  blue: "shadow-blue",
+  orange: "shadow-orange",
+  purple: "shadow-purple",
+  yellow: "shadow-yellow",
+  brown: "shadow-brown",
+  water: "shadow-water",
+  white: "shadow-white",
+  black: "shadow-black",
+  transparent: "shadow-transparent",
+  info: "shadow-info",
+  success: "shadow-success",
+  warning: "shadow-warning",
+  error: "shadow-error",
 };

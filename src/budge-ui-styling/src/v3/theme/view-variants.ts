@@ -1,6 +1,5 @@
 import { tv } from "tailwind-variants";
-import { backgroundColorVariants, borderColorVariants } from "./color-variants";
-import { shadowColorVariants } from "./shadow-variants";
+import { backgroundColorVariants, borderColorVariants, shadowColorVariants } from "./color-variants";
 
 export const viewVariant = tv({
   variants: {

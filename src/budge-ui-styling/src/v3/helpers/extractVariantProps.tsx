@@ -5,8 +5,8 @@ import {
   TBaseCustomStyleProps,
   TDefaultViewProps,
   TViewVariantProps,
-} from "../theme/v3/style-system.types";
-import { filterProps } from "./filterProps";
+} from "../theme";
+import { filterProps } from "../../utils/filterProps";
 
 const OtherStylePropsMap: Record<keyof TBaseCustomStyleProps, keyof ViewStyle> = {
   w: "width",
