@@ -5,6 +5,9 @@ import React from "react";
 import { withBackgrounds } from "@storybook/addon-ondevice-backgrounds";
 import type { Preview } from "@storybook/react";
 import StorybookWrapper from "../StorybookWrapper";
+import { polyfillWebCrypto } from "expo-standard-web-crypto";
+
+polyfillWebCrypto();
 
 const preview: Preview = {
   decorators: [

@@ -27,51 +27,60 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
   ({ responsive = true, opened = false, closeOnOverlayTap = true, onClose, onClosed, onOpened, children }, ref) => {
     const wDim = useWindowDimensions();
     const { top } = useSafeAreaInsets();
-    const overlayAnimatedMountedRef = useRef(false);
-    const modalAnimatedMountedRef = useRef(false);
+    const overlayAnimationFlagRef = useRef(false);
+    const modalAnimationFlagRef = useRef(false);
     const [isOpened, setOpened] = useState(false);
     const [isRendered, setRendered] = useState(false);
 
     const overlaySv = useSharedValue(false);
+
+    const onOverlayFinished = (finished: boolean | undefined) => {
+      if (!overlayAnimationFlagRef.current) {
+        overlayAnimationFlagRef.current = true;
+        return;
+      }
+
+      if (!finished) return;
+
+      if (!isOpened) {
+        onClosed?.();
+        setRendered(false);
+        overlayAnimationFlagRef.current = false
+      }
+    };
+
     const overlayAnimatedStyle = useAnimatedStyle(() => ({
-      opacity: withTiming(overlaySv.value ? 1 : 0, {}, finished => {
-        runOnJS(() => {
-          if (!overlayAnimatedMountedRef.current) {
-            overlayAnimatedMountedRef.current = true;
-            return;
-          }
+      opacity: withTiming(
+        overlaySv.value ? 1 : 0,
+        {
+          duration: 250,
+        },
+        finished => runOnJS(onOverlayFinished)(finished)
+      ),
+    }), [onOverlayFinished]);
 
-          if (!finished) return;
+    const onSheetFinished = (finished: boolean | undefined) => {
+      if (!modalAnimationFlagRef.current) {
+        modalAnimationFlagRef.current = true;
+        return;
+      }
 
-          if (!isOpened) {
-            onClosed?.();
-            setRendered(false);
-          }
-        })();
-      }),
-    }));
+      if (!finished) return;
+
+      if (isOpened) {
+        onOpened?.();
+        modalAnimationFlagRef.current = false
+      }
+    };
 
     const sheetAnimatedStyle = useAnimatedStyle(() => ({
       bottom: withSpring(
-        overlaySv.value ? 0 : -1 * Dimensions.get("window").height,
+        overlaySv.value ? 0 : -1 * wDim.height,
         {
           damping: 100,
           stiffness: 300,
         },
-        finished => {
-          runOnJS(() => {
-            if (!modalAnimatedMountedRef.current) {
-              modalAnimatedMountedRef.current = true;
-              return;
-            }
-
-            if (!finished) return;
-
-            if (isOpened) {
-              onOpened?.();
-            }
-          })();
-        }
+        finished => runOnJS(onSheetFinished)(finished)
       ),
     }));
 

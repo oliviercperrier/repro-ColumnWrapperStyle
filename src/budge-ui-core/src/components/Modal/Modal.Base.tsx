@@ -31,8 +31,8 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
     },
     ref
   ) => {
-    const overlayAnimatedMountedRef = useRef(false);
-    const modalAnimatedMountedRef = useRef(false);
+    const overlayAnimateionFlagRef = useRef(false);
+    const modalAnimationFlagRef = useRef(false);
     const [isOpened, setOpened] = useState(false);
     const [isRendered, setRendered] = useState(false);
 
@@ -48,56 +48,60 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
 
     const overlaySv = useSharedValue(false);
 
-    const overlayAnimatedStyle = useAnimatedStyle(() => ({
-      opacity: withTiming(
-        overlaySv.value ? 1 : 0,
-        {
-          duration: 250,
-        },
-        finished => {
-          runOnJS(() => {
-            if (!overlayAnimatedMountedRef.current) {
-              overlayAnimatedMountedRef.current = true;
-              return;
-            }
+    const onOverlayFinished = (finished: boolean | undefined) => {
+      if (!overlayAnimateionFlagRef.current) {
+        overlayAnimateionFlagRef.current = true;
+        return;
+      }
 
-            if (!finished) return;
+      if (!finished) return;
 
-            if (!isOpened) {
-              onClosed?.();
-              setRendered(false);
-            }
-          })();
-        }
-      ),
-    }));
+      if (!isOpened) {
+        onClosed?.();
+        setRendered(false);
+        overlayAnimateionFlagRef.current = false;
+      }
+    };
 
-    const modalAnimatedStyle = useAnimatedStyle(() => ({
-      transform: [
-        {
-          scale: withTiming(
-            overlaySv.value ? 1 : 0.85,
-            {
-              duration: 250,
-            },
-            finished => {
-              runOnJS(() => {
-                if (!modalAnimatedMountedRef.current) {
-                  modalAnimatedMountedRef.current = true;
-                  return;
-                }
+    const overlayAnimatedStyle = useAnimatedStyle(
+      () => ({
+        opacity: withTiming(
+          overlaySv.value ? 1 : 0,
+          {
+            duration: 250,
+          },
+          finished => runOnJS(onOverlayFinished)(finished)
+        ),
+      }),
+      [onOverlayFinished]
+    );
 
-                if (!finished) return;
+    const onModalFinished = (finished: boolean | undefined) => {
+      if (!modalAnimationFlagRef.current) {
+        modalAnimationFlagRef.current = true;
+        return;
+      }
 
-                if (isOpened) {
-                  onOpened?.();
-                }
-              })();
-            }
-          ),
-        },
-      ],
-    }));
+      if (!finished) return;
+
+      if (isOpened) {
+        onOpened?.();
+        modalAnimationFlagRef.current = false
+      }
+    };
+
+    const modalAnimatedStyle = useAnimatedStyle(
+      () => ({
+        opacity: withTiming(
+          overlaySv.value ? 1 : 0.85,
+          {
+            duration: 250,
+          },
+          finished => runOnJS(onModalFinished)(finished)
+        ),
+      }),
+      [onModalFinished]
+    );
 
     const handleOpen = useCallback((o: boolean) => {
       if (o) {

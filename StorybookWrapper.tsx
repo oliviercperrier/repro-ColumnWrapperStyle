@@ -7,7 +7,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 const StorybookWrapper = ({ children, style }: PropsWithChildren<{ style?: StyleProp<ViewStyle> }>) => (
   <SafeAreaProvider style={{flex: 1}}>
     <BudgeUIProvider>
-      <Box style={style} mx="xl" py="xl">
+      <Box style={style} mx="xl" py="xl" f={1}>
         {children}
       </Box>
     </BudgeUIProvider>
