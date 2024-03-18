@@ -7,7 +7,7 @@ import {
   textVariant,
 } from "@budgeinc/budge-ui-styling";
 
-type TTextProps = TDefaultTextProps<TTextVariantProps>;
+export type TTextProps = TDefaultTextProps<TTextVariantProps>;
 
 const Text = forwardRef<RNText, TTextProps>(
   ({ className, children, ...others }, ref) => {

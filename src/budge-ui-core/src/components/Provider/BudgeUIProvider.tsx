@@ -13,15 +13,13 @@ const BudgeUIProvider = ({ children, ...providerProps }: TBudgeUIProviderProps) 
   </ConfigProvider>
 );
 
-const UIProviderContentWrapper = ({ children }: any) => {
-  return (
-    <>
-      {children}
-      <PortalHost name="modals-provider" />
-      <PortalHost name="toasts-provider" />
-    </>
-  );
-};
+const UIProviderContentWrapper = ({ children }: any) => (
+  <>
+    {children}
+    <PortalHost name="modals-provider" />
+    <PortalHost name="toasts-provider" />
+  </>
+);
 
 const nativeWarn = console.warn;
 console.warn = (message: string) => {

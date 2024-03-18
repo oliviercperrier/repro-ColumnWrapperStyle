@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+    "@floating-ui/react": "^0.26.9",
     "@floating-ui/react-native": "^0.10.4",
     "@gorhom/portal": "^1.0.14",
     "@react-native-async-storage/async-storage": "1.21.0",
@@ -43,6 +44,7 @@
     "date-fns": "^2.30.0",
     "expo": "^50.0.4",
     "expo-constants": "~15.4.5",
+    "expo-image": "^1.10.6",
     "expo-localization": "^14.8.3",
     "expo-secure-store": "^12.8.1",
     "expo-standard-web-crypto": "^1.7.0",

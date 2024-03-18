@@ -22,4 +22,4 @@ const StackHorizontal = forwardRef<View, TStackProps>(({ className, children, sp
   );
 });
 
-export default memo(StackHorizontal);
+export default StackHorizontal;

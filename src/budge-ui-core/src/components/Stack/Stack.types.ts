@@ -7,14 +7,10 @@ export type TStackProps = TDefaultViewProps<
   Omit<VariantProps<typeof stackVariant> & TViewVariantProps, "fdir" | "gap" | "rGap" | "cGap">
 >;
 
-export type TStackComponent = ((
-  props: PropsWithChildren<TStackProps> & { ref?: ForwardedRef<any> }
-) => JSX.Element) & {
-  Horizontal: React.MemoExoticComponent<
-    (
-      props: PropsWithChildren<TStackProps> & {
-        ref?: ForwardedRef<any>;
-      }
-    ) => JSX.Element
-  >;
+export type TStackComponent = ((props: PropsWithChildren<TStackProps> & { ref?: ForwardedRef<any> }) => JSX.Element) & {
+  Horizontal: (
+    props: PropsWithChildren<TStackProps> & {
+      ref?: ForwardedRef<any>;
+    }
+  ) => JSX.Element;
 };

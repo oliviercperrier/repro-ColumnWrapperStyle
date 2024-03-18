@@ -46,7 +46,7 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
       });
     }
 
-    const overlaySv = useSharedValue(false);
+    const openSharedValue = useSharedValue(false);
 
     const onOverlayFinished = (finished: boolean | undefined) => {
       if (!overlayAnimateionFlagRef.current) {
@@ -66,7 +66,7 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
     const overlayAnimatedStyle = useAnimatedStyle(
       () => ({
         opacity: withTiming(
-          overlaySv.value ? 1 : 0,
+          openSharedValue.value ? 1 : 0,
           {
             duration: 250,
           },
@@ -86,19 +86,24 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
 
       if (isOpened) {
         onOpened?.();
-        modalAnimationFlagRef.current = false
+        modalAnimationFlagRef.current = false;
       }
     };
 
     const modalAnimatedStyle = useAnimatedStyle(
       () => ({
-        opacity: withTiming(
-          overlaySv.value ? 1 : 0.85,
+        transform: [
           {
-            duration: 250,
+            translateY: withSpring(
+              openSharedValue.value ? 0 : 15,
+              {
+                damping: 100,
+                stiffness: 300,
+              },
+              finished => runOnJS(onModalFinished)(finished)
+            ),
           },
-          finished => runOnJS(onModalFinished)(finished)
-        ),
+        ],
       }),
       [onModalFinished]
     );
@@ -106,7 +111,7 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
     const handleOpen = useCallback((o: boolean) => {
       if (o) {
         setRendered(true);
-        overlaySv.value = true;
+        openSharedValue.value = true;
       }
 
       setOpened(o);
@@ -115,7 +120,7 @@ const ModalBase = forwardRef<View, PropsWithChildren<TModalBaseProps>>(
     const handleClose = useCallback(() => {
       onClose?.();
       setOpened(false);
-      overlaySv.value = false;
+      openSharedValue.value = false;
     }, [onClose]);
 
     useEffect(() => handleOpen(opened), [opened]);

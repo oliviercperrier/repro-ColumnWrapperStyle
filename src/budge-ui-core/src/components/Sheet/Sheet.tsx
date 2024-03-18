@@ -32,7 +32,7 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
     const [isOpened, setOpened] = useState(false);
     const [isRendered, setRendered] = useState(false);
 
-    const overlaySv = useSharedValue(false);
+    const openSharedValue = useSharedValue(false);
 
     const onOverlayFinished = (finished: boolean | undefined) => {
       if (!overlayAnimationFlagRef.current) {
@@ -45,19 +45,22 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
       if (!isOpened) {
         onClosed?.();
         setRendered(false);
-        overlayAnimationFlagRef.current = false
+        overlayAnimationFlagRef.current = false;
       }
     };
 
-    const overlayAnimatedStyle = useAnimatedStyle(() => ({
-      opacity: withTiming(
-        overlaySv.value ? 1 : 0,
-        {
-          duration: 250,
-        },
-        finished => runOnJS(onOverlayFinished)(finished)
-      ),
-    }), [onOverlayFinished]);
+    const overlayAnimatedStyle = useAnimatedStyle(
+      () => ({
+        opacity: withTiming(
+          openSharedValue.value ? 1 : 0,
+          {
+            duration: 250,
+          },
+          finished => runOnJS(onOverlayFinished)(finished)
+        ),
+      }),
+      [onOverlayFinished]
+    );
 
     const onSheetFinished = (finished: boolean | undefined) => {
       if (!modalAnimationFlagRef.current) {
@@ -69,13 +72,13 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
 
       if (isOpened) {
         onOpened?.();
-        modalAnimationFlagRef.current = false
+        modalAnimationFlagRef.current = false;
       }
     };
 
     const sheetAnimatedStyle = useAnimatedStyle(() => ({
       bottom: withSpring(
-        overlaySv.value ? 0 : -1 * wDim.height,
+        openSharedValue.value ? 0 : -1 * wDim.height,
         {
           damping: 100,
           stiffness: 300,
@@ -87,7 +90,7 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
     const handleOpen = useCallback((o: boolean) => {
       if (o) {
         setRendered(true);
-        overlaySv.value = true;
+        openSharedValue.value = true;
       }
 
       setOpened(o);
@@ -96,7 +99,7 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
     const handleClose = useCallback(() => {
       onClose?.();
       setOpened(false);
-      overlaySv.value = false;
+      openSharedValue.value = false;
     }, [onClose]);
 
     useEffect(() => handleOpen(opened), [opened]);

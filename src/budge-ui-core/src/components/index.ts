@@ -7,3 +7,4 @@ export * from "./Tag";
 export * from "./Text";
 export * from "./Provider";
 export * from "./Portal";
+export * from "./Tooltip";

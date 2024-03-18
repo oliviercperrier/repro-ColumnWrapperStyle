@@ -22,4 +22,4 @@ const Stack = forwardRef<View, PropsWithChildren<TStackProps>>(({ className, chi
   );
 });
 
-export default memo(Stack);
+export default Stack;
