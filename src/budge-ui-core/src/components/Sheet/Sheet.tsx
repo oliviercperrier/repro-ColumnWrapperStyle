@@ -5,7 +5,8 @@ import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTimi
 import { Pressable } from "../Pressable";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BPortal } from "../Portal";
-import ModalBase from "../Modal/Modal.Base";
+import { Modal } from "../Modal";
+import { useBudgeTheme } from "@budgeinc/budge-ui-styling";
 
 export interface SheetRef {
   show: () => void;
@@ -119,9 +120,9 @@ const Sheet = forwardRef<SheetRef, TSheetProps>(
     // TODO change with theme breakpoint -> md
     if (responsive && wDim.width > 768) {
       return (
-        <ModalBase opened={isOpened} onClose={handleClose}>
+        <Modal opened={isOpened} onClose={handleClose}>
           {typeof children === "function" ? children({ hide: handleClose }) : children}
-        </ModalBase>
+        </Modal>
       );
     }
 
@@ -157,8 +158,10 @@ export const useSheet = () => {
 };
 
 const SheetWrapper = forwardRef<SheetRef, TSheetProps>((props, ref) => {
+  const theme = useBudgeTheme();
+
   return (
-    <BPortal hostName="modals-provider">
+    <BPortal hostName={theme.portalProviderNames.modals}>
       <Sheet ref={ref} {...props} />
     </BPortal>
   );

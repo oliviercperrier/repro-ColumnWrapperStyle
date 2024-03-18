@@ -1,14 +1,9 @@
-import {
-  TDefaultViewProps,
-  TViewVariantProps,
-  extractViewVariantProps,
-  viewVariant,
-} from "@budgeinc/budge-ui-styling";
+import { TDefaultViewProps, TViewVariantProps, extractViewVariantProps, viewVariant } from "@budgeinc/budge-ui-styling";
 import React, { forwardRef } from "react";
 import { ScrollView as RNScrollView, ScrollViewProps } from "react-native";
 import Animated from "react-native-reanimated";
 
-export type TScrollViewProps = TDefaultViewProps<TViewVariantProps> & ScrollViewProps;
+export type TScrollViewProps = TDefaultViewProps<TViewVariantProps & ScrollViewProps>;
 
 const ScrollView = forwardRef<RNScrollView, TScrollViewProps>(
   (

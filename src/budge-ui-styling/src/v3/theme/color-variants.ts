@@ -1,4 +1,4 @@
-import { TBackgroundColors, TBorderColors, TColors, TTextColors } from "./style-system.types";
+import { TBackgroundColors, TBorderColors, TColors, TTextColors } from "./types";
 
 export const backgroundColorVariants: Record<TBackgroundColors, `bg-${TTextColors}`> = {
   primary: "bg-primary",

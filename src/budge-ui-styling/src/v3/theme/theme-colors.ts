@@ -1,4 +1,4 @@
-import { TExtendedBorderColors, TExtendedTextColors } from "./style-system.types";
+import { TExtendedBorderColors, TExtendedTextColors } from "./types";;
 
 const baseColors = {
   transparent: "transparent",
@@ -144,6 +144,7 @@ const baseColors = {
     9: "#620c97",
     10: "#440072",
   },
+  // Copy of purple
   primary: {
     0: "#fbf3ff",
     1: "#f5e4ff",

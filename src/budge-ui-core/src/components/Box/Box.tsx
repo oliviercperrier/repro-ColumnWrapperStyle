@@ -4,9 +4,11 @@ import { TDefaultViewProps, TViewVariantProps, viewVariant, extractViewVariantPr
 import Animated from "react-native-reanimated";
 import { twMerge } from "tailwind-merge";
 
-export type TBoxProps = TDefaultViewProps<TViewVariantProps> & {
-  shouldRender?: boolean;
-};
+export type TBoxProps = TDefaultViewProps<
+  TViewVariantProps & {
+    shouldRender?: boolean;
+  }
+>;
 
 const Box = forwardRef<View, TBoxProps>(({ className, children, shouldRender = true, ...others }, ref) => {
   const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);

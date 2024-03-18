@@ -6,10 +6,12 @@ import { pressableVariant } from "./Pressable.variants";
 import { VariantProps } from "tailwind-variants";
 import { twMerge } from "tailwind-merge";
 
-export type TPressableProps = Omit<TDefaultViewProps<PressableProps>, "children" | "disabled"> &
-  VariantProps<typeof pressableVariant> & {
-    children?: ((props: { isPressed: boolean; isHovered: boolean }) => JSX.Element) | JSX.Element | React.ReactNode;
-  };
+export type TPressableProps = TDefaultViewProps<
+  Omit<PressableProps, "children" | "disabled"> &
+    VariantProps<typeof pressableVariant> & {
+      children?: ((props: { isPressed: boolean; isHovered: boolean }) => JSX.Element) | JSX.Element | React.ReactNode;
+    }
+>;
 
 const Pressable = forwardRef<View, TPressableProps>(
   (

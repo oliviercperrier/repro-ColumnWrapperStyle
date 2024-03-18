@@ -4,9 +4,11 @@ import { TDefaultViewProps, extractViewVariantProps, viewVariant } from "@budgei
 import { StyleProp } from "react-native";
 import { twMerge } from "tailwind-merge";
 
-export type TImageProps = Omit<TDefaultViewProps<ExpoImageProps>, "style"> & {
-  style?: StyleProp<ImageStyle>;
-};
+export type TImageProps = TDefaultViewProps<
+  Omit<ExpoImageProps, "style"> & {
+    style?: StyleProp<ImageStyle>;
+  }
+>;
 
 const Image = ({ className, children, style, ...imageProps }: TImageProps) => {
   const { styleProps, viewVariantProps, rest } = extractViewVariantProps(imageProps);
