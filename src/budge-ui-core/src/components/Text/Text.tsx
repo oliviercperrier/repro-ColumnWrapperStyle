@@ -6,6 +6,7 @@ import {
   TTextVariantProps,
   textVariant,
 } from "@budgeinc/budge-ui-styling";
+import Animated from "react-native-reanimated";
 
 export type TTextProps = TDefaultTextProps<TTextVariantProps>;
 
@@ -25,5 +26,7 @@ const Text = forwardRef<RNText, TTextProps>(
     );
   }
 );
+
+export const AnimatedText = Animated.createAnimatedComponent(Text)
 
 export default Text;

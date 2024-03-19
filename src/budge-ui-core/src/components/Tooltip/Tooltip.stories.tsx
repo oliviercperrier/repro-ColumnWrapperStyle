@@ -1,4 +1,4 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 import React from "react";
 import { Tooltip } from "../Tooltip";
 import { Box } from "../Box";
@@ -10,7 +10,7 @@ const meta = {
   args: {},
   decorators: [
     Story => (
-      <Box alignItems="start">
+      <Box alignItems="center" justifyContent="center" f={1}>
         <Story />
       </Box>
     ),

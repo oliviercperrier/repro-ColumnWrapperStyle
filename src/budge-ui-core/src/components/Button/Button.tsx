@@ -8,7 +8,6 @@ import { TMemoRefIconProps } from "../SvgIcon";
 import { Box } from "../Box";
 import { LoadingOverlay } from "../LoadingOverlay";
 import { twMerge } from "tailwind-merge";
-import { useBudgeTheme } from "@budgeinc/budge-ui-styling";
 
 export type TButtonProps = Omit<TPressableProps, "children" | "bg"> &
   Omit<VariantProps<typeof buttonVariant>, "withIcon"> & {

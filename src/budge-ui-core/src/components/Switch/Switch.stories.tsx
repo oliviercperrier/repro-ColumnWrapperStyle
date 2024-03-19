@@ -8,15 +8,8 @@ const meta = {
   component: Switch,
   args: {
     size: "md",
-    disabled: false
+    disabled: false,
   },
-  decorators: [
-    Story => (
-      <Box alignItems="start">
-        <Story />
-      </Box>
-    ),
-  ],
 } satisfies Meta<typeof Switch>;
 
 export default meta;
@@ -26,5 +19,10 @@ type Story = StoryFn<typeof meta>;
 export const Basic: Story = args => {
   const [checked, setChecked] = useState(false);
 
-  return <Switch checked={checked} onChange={setChecked} {...args} />;
+  return (
+    <Switch
+      checked={checked}
+      onChange={setChecked}
+    />
+  );
 };

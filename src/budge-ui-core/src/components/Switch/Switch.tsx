@@ -12,10 +12,18 @@ const Switch = forwardRef<View, TSwitchProps>(({ checked, size, disabled, onChan
     disabled,
   });
 
-  const handleChange = useCallback(() => onChange?.(!checked), [checked]);
+  const handleChange = () => {
+    onChange?.(!checked)
+  };
 
   return (
-    <Pressable ref={ref} onPress={handleChange} className={variantStyles.base()} disabled={disabled} {...others}>
+    <Pressable
+      ref={ref}
+      onPress={handleChange}
+      className={variantStyles.base()}
+      disabled={disabled}
+      {...others}
+    >
       <Box className={variantStyles.thumb()}></Box>
     </Pressable>
   );

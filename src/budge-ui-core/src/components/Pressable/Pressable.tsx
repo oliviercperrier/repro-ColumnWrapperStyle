@@ -9,7 +9,10 @@ import { twMerge } from "tailwind-merge";
 export type TPressableProps = TDefaultViewProps<
   Omit<PressableProps, "children" | "disabled"> &
     VariantProps<typeof pressableVariant> & {
-      children?: ((props: { isPressed: boolean; isHovered: boolean }) => JSX.Element) | JSX.Element | React.ReactNode;
+      children?:
+        | ((props: { isPressed: boolean; isHovered: boolean; disabled: boolean | undefined }) => JSX.Element)
+        | JSX.Element
+        | React.ReactNode;
     }
 >;
 
@@ -55,7 +58,7 @@ const Pressable = forwardRef<View, TPressableProps>(
         pointerEvents="auto"
         {...rest}
       >
-        {typeof children === "function" ? children({ isPressed, isHovered }) : children}
+        {typeof children === "function" ? children({ isPressed, isHovered, disabled }) : children}
       </RNPressable>
     );
   }
