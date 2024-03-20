@@ -37,7 +37,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Form>;
 
 export const Error: Story = () => (
   <View style={{ maxWidth: 500 }}>

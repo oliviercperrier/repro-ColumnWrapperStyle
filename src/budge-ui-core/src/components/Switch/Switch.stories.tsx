@@ -1,15 +1,9 @@
-
 import React, { useState } from "react";
-
 import { action } from "@storybook/addon-actions";
 import { Switch } from "../Switch";
-import { TSwitchProps } from "./Switch.types";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TSwitchPropsKeys = (keyof TSwitchProps)[];
-
-const DefaultFields: TSwitchPropsKeys = ["disabled", "color", "size", "label"];
-
-const SwitchMeta: ComponentMeta<typeof Switch> = {
+const meta = {
   title: "Inputs/Switch",
   component: Switch,
   args: {
@@ -18,18 +12,13 @@ const SwitchMeta: ComponentMeta<typeof Switch> = {
     disabled: false,
     label: "This is a switch",
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof Switch.Confirm>;
 
-export default SwitchMeta;
+export default meta;
 
-type SwitchStory = ComponentStory<typeof Switch>;
+type Story = StoryFn<typeof Switch.Confirm>;
 
-export const Default: SwitchStory = args => {
+export const Default: Story = (args) => {
   const [checked, setChecked] = useState(false);
 
   return (

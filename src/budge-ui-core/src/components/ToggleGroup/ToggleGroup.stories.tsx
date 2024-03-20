@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 
 import { action } from "@storybook/addon-actions";
@@ -6,12 +5,9 @@ import ToggleGroup, { TToggleGroupProps } from "./ToggleGroup";
 import { Stack } from "../Stack";
 import { CalendarIcon, GridIcon, InsightIcon, TMemoRefIconProps } from "../Icons";
 import { Text } from "../Text";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TSliderPropsKeys = (keyof TToggleGroupProps)[];
-
-const DefaultFields: TSliderPropsKeys = ["options", "animated"];
-
-const ToggleGroupMeta: ComponentMeta<typeof ToggleGroup> = {
+const meta = {
   title: "Inputs/ToggleGroup",
   component: ToggleGroup,
   args: {
@@ -35,18 +31,13 @@ const ToggleGroupMeta: ComponentMeta<typeof ToggleGroup> = {
       },
     ],
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof ToggleGroup>;
 
-export default ToggleGroupMeta;
+export default meta;
 
-type ToggleGroupStory = ComponentStory<typeof ToggleGroup>;
+type Story = StoryFn<typeof ToggleGroup>;
 
-export const Default: ToggleGroupStory = args => {
+export const Default: Story = (args) => {
   const [value, setValue] = useState<any>("maybe");
 
   return (
@@ -62,7 +53,7 @@ export const Default: ToggleGroupStory = args => {
   );
 };
 
-export const CustomLabel: ToggleGroupStory = () => {
+export const CustomLabel: Story = () => {
   const [value, setValue] = useState<any>("dashboard");
 
   const renderLabel = (active: boolean, title: string, Icon: TMemoRefIconProps) => (

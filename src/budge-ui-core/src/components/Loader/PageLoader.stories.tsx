@@ -15,9 +15,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof PageLoader>;
 
-export const Default: Story = ({ args }) => (
+export const Default: Story = (args) => (
   <View style={{ height: 650 }}>
     <PageLoader {...args} />
   </View>

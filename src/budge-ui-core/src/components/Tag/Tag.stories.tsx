@@ -1,15 +1,11 @@
-
 import React from "react";
 
 import { ArrowLeftIcon, CarIcon } from "../Icons";
 import { Stack } from "../Stack";
 import Tag, { TTagProps } from "./Tag";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TTagPropsKeys = (keyof TTagProps)[];
-
-const DefaultFields: TTagPropsKeys = ["color", "value", "variant", "color", "withIcon", "size", "radius"];
-
-const TagMeta: ComponentMeta<typeof Tag> = {
+const meta = {
   title: "Data Display/Tag",
   component: Tag,
   args: {
@@ -20,18 +16,13 @@ const TagMeta: ComponentMeta<typeof Tag> = {
     size: "sm",
     radius: "sm",
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof Tag>;
 
-export default TagMeta;
+export default meta;
 
-type TagStory = ComponentStory<typeof Tag>;
+type Story = StoryFn<typeof Tag>;
 
-export const All: TagStory = args => (
+export const All: Story = (args) => (
   <Stack alignItems="flex-start">
     <Tag {...args} />
     <Tag variant={args.variant} value="ACTIVE" />

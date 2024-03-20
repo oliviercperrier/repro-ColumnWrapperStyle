@@ -17,10 +17,10 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Checkbox.Confirm>;
 
-export const WithConfirm: Story = ({ args }) => {
-  const [isChecked, setChecked] = useState<boolean>(args.checked);
+export const WithConfirm: Story = (args) => {
+  const [isChecked, setChecked] = useState(args.checked);
 
   useEffect(() => {
     setChecked(args.checked);

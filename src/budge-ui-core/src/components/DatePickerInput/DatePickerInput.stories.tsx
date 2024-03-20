@@ -14,9 +14,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof DatePickerInput>;
 
-export const Basic: Story = ({ args }) => {
+export const Basic: Story = (args) => {
   const [_date, setDate] = useState<Date>();
 
   return (

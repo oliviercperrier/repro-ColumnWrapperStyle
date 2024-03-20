@@ -19,7 +19,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof List>;
 
 export const Default: Story = ({args}) => {
   const [loading, setLoading] = useState(false);

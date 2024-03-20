@@ -1,14 +1,10 @@
-
 import React, { useState } from "react";
 import { action } from "@storybook/addon-actions";
 import SurveyScale, { TSurveyScaleProps } from "./SurveyScale";
 import { Box } from "../Box";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TSurveyScalePropsKeys = (keyof TSurveyScaleProps)[];
-
-const DefaultFields: TSurveyScalePropsKeys = ["maxValue", "maxValueLabel", "minValueLabel", "value", "readOnly"];
-
-const SurveyScaleMeta: ComponentMeta<typeof SurveyScale> = {
+const meta = {
   title: "Inputs/Survey Scale",
   component: SurveyScale,
   args: {
@@ -16,19 +12,15 @@ const SurveyScaleMeta: ComponentMeta<typeof SurveyScale> = {
     minValueLabel: "Not Confident",
     maxValueLabel: "Totally Confident",
     readOnly: false,
+    value: 0
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof SurveyScale>;
 
-export default SurveyScaleMeta;
+export default meta;
 
-type SurveyScaleStory = ComponentStory<typeof SurveyScale>;
+type Story = StoryFn<typeof SurveyScale>;
 
-export const Default: SurveyScaleStory = args => {
+export const Default: Story = ({args}) => {
   const [value, setValue] = useState<number>();
 
   return (

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 
-
 import { action } from "@storybook/addon-actions";
 import Select from "./Select";
 import { Stack } from "../Stack";
 import { WorldIcon } from "../Icons";
 import { Text } from "../Text";
 import { TSelectOptionValue, TSelectProps } from "./Select.types";
-
-type TSelectPropsKeys = (keyof TSelectProps)[];
+import { Meta, StoryFn } from "@storybook/react";
 
 const randomUsers = [
   {
@@ -1487,18 +1485,7 @@ const LongDataList = [
   },
 ];
 
-const DefaultFields: TSelectPropsKeys = [
-  "label",
-  "disabled",
-  "variant",
-  "enableSearch",
-  "options",
-  "includeEmptyOption",
-  "emptyOptionValue",
-  "showValueTooltip",
-];
-
-const SelectMeta: ComponentMeta<typeof Select> = {
+const meta = {
   title: "Combobox/Select",
   component: Select,
   args: {
@@ -1514,24 +1501,20 @@ const SelectMeta: ComponentMeta<typeof Select> = {
       maxWidth: 500,
     },
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof Select>;
 
-export default SelectMeta;
+export default meta;
 
-type SelectStory = ComponentStory<typeof Select>;
+type Story = StoryFn<typeof Select>;
 
-export const Default: SelectStory = args => {
+export const Basic: Story = (args) => {
   const [value, setValue] = useState<TSelectOptionValue>(undefined);
 
   return (
     <Select
       {...args}
       value={value}
+      label="Search country"
       options={countryList}
       onChange={val => {
         setValue(val);
@@ -1540,14 +1523,15 @@ export const Default: SelectStory = args => {
     />
   );
 };
-Default.args = { label: "Choose a country", options: countryList };
 
-export const WithSearch: SelectStory = args => {
+export const WithSearch: Story = (args) => {
   const [value, setValue] = useState<any | undefined>(undefined);
 
   return (
     <Select
       {...args}
+      label="Search country"
+      options={countryList}
       value={value}
       onChange={val => {
         setValue(val);
@@ -1556,14 +1540,15 @@ export const WithSearch: SelectStory = args => {
     />
   );
 };
-WithSearch.args = { label: "Search a country", options: countryList, enableSearch: true };
 
-export const WithLongList: SelectStory = args => {
+export const WithLongList: Story = (args) => {
   const [value, setValue] = useState<any | undefined>(undefined);
 
   return (
     <Select
       {...args}
+      label="Search country"
+      options={LongDataList}
       value={value}
       onChange={val => {
         setValue(val);
@@ -1572,33 +1557,30 @@ export const WithLongList: SelectStory = args => {
     />
   );
 };
-WithLongList.args = { label: "Search a country", options: LongDataList };
 
-export const WithCustomContent: SelectStory = args => {
+export const WithCustomContent: Story = (args) => {
   const [value, setValue] = useState<any | undefined>(undefined);
 
   return (
     <Select
       {...args}
       value={value}
+      label="Select a country"
+      options={countryList.map(country => ({
+        ...country,
+        customContent: (
+          <Stack.Horizontal alignItems="center">
+            <WorldIcon />
+            <Text>{country.label}</Text>
+          </Stack.Horizontal>
+        ),
+      }))}
       onChange={val => {
         setValue(val);
         action("onChange")(val);
       }}
     />
   );
-};
-WithCustomContent.args = {
-  label: "Select a country",
-  options: countryList.map(country => ({
-    ...country,
-    customContent: (
-      <Stack.Horizontal alignItems="center">
-        <WorldIcon />
-        <Text>{country.label}</Text>
-      </Stack.Horizontal>
-    ),
-  })),
 };
 
 type SearchDataType = {
@@ -1609,7 +1591,7 @@ type SearchDataType = {
   };
 };
 
-export const WithAsyncSearch: SelectStory = args => {
+export const WithAsyncSearch: Story = (args) => {
   const [value, setValue] = useState<any | undefined>(undefined);
 
   const onSearch = async (searchValue: string) =>
@@ -1629,7 +1611,10 @@ export const WithAsyncSearch: SelectStory = args => {
   return (
     <Select
       {...args}
+      label="Search user"
+      options={countryList}
       value={value}
+      enableSearch
       onChange={val => {
         setValue(val);
         action("onChange")(val);
@@ -1646,4 +1631,3 @@ export const WithAsyncSearch: SelectStory = args => {
     />
   );
 };
-WithAsyncSearch.args = { label: "Search a user", options: countryList, enableSearch: true };

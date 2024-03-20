@@ -12,9 +12,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof DatePicker>;
 
-export const Basic: Story = ({ args }) => {
+export const Basic: Story = (args) => {
   const [_value, setValue] = useState<Date>(new Date());
 
   return (
@@ -29,7 +29,7 @@ export const Basic: Story = ({ args }) => {
   );
 };
 
-export const WithMaxDate: Story = ({ args }) => {
+export const WithMaxDate: Story = (args) => {
   const [_value, setValue] = useState<Date>(new Date());
 
   return (
@@ -45,7 +45,7 @@ export const WithMaxDate: Story = ({ args }) => {
   );
 };
 
-export const WithMinDate: Story = ({ args }) => {
+export const WithMinDate: Story = (args) => {
   const [_value, setValue] = useState<Date>(new Date());
 
   return (
@@ -61,7 +61,7 @@ export const WithMinDate: Story = ({ args }) => {
   );
 };
 
-export const WithMinMaxDate: Story = ({ args }) => {
+export const WithMinMaxDate: Story = (args) => {
   const [_value, setValue] = useState<Date>(new Date());
 
   return (

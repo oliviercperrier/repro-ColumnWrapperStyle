@@ -13,6 +13,6 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Spinner>;
 
-export const Default: Story = ({ args }) => <Spinner {...args} />;
+export const Default: Story = (args) => <Spinner {...args} />;

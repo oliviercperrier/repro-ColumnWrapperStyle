@@ -12,9 +12,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Description.Item>;
 
-export const Default: Story = ({ args }) => (
+export const Default: Story = (args) => (
   <Description>
     <Description.Item {...args}>content 1</Description.Item>
     <Description.Item {...args}>content 2</Description.Item>

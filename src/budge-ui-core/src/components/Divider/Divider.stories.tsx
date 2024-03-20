@@ -17,8 +17,8 @@ const meta = {
 
 export default meta;
 
-type StoryFunc = StoryFn<typeof meta>;
-type StoryObject = StoryObj<typeof meta>;
+type StoryFunc = StoryFn<typeof Divider>;
+type StoryObject = StoryObj<typeof Divider>;
 
 export const Default: StoryObject = {
   args: {
@@ -28,7 +28,7 @@ export const Default: StoryObject = {
   },
 };
 
-export const WithText: StoryFunc = ({ args }) => (
+export const WithText: StoryFunc = args => (
   <Stack>
     <Divider orientation="left" {...args}>
       <Text color="textSecondary">Left</Text>

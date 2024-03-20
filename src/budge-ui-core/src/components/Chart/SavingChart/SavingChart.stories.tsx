@@ -32,9 +32,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof SavingChart>;
 
-export const Default: Story = ({ args }) => {
+export const Default: Story = (args) => {
   return (
     <View
       style={{
@@ -48,7 +48,7 @@ export const Default: Story = ({ args }) => {
   );
 };
 
-export const WithScaling: Story = ({ args }) => {
+export const WithScaling: Story = (args) => {
   const [amount, setAmount] = useState(0);
 
   return (

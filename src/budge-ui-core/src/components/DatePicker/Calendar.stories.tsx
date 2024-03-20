@@ -12,14 +12,14 @@ import { Meta, StoryFn } from "@storybook/react";
 const meta = {
   title: "Inputs/Calendar/Calendar",
   component: Calendar,
-  args: {}
+  args: {},
 } satisfies Meta<typeof Calendar>;
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Calendar>;
 
-export const Basic: Story = ({args}) => (
+export const Basic: Story = args => (
   <Calendar
     {...args}
     getDayControlProps={(date, defaultTitle) => ({
@@ -50,7 +50,7 @@ const RecurringWeekDayAmount = {
   2: 5000,
 };
 
-export const Custom: Story = ({args}) => {
+export const Custom: Story = ({ args }) => {
   const [_value, setValue] = useState<Date>(new Date());
   const [day, setDay] = useState<Date>();
   const [opened, setOpened] = useState(false);

@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import { useFormik } from "formik";
 import { EmailSchema, PasswordSchema, yup } from "@budgeinc/budge-ui-utils";
@@ -16,12 +15,9 @@ import { Input, PasswordInput } from "../Input";
 import { Stack } from "../Stack";
 import { modalManager } from "../ModalManager";
 import { Table } from "../Table";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TTabsPropsKeys = (keyof TTabsProps)[];
-
-const DefaultFields: TTabsPropsKeys = ["size", "activeColor", "borderWidth"];
-
-const TabsMeta: ComponentMeta<typeof Tabs> = {
+const meta = {
   title: "Navigation/Tabs",
   component: Tabs,
   args: {
@@ -29,19 +25,13 @@ const TabsMeta: ComponentMeta<typeof Tabs> = {
     borderWidth: 1,
     activeColor: "primary",
   },
-  argTypes: {},
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof Tabs>;
 
-export default TabsMeta;
+export default meta;
 
-type TabsStory = ComponentStory<typeof Tabs>;
+type Story = StoryFn<typeof Tabs>;
 
-export const Default: TabsStory = args => {
+export const Default: Story = (args) => {
   const [activeKey, setActiveKey] = useState<string>("1");
 
   return (
@@ -139,7 +129,7 @@ const TabContent = () => {
   );
 };
 
-export const FullWidth: TabsStory = args => {
+export const FullWidth: Story = (args) => {
   const [activeKey, setActiveKey] = useState<string>("1");
 
   return (
@@ -164,7 +154,7 @@ export const FullWidth: TabsStory = args => {
   );
 };
 
-export const WithExtra: TabsStory = args => {
+export const WithExtra: Story = (args) => {
   const [activeKey, setActiveKey] = useState<string>("1");
 
   return (

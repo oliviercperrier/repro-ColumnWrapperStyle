@@ -1,34 +1,25 @@
-
 import React, { useEffect, useState } from "react";
 
 import { CardIcon, RoundIcon } from "../Icons";
 import { Stack } from "../Stack";
 import { Text } from "../Text";
-import SelectableBox, { TSelectableBoxProps } from "./SelectableBox";
+import SelectableBox from "./SelectableBox";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TSelectableBoxPropsKeys = (keyof TSelectableBoxProps)[];
-
-const DefaultFields: TSelectableBoxPropsKeys = ["isSelected", "withPressEffect", "disabled", "variant"];
-
-const EditSaveToggleButtonsMeta: ComponentMeta<typeof SelectableBox> = {
+const meta = {
   title: "Misc/Selectable Box",
   component: SelectableBox,
   args: {
     isSelected: false,
     disabled: false,
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof SelectableBox>;
 
-export default EditSaveToggleButtonsMeta;
+export default meta;
 
-type SelectableBoxStory = ComponentStory<typeof SelectableBox>;
+type Story = StoryFn<typeof SelectableBox>;
 
-export const Default: SelectableBoxStory = args => {
+export const Default: Story = (args) => {
   const [isSelected, setSelected] = useState(false);
 
   useEffect(() => {

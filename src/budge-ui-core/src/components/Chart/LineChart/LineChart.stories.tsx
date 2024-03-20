@@ -30,21 +30,24 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof LineChart>;
 
-export const Default: Story = ({ args }) => (
-  <View
-    style={{
-      width: "100%",
-      maxWidth: 500,
-      paddingHorizontal: 12,
-    }}
-  >
-    <LineChart height={150} {...args} />
-  </View>
-);
+export const Default: Story = (args) => {
+  console.log(args)
 
-export const InModal: Story = ({ args }) => {
+
+  return  <View
+  style={{
+    width: "100%",
+    maxWidth: 500,
+    paddingHorizontal: 12,
+  }}
+>
+  <LineChart height={150} {...args} />
+</View>
+}
+
+export const InModal: Story = () => {
   const [open, handlers] = useDisclosure();
 
   return (

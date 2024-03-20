@@ -1,22 +1,10 @@
 import React from "react";
 
 import { action } from "@storybook/addon-actions";
-import Slider, { TSliderProps } from "./Slider";
+import Slider from "./Slider";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TSliderPropsKeys = (keyof TSliderProps)[];
-
-const DefaultFields: TSliderPropsKeys = [
-  "thumbSize",
-  "trackSize",
-  "step",
-  "minimumValue",
-  "maximumValue",
-  "thumbColor",
-  "minimumTrackTintColor",
-  "maximumTrackTintColor",
-];
-
-const SliderMeta: ComponentMeta<typeof Slider> = {
+const meta = {
   title: "Inputs/Slider",
   component: Slider,
   args: {
@@ -28,17 +16,12 @@ const SliderMeta: ComponentMeta<typeof Slider> = {
     step: 1,
     minimumValue: 0,
     maximumValue: 100,
+    animationType: "timing"
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-  decorators: [(Story: any) => Story()],
-};
+} satisfies Meta<typeof Slider>;
 
-export default SliderMeta;
+export default meta;
 
-type SliderStory = ComponentStory<typeof Slider>;
+type Story = StoryFn<typeof Slider>;
 
-export const Default: SliderStory = args => <Slider onSlidingComplete={action("onSlidingCompleted")} {...args} />;
+export const Default: Story = (args) => <Slider onSlidingComplete={action("onSlidingCompleted")} {...args} />;

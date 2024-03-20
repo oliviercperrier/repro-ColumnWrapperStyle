@@ -12,7 +12,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Carousel>;
 
 export const Default: Story = () => {
   const { ref, next, previous } = useCarousel();

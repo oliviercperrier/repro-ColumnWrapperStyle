@@ -21,9 +21,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Collapse>;
 
-export const Default: Story = ({ args }) => (
+export const Default: Story = (args) => (
   <Stack sx={theme => ({ backgroundColor: theme.palette.background.default, padding: 24 })}>
     <Collapse {...args}>
       <Text>Content</Text>
@@ -33,7 +33,7 @@ export const Default: Story = ({ args }) => (
   </Stack>
 );
 
-export const Dark: Story = ({ args }) => (
+export const Dark: Story = (args) => (
   <Stack sx={theme => ({ backgroundColor: theme.white, padding: 24 })}>
     <Collapse variant="dark" {...args} />
     <Collapse variant="dark" {...args} />
@@ -98,7 +98,7 @@ const Extra = () => {
   );
 };
 
-export const WithExtra: Story = ({ args }) => (
+export const WithExtra: Story = (args) => (
   <Stack sx={theme => ({ backgroundColor: theme.white, padding: 24 })}>
     <Collapse variant="dark" extra={<Extra />} {...args} />
     <Collapse variant="dark" extra={<Extra />} {...args} />

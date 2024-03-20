@@ -14,9 +14,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Breadcrumb>;
 
-export const Default: Story = ({ args }) => {
+export const Default: Story = (args) => {
   const [stack, setStack] = useState<BreadcrumbRoute[]>([
     {
       pathname: "/home",

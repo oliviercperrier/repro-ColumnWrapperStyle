@@ -30,9 +30,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof KpiCard>;
 
-export const Default: Story = ({ args }) => (
+export const Default: Story = (args) => (
   <Box p={24} sx={theme => ({ backgroundColor: theme.palette.background.default })}>
     <Grid
       column={3}

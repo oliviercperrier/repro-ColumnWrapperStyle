@@ -16,9 +16,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof EditSaveToggleButtons>;
 
-export const Default: Story = ({ args }) => {
+export const Default: Story = (args) => {
   const [editModeOn, setEditMode] = useState(false);
 
   useEffect(() => {

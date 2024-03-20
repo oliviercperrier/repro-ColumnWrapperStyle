@@ -1,28 +1,19 @@
 import React, { useState } from "react";
 import { action } from "@storybook/addon-actions";
 
-
 import { TNotificationDrawerProps } from "./types";
 import NotificationDrawerButton from "./NotificationDrawerButton";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TNotificationDrawerPropsKeys = (keyof TNotificationDrawerProps)[];
-
-const DefaultFields: TNotificationDrawerPropsKeys = [];
-
-const EditSaveToggleButtonsMeta: ComponentMeta<typeof NotificationDrawerButton> = {
+const meta = {
   title: "Misc/Notification Drawer Button",
   component: NotificationDrawerButton,
   args: {},
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof NotificationDrawerButton>;
 
-export default EditSaveToggleButtonsMeta;
+export default meta;
 
-type NotificationDrawerButtonStory = ComponentStory<typeof NotificationDrawerButton>;
+type Story = StoryFn<typeof NotificationDrawerButton>;
 
 const notifications: any[] = [
   {
@@ -214,7 +205,7 @@ const notifications: any[] = [
   },
 ];
 
-export const NotificationDrawer: NotificationDrawerButtonStory = () => {
+export const NotificationDrawer: Story = () => {
   const [notificationList, setNotificationList] = useState(notifications);
 
   return (

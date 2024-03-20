@@ -1,6 +1,6 @@
 import React from "react";
 
-import LoadingOverlay, { TLoadingOverlayProps } from "./LoadingOverlay";
+import LoadingOverlay from "./LoadingOverlay";
 import { Stack } from "../Stack";
 import { Input } from "../Input";
 import Paper from "../Paper/Paper";
@@ -21,9 +21,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof LoadingOverlay>;
 
-export const Default: Story = ({ args }) => (
+export const Default: Story = (args) => (
   <Paper p="xl" radius="md" shadow="sm" maw={500}>
     <Stack>
       <Text mb="lg" variant="bodyMedium" fw="500">

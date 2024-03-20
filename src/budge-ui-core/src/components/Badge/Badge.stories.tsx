@@ -13,9 +13,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Badge>;
 
-export const Basic: Story = ({ args }) => (
+export const Basic: Story = (args) => (
   <Badge {...args}>
     <RoundIcon icon={NotificationIcon} />
   </Badge>

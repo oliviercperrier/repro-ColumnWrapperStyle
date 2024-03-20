@@ -1,33 +1,24 @@
-
 import React from "react";
 import { Stack } from "../Stack";
 
 import Logo, { TLogoProps } from "./Logo";
 import LogoSquare from "./LogoSquare";
 import { Box } from "../Box";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TLogoPropsKeys = (keyof TLogoProps)[];
-
-const DefaultFields: TLogoPropsKeys = ["width"];
-
-const LogoMeta: ComponentMeta<typeof Logo> = {
+const meta = {
   title: "General/Logo",
   component: Logo,
   args: {
     width: 125,
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof Logo>;
 
-export default LogoMeta;
+export default meta;
 
-type LogoStory = ComponentStory<typeof Logo>;
+type Story = StoryFn<typeof Logo>;
 
-export const Default: LogoStory = args => (
+export const Default: StoryFn = ({ args }) => (
   <Stack>
     <Box p="md">
       <Logo {...args} />
@@ -38,4 +29,4 @@ export const Default: LogoStory = args => (
   </Stack>
 );
 
-export const Square: LogoStory = args => <LogoSquare />;
+export const Square: Story = args => <LogoSquare />;

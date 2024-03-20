@@ -14,9 +14,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof CodeInput>;
 
-export const Default: Story = ({ args }) => {
+export const Default: Story = (args) => {
   const [value, setValue] = useState<number | null>(null);
 
   return (

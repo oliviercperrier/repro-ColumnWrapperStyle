@@ -1,19 +1,19 @@
-
 import React from "react";
 
 import { Stack } from "../Stack";
 import Text from "./Text";
+import { Meta, StoryFn } from "@storybook/react";
 
-const TextMeta: ComponentMeta<typeof Text> = {
+const meta = {
   title: "General/Text",
   component: Text,
-};
+} satisfies Meta<typeof Text>;
 
-export default TextMeta;
+export default meta;
 
-type TextStory = ComponentStory<typeof Text>;
+type Story = StoryFn<typeof Text>;
 
-export const Default: TextStory = () => (
+export const Default: Story = () => (
   <Stack>
     <Text variant="bodySmall">Body Small</Text>
     <Text variant="bodyDefault">Body Default</Text>

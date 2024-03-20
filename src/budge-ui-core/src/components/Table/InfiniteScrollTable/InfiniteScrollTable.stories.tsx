@@ -4,30 +4,22 @@ import React from "react";
 import { Box } from "../../Box";
 import { Button } from "../../Button";
 import { Text } from "../../Text";
-import InfiniteScrollTable, { TInfiniteScrollTableProps } from "./InfiniteScrollTable";
+import InfiniteScrollTable from "./InfiniteScrollTable";
 import { Stack } from "../../Stack";
 import { useInfiniteScrollList } from "../../List/useInfiniteScrollList";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TInfiniteScrollTablePropsKeys<T> = (keyof TInfiniteScrollTableProps<T>)[];
-
-const DefaultFields: TInfiniteScrollTablePropsKeys<any> = [];
-
-const InfiniteScrollTableMeta: ComponentMeta<typeof InfiniteScrollTable> = {
+const meta = {
   title: "Data Display/Table",
   component: InfiniteScrollTable,
   args: {
     variant: "default",
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof InfiniteScrollTable>;
 
-export default InfiniteScrollTableMeta;
+export default meta;
 
-type InfiniteScrollTableStory = ComponentStory<typeof InfiniteScrollTable>;
+type Story = StoryFn<typeof InfiniteScrollTable>;
 
 const DarkWrapper = ({ children }: any) => (
   <Box
@@ -50,7 +42,7 @@ type DataType = {
   };
 };
 
-export const InfiniteScroll: InfiniteScrollTableStory = () => {
+export const InfiniteScroll: Story = (args) => {
   const { requestState, onEndReached, forceRefresh } = useInfiniteScrollList<DataType>({
     onFetch: async ({ page, pageSize }) => {
       action("onFetch")({

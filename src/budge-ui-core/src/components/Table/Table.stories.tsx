@@ -6,28 +6,20 @@ import { Button } from "../Button";
 import { Text } from "../Text";
 import Table from "./Table";
 import { TSortState, TTableProps } from "./types";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TTablePropsKeys = (keyof TTableProps)[];
-
-const DefaultFields: TTablePropsKeys = ["loading"];
-
-const TableMeta: ComponentMeta<typeof Table> = {
+const meta = {
   title: "Data Display/Table",
   component: Table,
   args: {
     variant: "default",
     loading: false,
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof Table>;
 
-export default TableMeta;
+export default meta;
 
-type TableStory = ComponentStory<typeof Table>;
+type Story = StoryFn<typeof Table>;
 
 const DarkWrapper = ({ children }: any) => (
   <Box
@@ -53,7 +45,7 @@ const LightWrapper = ({ children }: any) => (
   </Box>
 );
 
-export const Default: TableStory = args => (
+export const Default: Story = (args) => (
   <DarkWrapper>
     <Table
       {...args}
@@ -106,7 +98,7 @@ export const Default: TableStory = args => (
   </DarkWrapper>
 );
 
-export const Scroll: TableStory = args => (
+export const Scroll: Story = (args) => (
   <DarkWrapper>
     <Table
       {...args}
@@ -196,10 +188,11 @@ export const Scroll: TableStory = args => (
   </DarkWrapper>
 );
 
-export const Dark: TableStory = args => (
+export const Dark: Story = (args) => (
   <LightWrapper>
     <Table
       {...args}
+      variant="dark"
       columns={[
         {
           id: "col1",
@@ -249,9 +242,8 @@ export const Dark: TableStory = args => (
     />
   </LightWrapper>
 );
-Dark.args = { variant: "dark" };
 
-export const WithExpandableRows: TableStory = args => (
+export const WithExpandableRows: Story = (args) => (
   <DarkWrapper>
     <Table
       {...args}
@@ -302,12 +294,12 @@ export const WithExpandableRows: TableStory = args => (
           value: "Expandable content 2",
         },
       ]}
+      expandable={(record: any) => <Text>{record.value}</Text>}
     />
   </DarkWrapper>
 );
-WithExpandableRows.args = { expandable: (record: any) => <Text>{record.value}</Text> };
 
-export const Empty: TableStory = args => (
+export const Empty: Story = (args) => (
   <DarkWrapper>
     <Table
       {...args}
@@ -334,24 +326,17 @@ export const Empty: TableStory = args => (
         },
       ]}
       data={[]}
+      local={{
+        empty: {
+          title: "No data found",
+          description: "Some other use full description",
+        },
+      }}
     />
   </DarkWrapper>
 );
-Empty.parameters = {
-  controls: {
-    include: [...DefaultFields, "local"] as TTablePropsKeys,
-  },
-};
-Empty.args = {
-  local: {
-    empty: {
-      title: "No data found",
-      description: "Some other use full description",
-    },
-  },
-};
 
-export const WithSort: TableStory = args => {
+export const WithSort: Story = (args) => {
   const [sort, setSort] = useState<TSortState | null>({
     columnId: "col1",
     direction: "asc",

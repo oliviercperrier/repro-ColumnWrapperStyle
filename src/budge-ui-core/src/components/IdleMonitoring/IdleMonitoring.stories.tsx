@@ -15,7 +15,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof IdleMonitoring>;
 
 export const Default: Story = () => {
   const rootViewRef = useRef<any>(null);

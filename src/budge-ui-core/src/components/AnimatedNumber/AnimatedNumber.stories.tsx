@@ -19,9 +19,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof AnimatedNumber>;
 
-export const Basic: Story = ({ args }) => (
+export const Basic: Story = (args) => (
   <Box alignSelf="flex-start" px="xl" radius="lg">
     <AnimatedNumber {...args} />
   </Box>

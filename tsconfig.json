@@ -1,16 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
-  "include": [
-    "src/budge-ui-*/src",
-    "./scripts",
-    "./configuration",
-    "app.d.ts",
-  ],
-  "exclude": [
-    ".cache", 
-    "node_modules",
-    ".storybook/main.js",
-  ],
+  "include": ["src/budge-ui-*/src", "./scripts", "./configuration", "app.d.ts"],
+  "exclude": [".cache", "node_modules", ".storybook/main.js"],
   "compilerOptions": {
     "paths": {
       "@budgeinc/*": ["src/budge-ui-*/src"]

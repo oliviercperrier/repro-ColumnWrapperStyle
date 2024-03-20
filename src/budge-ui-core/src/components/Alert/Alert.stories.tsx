@@ -17,7 +17,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Alert>;
 
 export const Basic: Story = args => (
   <Alert {...args}>

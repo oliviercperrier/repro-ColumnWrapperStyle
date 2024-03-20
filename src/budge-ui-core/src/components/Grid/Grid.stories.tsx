@@ -30,9 +30,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Grid>;
 
-export const Default: Story = ({ args }) => (
+export const Default: Story = (args) => (
   <Box p={24} sx={({ palette }) => ({ backgroundColor: palette.background.default })}>
     <Grid {...args}>
       <Card>
@@ -71,7 +71,7 @@ export const Default: Story = ({ args }) => (
   </Box>
 );
 
-export const Responsive: Story = ({ args }) => (
+export const Responsive: Story = (args) => (
   <Box p={24} sx={({ palette }) => ({ backgroundColor: palette.background.default })}>
     <Grid {...args}>
       <Card>

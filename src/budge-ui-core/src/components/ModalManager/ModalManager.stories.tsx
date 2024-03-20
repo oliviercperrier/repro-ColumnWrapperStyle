@@ -1,25 +1,14 @@
 import React from "react";
 
-import { ComponentMeta } from "@storybook/react-native";
 import { Button } from "../Button";
 import Modal from "../Modal/Modal";
 import { modalManager } from "./ModalManager.state";
 import { Text } from "../Text";
-import { TModalProps } from "../Modal/Modal.types";
 import { Box } from "../Box";
 
-type TModalPropsKeys = (keyof TModalProps)[];
-
-const DefaultFields: TModalPropsKeys = ["size", "withCloseButton"];
-
-const ModalMeta: ComponentMeta<typeof Modal> = {
+const ModalMeta = {
   title: "Misc/ModalManager",
   component: Modal,
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
 };
 
 export default ModalMeta;

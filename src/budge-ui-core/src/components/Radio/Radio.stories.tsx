@@ -1,36 +1,27 @@
 import { action } from "@storybook/addon-actions";
 import React, { useEffect, useState } from "react";
 
-
 import Radio, { TRadioProps } from "./Radio";
 import { TFormItemValueTypes } from "../Form";
 import RadioGroup from "./RadioGroup";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TRadioPropsKeys = (keyof TRadioProps)[];
-
-const DefaultFields: TRadioPropsKeys = ["label", "value", "disabled"];
-
-const RadioMeta: ComponentMeta<typeof Radio> = {
+const meta = {
   title: "Inputs/Radio",
   component: Radio,
   args: {
-    label: "I'm a radio button",
-    value: "",
+    label: "I'm radio button 1",
+    value: "value_1",
     disabled: false,
     onValueChange: () => {},
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof Radio>;
 
-export default RadioMeta;
+export default meta;
 
-type RadioStory = ComponentStory<typeof Radio>;
+type Story = StoryFn<typeof Radio>;
 
-export const Default: RadioStory = args => {
+export const Default: Story = (args) => {
   const [checked, setChecked] = useState(args.value);
 
   useEffect(() => {
@@ -48,9 +39,8 @@ export const Default: RadioStory = args => {
     />
   );
 };
-Default.args = { label: "I'm radio button 1", value: "value_1" };
 
-export const Group: RadioStory = args => {
+export const Group: Story = (args) => {
   const [value, setValue] = React.useState<TFormItemValueTypes>("");
 
   useEffect(() => {

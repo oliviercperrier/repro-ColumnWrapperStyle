@@ -1,14 +1,10 @@
-
 import React from "react";
 
 import { Stack } from "../Stack";
 import Progress, { TProgressProps } from "./Progress";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TProgressPropsKeys = (keyof TProgressProps)[];
-
-const DefaultFields: TProgressPropsKeys = ["value", "size", "color"];
-
-const ProgressMeta: ComponentMeta<typeof Progress> = {
+const meta = {
   title: "Feedback/Progress",
   component: Progress,
   args: {
@@ -16,19 +12,13 @@ const ProgressMeta: ComponentMeta<typeof Progress> = {
     size: "md",
     value: 75,
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-  
-};
+} satisfies Meta<typeof Progress>;
 
-export default ProgressMeta;
+export default meta;
 
-type ProgressStory = ComponentStory<typeof Progress>;
+type Story = StoryFn<typeof Progress>;
 
-export const Default: ProgressStory = args => (
+export const Default: Story = (args) => (
   <Stack spacing="md">
     <Progress {...args} color="default" />
     <Progress {...args} />

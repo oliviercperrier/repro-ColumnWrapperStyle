@@ -19,9 +19,9 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof Dropdown>;
 
-export const Default: Story = ({ args }) => {
+export const Default: Story = (args) => {
   const [isVisible, setVisible] = useState(false);
   const [color, setColor] = useState<any>("default");
 

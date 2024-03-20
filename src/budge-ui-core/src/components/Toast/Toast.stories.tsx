@@ -4,24 +4,18 @@ import Toaster from "./Toaster";
 import { toast } from "./Toast.state";
 import { Button } from "../Button";
 import { Stack } from "../Stack";
+import { Meta, StoryFn } from "@storybook/react";
 
-const ButtonMeta: ComponentMeta<typeof Toaster> = {
+const meta = {
   title: "Feedback/Toaster",
   component: Toaster,
-  args: {},
-  parameters: {
-    controls: {
-      include: [],
-    },
-  },
-  decorators: [(Story: any) => Story()],
-};
+} satisfies Meta<typeof Toaster>;
 
-export default ButtonMeta;
+export default meta;
 
-type ToasterStory = ComponentStory<typeof Toaster>;
+type Story = StoryFn<typeof Toaster>;
 
-export const Default: ToasterStory = args => (
+export const Default: Story = () => (
   <>
     <Stack>
       <Button

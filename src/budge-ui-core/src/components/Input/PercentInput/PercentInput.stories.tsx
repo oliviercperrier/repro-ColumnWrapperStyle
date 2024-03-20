@@ -21,6 +21,6 @@ const meta = {
 
 export default meta;
 
-type Story = StoryFn<typeof meta>;
+type Story = StoryFn<typeof PercentInput>;
 
-export const Default: Story = ({ args }) => <PercentInput {...args} onValueChange={action("onValueChange")} />;
+export const Default: Story = (args) => <PercentInput {...args} onValueChange={action("onValueChange")} />;

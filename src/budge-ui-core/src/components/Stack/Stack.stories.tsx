@@ -1,32 +1,22 @@
-
 import React from "react";
 import { Box } from "../Box";
 import Stack from "./Stack";
-import { TStackProps } from "./Stack.types";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TStackPropsKeys = (keyof TStackProps)[];
-
-const DefaultFields: TStackPropsKeys = ["spacing", "alignItems"];
-
-const StackMeta: ComponentMeta<typeof Stack> = {
+const meta = {
   title: "Layout/Stack/Vertical",
   component: Stack,
   args: {
     spacing: "sm",
     alignItems: "flex-start",
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
-};
+} satisfies Meta<typeof Stack>;
 
-export default StackMeta;
+export default meta;
 
-type StackStory = ComponentStory<typeof Stack>;
+type Story = StoryFn<typeof Stack>;
 
-export const Default: StackStory = args => (
+export const Default: Story = (args) => (
   <Stack {...args}>
     <Box h={50} w={100} bg="dark" />
     <Box h={50} w={100} bg="dark" />

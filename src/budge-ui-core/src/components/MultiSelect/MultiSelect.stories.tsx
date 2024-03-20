@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-
 import MultiSelect, { TMultiSelectProps, TSearchableMultiSelectOption } from "./MultiSelect";
 import { Box } from "../Box";
 import Stack from "../Stack/Stack";
 import { Text } from "../Text";
+import { Meta, StoryFn } from "@storybook/react";
 
-type TMultiSelectPropsKeys = (keyof TMultiSelectProps)[];
-
-const DefaultFields: TMultiSelectPropsKeys = ["disabled", "label", "variant"];
-
-const MultiSelectMeta: ComponentMeta<typeof MultiSelect> = {
+const meta = {
   title: "Combobox/MultiSelect",
   component: MultiSelect,
   args: {
@@ -53,19 +49,15 @@ const MultiSelectMeta: ComponentMeta<typeof MultiSelect> = {
       },
     ],
   },
-  parameters: {
-    controls: {
-      include: DefaultFields,
-    },
-  },
+
   decorators: [(Story: any) => Story()],
-};
+} satisfies Meta<typeof MultiSelect>;
 
-export default MultiSelectMeta;
+export default meta;
 
-type MultiSelectStory = ComponentStory<typeof MultiSelect>;
+type Story = StoryFn<typeof MultiSelect>;
 
-export const Default: MultiSelectStory = args => {
+export const Default: Story = (args) => {
   const [value, setValue] = useState<string[]>(["react"]);
 
   return (
@@ -76,7 +68,7 @@ export const Default: MultiSelectStory = args => {
 };
 Default.args = {};
 
-export const Search: MultiSelectStory = args => {
+export const Search: Story = (args) => {
   const [value, setValue] = useState<string[]>(["react"]);
 
   return (
@@ -96,7 +88,7 @@ export const Search: MultiSelectStory = args => {
 };
 Search.args = {};
 
-export const AsyncSearch: MultiSelectStory = args => {
+export const AsyncSearch: Story = (args) => {
   const [value, setValue] = useState<string[]>(["react"]);
 
   const onSearch = async (searchValue: string | undefined) =>
