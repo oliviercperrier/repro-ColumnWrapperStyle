@@ -37,7 +37,7 @@ const _DEFAULT_THEME: TThemeBase = {
 
   shadow: {
     xs: {
-      shadowColor: DEFAULT_COLORS.dark[3],
+      shadowColor: DEFAULT_COLORS.dark[4],
       shadowOffset: {
         width: 0.5,
         height: 0.5,

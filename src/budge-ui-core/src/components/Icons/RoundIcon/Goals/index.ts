@@ -1,0 +1,12 @@
+export { default as AddNewGoalIcon } from "./AddNew";
+export { default as StudentGoalIcon } from "./Student";
+export { default as CardGoalIcon } from "./Card";
+export { default as HearthGoalIcon } from "./Hearth";
+export { default as HomeGoalIcon } from "./Home";
+export { default as InsightGoalIcon } from "./Insight";
+export { default as NotebookGoalIcon } from "./Notebook";
+export { default as SunGoalIcon } from "./Sun";
+export { default as WalletGoalIcon } from "./Wallet";
+export { default as CarGoalIcon } from "./Car";
+export { default as OtherGoalIcon } from "./Other";
+export { default as GiftGoalIcon } from "./Gift";

@@ -1,30 +1,25 @@
 import React from "react";
-import { TColors, TNumberSize } from "@budgeinc/budge-ui-styling";
+import { TColor, TNumberSize } from "@budgeinc/budge-ui-styling";
 import { Box, TBoxProps } from "../Box";
-import { StyleSheet } from "react-native";
-import { Spinner, TSpinnerProps } from "../Spinner";
+import { Spinner } from "../Loader";
 
-export type TLoadingOverlayProps = Pick<TBoxProps, "left" | "right" | "top" | "bottom" | "r" | "style"> & {
-  spinnerSize?: TSpinnerProps["size"];
-  spinnerColor?: TSpinnerProps["color"];
-  overlayColor?: TColors;
-  overlayOpacity?: TBoxProps["opacity"];
-  spinnerClassName?: string;
+export type TLoadingOverlayProps = Pick<TBoxProps, "left" | "right" | "top" | "bottom" | "radius" | "style" | "sx"> & {
+  spinnerSize?: TNumberSize;
+  spinnerColor?: TColor;
+  overlayColor?: TColor;
 };
 
 const LoadingOverlay = ({
   spinnerSize = "md",
   spinnerColor = "primary",
   overlayColor = "white",
-  overlayOpacity = 40,
-  spinnerClassName,
   style,
   ...props
 }: TLoadingOverlayProps) => (
-  <Box style={[{ overflow: "hidden" }, StyleSheet.absoluteFill, style]} {...props}>
-    <Box opacity={40} w="100%" h="100%" position="absolute" bg={overlayColor} />
-    <Box left={0} position="absolute" w="100%" h="100%" alignItems="center" justifyContent="center">
-      <Spinner size={spinnerSize} color={spinnerColor} className={spinnerClassName} />
+  <Box pos="absolute" left={0} right={0} bottom={0} top={0} style={[{ overflow: "hidden" }, style]} {...props}>
+    <Box opacity={0.65} w="100%" h="100%" pos="absolute" bg={overlayColor} />
+    <Box left={0} pos="absolute" w="100%" h="100%" alignItems="center" justifyContent="center">
+      <Spinner size={spinnerSize} color={spinnerColor} />
     </Box>
   </Box>
 );

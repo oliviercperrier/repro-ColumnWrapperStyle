@@ -1,40 +1,30 @@
-import { TDefaultViewProps, TViewVariantProps, extractViewVariantProps, viewVariant } from "@budgeinc/budge-ui-styling";
+import { DefaultProps, extractSystemStyles, useSx } from "@budgeinc/budge-ui-styling";
 import React, { forwardRef } from "react";
-import { ScrollView as RNScrollView, ScrollViewProps } from "react-native";
-import Animated from "react-native-reanimated";
+import { FlexStyle, ScrollView as RNScrollView, ScrollViewProps, ViewStyle } from "react-native";
 
-export type TScrollViewProps = TDefaultViewProps<TViewVariantProps & ScrollViewProps>;
+export type TScrollViewProps = DefaultProps<ViewStyle> &
+  ScrollViewProps & {
+    mah?: FlexStyle["maxHeight"];
+  };
 
 const ScrollView = forwardRef<RNScrollView, TScrollViewProps>(
   (
-    {
-      className,
-      children,
-      showsHorizontalScrollIndicator = false,
-      showsVerticalScrollIndicator = false,
-      mah,
-      ...others
-    },
+    { style, mah, sx, showsHorizontalScrollIndicator = false, showsVerticalScrollIndicator = false, ...others },
     ref
   ) => {
-    const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
+    const { systemStyles, rest } = extractSystemStyles(others);
 
     return (
       <RNScrollView
         ref={ref}
-        style={styleProps}
-        className={viewVariant({ ...viewVariantProps, className })}
         showsVerticalScrollIndicator={showsVerticalScrollIndicator}
         showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
         contentContainerStyle={[{ maxHeight: mah }, rest.contentContainerStyle]}
+        style={[...useSx(sx || [], systemStyles), style]}
         {...rest}
-      >
-        {children}
-      </RNScrollView>
+      />
     );
   }
 );
-
-export const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
 export default ScrollView;

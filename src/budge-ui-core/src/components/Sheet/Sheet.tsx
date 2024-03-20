@@ -1,154 +1,129 @@
-import { StyleSheet, Dimensions, useWindowDimensions } from "react-native";
 import React, { ReactNode, forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
-import { AnimatedBox } from "../Box";
-import { Easing, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
+import { StyleSheet, Dimensions } from "react-native";
+import { useTheme } from "@budgeinc/budge-ui-styling";
+import { MotifiedBox } from "../Box";
 import { Pressable } from "../Pressable";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BPortal } from "../Portal";
-import { Modal } from "../Modal";
-import { useBudgeTheme } from "@budgeinc/budge-ui-styling";
 
-export interface SheetRef {
+export interface BottomSheetRef {
   show: () => void;
   hide: () => void;
   opened: boolean;
 }
 
-export type TSheetProps = {
+export type TBottomSheetProps = {
   opened?: boolean;
   onClose?: () => void;
   onClosed?: () => void;
   onOpened?: () => void;
   children: (({ hide }: { hide: () => void }) => JSX.Element) | JSX.Element | ReactNode;
   closeOnOverlayTap?: boolean;
-  responsive?: boolean;
 };
 
-const Sheet = forwardRef<SheetRef, TSheetProps>(
-  ({ responsive = true, opened = false, closeOnOverlayTap = true, onClose, onClosed, onOpened, children }, ref) => {
-    const wDim = useWindowDimensions();
-    const { top } = useSafeAreaInsets();
-    const overlayAnimationFlagRef = useRef(false);
-    const modalAnimationFlagRef = useRef(false);
-    const [isOpened, setOpened] = useState(false);
-    const [isRendered, setRendered] = useState(false);
-
-    const openSharedValue = useSharedValue(false);
-
-    const onOverlayFinished = (finished: boolean | undefined) => {
-      if (!overlayAnimationFlagRef.current) {
-        overlayAnimationFlagRef.current = true;
-        return;
-      }
-
-      if (!finished) return;
-
-      if (!isOpened) {
-        onClosed?.();
-        setRendered(false);
-        overlayAnimationFlagRef.current = false;
-      }
-    };
-
-    const overlayAnimatedStyle = useAnimatedStyle(
-      () => ({
-        opacity: withTiming(
-          openSharedValue.value ? 1 : 0,
-          {
-            duration: 250,
-          },
-          finished => runOnJS(onOverlayFinished)(finished)
-        ),
-      }),
-      [onOverlayFinished]
-    );
-
-    const onSheetFinished = (finished: boolean | undefined) => {
-      if (!modalAnimationFlagRef.current) {
-        modalAnimationFlagRef.current = true;
-        return;
-      }
-
-      if (!finished) return;
-
-      if (isOpened) {
-        onOpened?.();
-        modalAnimationFlagRef.current = false;
-      }
-    };
-
-    const sheetAnimatedStyle = useAnimatedStyle(() => ({
-      bottom: withSpring(
-        openSharedValue.value ? 0 : -1 * wDim.height,
-        {
-          damping: 100,
-          stiffness: 300,
-        },
-        finished => runOnJS(onSheetFinished)(finished)
-      ),
-    }));
-
-    const handleOpen = useCallback((o: boolean) => {
-      if (o) {
-        setRendered(true);
-        openSharedValue.value = true;
-      }
-
-      setOpened(o);
-    }, []);
+const BottomSheet = forwardRef<BottomSheetRef, TBottomSheetProps>(
+  ({ children, opened = false, closeOnOverlayTap = true, onClose, onClosed, onOpened }, ref) => {
+    const theme = useTheme();
+    const [isOpened, setIsOpened] = useState(opened);
+    const [rendered, setRendered] = useState(false);
+    const onDidAnimateOpened = useRef(false);
 
     const handleClose = useCallback(() => {
       onClose?.();
-      setOpened(false);
-      openSharedValue.value = false;
+      setIsOpened(false);
     }, [onClose]);
 
-    useEffect(() => handleOpen(opened), [opened]);
+    useEffect(() => {
+      if (opened && !isOpened) {
+        setRendered(true);
+      }
+
+      setIsOpened(opened);
+    }, [opened]);
+
+    useEffect(() => {
+      if (isOpened) {
+        setIsOpened(true);
+      } else if (!isOpened) {
+        setIsOpened(false);
+      }
+    }, [isOpened]);
 
     useImperativeHandle(
       ref,
       () => ({
         opened: isOpened,
-        show: () => handleOpen(true),
+        show: () => {
+          setRendered(true);
+          setIsOpened(true);
+        },
         hide: handleClose,
       }),
       [isOpened]
     );
 
-    if (!isRendered) return null;
-
-    // TODO change with theme breakpoint -> md
-    if (responsive && wDim.width > 768) {
-      return (
-        <Modal opened={isOpened} onClose={handleClose}>
-          {typeof children === "function" ? children({ hide: handleClose }) : children}
-        </Modal>
-      );
+    if (!rendered) {
+      return null;
     }
 
     return (
-      <AnimatedBox className="bg-dark-9/40" style={[overlayAnimatedStyle, StyleSheet.absoluteFill]}>
+      <MotifiedBox
+        from={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: isOpened ? 1 : 0,
+        }}
+        transition={{
+          type: "timing",
+        }}
+        style={[{ backgroundColor: theme.fn.alpha(theme.palette.colors.dark[9], 0.4) }, StyleSheet.absoluteFill]}
+        onDidAnimate={() => {
+          // onDidAnimate is weirdly called when the component is rerendered even if the animation has already finised
+          // Adding a flag to fix that issue.
+          if (isOpened && !onDidAnimateOpened.current) {
+            onOpened?.();
+            onDidAnimateOpened.current = true;
+          }
+
+          if (!isOpened) {
+            onClosed?.();
+            setRendered(false);
+          }
+        }}
+      >
         <Pressable style={StyleSheet.absoluteFill} noCursor onPress={closeOnOverlayTap ? handleClose : undefined} />
-        <AnimatedBox
-          position="absolute"
+        <MotifiedBox
+          from={{
+            bottom: -1 * Dimensions.get("window").height,
+          }}
+          animate={{
+            bottom: isOpened ? 0 : -1 * Dimensions.get("window").height,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 100,
+          }}
+          bg="white"
+          pos="absolute"
           left={0}
           right={0}
           bottom={0}
-          bg="white"
-          tlr="xl"
-          trr="xl"
-          mah={wDim.height - top}
-          style={sheetAnimatedStyle}
+          sx={{
+            borderTopLeftRadius: 16,
+            borderTopRightRadius: 16,
+            overflow: "hidden",
+          }}
         >
           {typeof children === "function" ? children({ hide: handleClose }) : children}
-        </AnimatedBox>
-      </AnimatedBox>
+        </MotifiedBox>
+      </MotifiedBox>
     );
   }
 );
 
 export const useSheet = () => {
-  const ref = useRef<SheetRef>(null);
+  const ref = useRef<BottomSheetRef>(null);
 
   return {
     ref,
@@ -157,14 +132,14 @@ export const useSheet = () => {
   };
 };
 
-const SheetWrapper = forwardRef<SheetRef, TSheetProps>((props, ref) => {
-  const theme = useBudgeTheme();
+const BottomSheetWrapper = forwardRef<BottomSheetRef, TBottomSheetProps>((props: TBottomSheetProps, ref) => {
+  const { portalProviderNames } = useTheme();
 
   return (
-    <BPortal hostName={theme.portalProviderNames.modals}>
-      <Sheet ref={ref} {...props} />
+    <BPortal hostName={portalProviderNames.modals}>
+      <BottomSheet ref={ref} {...props} />
     </BPortal>
   );
 });
 
-export default SheetWrapper;
+export default BottomSheetWrapper;

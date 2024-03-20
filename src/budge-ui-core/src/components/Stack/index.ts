@@ -1,6 +1,6 @@
 import Stack from "./Stack";
 import { TStackComponent } from "./Stack.types";
-import StackHorizontal from "./Stack.Horizontal";
+import StackHorizontal from "./StackHorizontal";
 
 const StackTemp: any = Stack;
 

@@ -1,6 +1,5 @@
 const path = require("path");
 const { getDefaultConfig } = require("expo/metro-config");
-const { withNativeWind } = require('nativewind/metro');
 const { generate } = require("@storybook/react-native/scripts/generate");
 
 generate({
@@ -45,4 +44,4 @@ defaultConfig.resolver.resolveRequest = (context, moduleName, platform) => {
   return defaultResolveResult;
 };
 
-module.exports = withNativeWind(defaultConfig, { input: './global.css' });
+module.exports = defaultConfig

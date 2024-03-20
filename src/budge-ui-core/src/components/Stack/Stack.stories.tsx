@@ -1,26 +1,38 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
-import Stack from "./Stack";
-import { Box } from "../Box";
 
-const meta = {
+import React from "react";
+import { Box } from "../Box";
+import Stack from "./Stack";
+import { TStackProps } from "./Stack.types";
+
+type TStackPropsKeys = (keyof TStackProps)[];
+
+const DefaultFields: TStackPropsKeys = ["spacing", "alignItems"];
+
+const StackMeta: ComponentMeta<typeof Stack> = {
   title: "Layout/Stack/Vertical",
   component: Stack,
   args: {
     spacing: "sm",
+    alignItems: "flex-start",
   },
-} satisfies Meta<typeof Stack>;
-
-export default meta;
-
-type Story = StoryFn<typeof meta>;
-
-export const Basic: Story = args => {
-  return (
-    <Stack {...args}>
-      <Box h={50} w={100} bg="black" />
-      <Box h={50} w={100} bg="black" />
-      <Box h={50} w={100} bg="black" />
-      <Box h={50} w={100} bg="black" />
-    </Stack>
-  );
+  parameters: {
+    controls: {
+      include: DefaultFields,
+    },
+  },
 };
+
+export default StackMeta;
+
+type StackStory = ComponentStory<typeof Stack>;
+
+export const Default: StackStory = args => (
+  <Stack {...args}>
+    <Box h={50} w={100} bg="dark" />
+    <Box h={50} w={100} bg="dark" />
+    <Box h={50} w={100} bg="dark" />
+    <Box h={50} w={100} bg="dark" />
+    <Box h={50} w={100} bg="dark" />
+    <Box h={50} w={100} bg="dark" />
+  </Stack>
+);

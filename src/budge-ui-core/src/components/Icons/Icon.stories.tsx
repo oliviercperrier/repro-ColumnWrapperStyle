@@ -1,0 +1,215 @@
+import React, { ReactNode } from "react";
+import {
+  AddIcon,
+  AddCircledIcon,
+  AddUserIcon,
+  ArrowDownIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowUpIcon,
+  BookmarkIcon,
+  CalendarIcon,
+  CardIcon,
+  ChevronDownIcon,
+  ChevronDownFilledIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+  CloseIcon,
+  DeleteIcon,
+  HearthIcon,
+  HomeIcon,
+  InfoIcon,
+  ExternalLinkIcon,
+  InsightIcon,
+  LikeIcon,
+  MailIcon,
+  MessageIcon,
+  MoneyIcon,
+  MoreDotsIcon,
+  MoreDotsCircledIcon,
+  MountainIcon,
+  NotebookIcon,
+  NotificationIcon,
+  PayBonusIcon,
+  PayRaiseIcon,
+  PtoIcon,
+  RemoveIcon,
+  SavingsIcon,
+  SearchIcon,
+  SecurityIcon,
+  SettingsIcon,
+  AdvancedSettingsIcon,
+  ShopIcon,
+  ComputerIcon,
+  SmartphoneIcon,
+  SnowballIcon,
+  UploadIcon,
+  StudentIcon,
+  SuccessIcon,
+  SunIcon,
+  SupportIcon,
+  TrashIcon,
+  UrgentIcon,
+  UserIcon,
+  WalletIcon,
+  WorldIcon,
+  BudgeIcon,
+  TransferIcon,
+  GraphIcon,
+  BurgerIcon,
+  LoginIcon,
+  GiftIcon,
+  EyeIcon,
+  EyeCloseIcon,
+  LockIcon,
+  FacebookIcon,
+  TwitterIcon,
+  SmileyIcon,
+  DocumentIcon,
+  CheckboxCheckedIcon,
+  CheckboxUncheckedIcon,
+  UnLockIcon,
+  ReversedIcon,
+  BankIcon,
+  Text,
+  Row,
+  RadioBoxIcon,
+  RadioFilledIcon,
+  TMemoRefIconProps,
+  CoachIcon,
+  SyncIcon,
+  GoogleIcon,
+  AppleIcon,
+  LogoutIcon,
+  ClockIcon,
+  PlanIcon,
+  DepositIcon,
+  DownloadIcon,
+  CreditScoreIcon,
+} from "..";
+import Stack from "../Stack/Stack";
+
+const meta = {
+  title: "General/Icons",
+  args: {},
+};
+
+export default meta;
+
+const IconDisplay = ({ title, icon: Icon }: { title: string; icon: TMemoRefIconProps }) => (
+  <Stack alignItems="center" miw={150} spacing="xs">
+    <Icon />
+    <Text variant="bodySmall" color="textSecondary">
+      {title}
+    </Text>
+  </Stack>
+);
+
+const iconList: ReactNode[] = [
+  <IconDisplay title="Chevron Down" icon={ChevronDownIcon} />,
+  <IconDisplay title="Chevron Down Filled" icon={ChevronDownFilledIcon} />,
+  <IconDisplay title="Chevron Up" icon={ChevronUpIcon} />,
+  <IconDisplay title="Chevron Right" icon={ChevronRightIcon} />,
+  <IconDisplay title="Chevron Left" icon={ChevronLeftIcon} />,
+  <IconDisplay title="Close" icon={CloseIcon} />,
+  <IconDisplay title="Arrow Left" icon={ArrowLeftIcon} />,
+  <IconDisplay title="Arrow Right" icon={ArrowRightIcon} />,
+  <IconDisplay title="Arrow Up" icon={ArrowUpIcon} />,
+  <IconDisplay title="Arrow Down" icon={ArrowDownIcon} />,
+  <IconDisplay title="Transfer" icon={TransferIcon} />,
+  <IconDisplay title="Reversed" icon={ReversedIcon} />,
+  <IconDisplay title="Sync" icon={SyncIcon} />,
+  <IconDisplay title="Sun" icon={SunIcon} />,
+  <IconDisplay title="Hearth" icon={HearthIcon} />,
+  <IconDisplay title="Home" icon={HomeIcon} />,
+  <IconDisplay title="Bookmark" icon={BookmarkIcon} />,
+  <IconDisplay title="Insight" icon={InsightIcon} />,
+  <IconDisplay title="Notebook" icon={NotebookIcon} />,
+  <IconDisplay title="Notification" icon={NotificationIcon} />,
+  <IconDisplay title="Search" icon={SearchIcon} />,
+  <IconDisplay title="Settings" icon={SettingsIcon} />,
+  <IconDisplay title="Advanced Settings" icon={AdvancedSettingsIcon} />,
+  <IconDisplay title="Shop" icon={ShopIcon} />,
+  <IconDisplay title="Mail" icon={MailIcon} />,
+  <IconDisplay title="Message" icon={MessageIcon} />,
+  <IconDisplay title="Smartphone" icon={SmartphoneIcon} />,
+  <IconDisplay title="Computer" icon={ComputerIcon} />,
+  <IconDisplay title="Add" icon={AddIcon} />,
+  <IconDisplay title="MoreDots" icon={MoreDotsIcon} />,
+  <IconDisplay title="MoreDots Circled" icon={MoreDotsCircledIcon} />,
+  <IconDisplay title="Radio Box" icon={RadioBoxIcon} />,
+  <IconDisplay title="Radio Filled" icon={RadioFilledIcon} />,
+  <IconDisplay title="Success" icon={SuccessIcon} />,
+  <IconDisplay title="Delete" icon={DeleteIcon} />,
+  <IconDisplay title="Add Circled" icon={AddCircledIcon} />,
+  <IconDisplay title="Remove" icon={RemoveIcon} />,
+  <IconDisplay title="Urgent" icon={UrgentIcon} />,
+  <IconDisplay title="Info" icon={InfoIcon} />,
+  <IconDisplay title="Support" icon={SupportIcon} />,
+  <IconDisplay title="Security" icon={SecurityIcon} />,
+  <IconDisplay title="Trash" icon={TrashIcon} />,
+  <IconDisplay title="World" icon={WorldIcon} />,
+  <IconDisplay title="Calendar" icon={CalendarIcon} />,
+  <IconDisplay title="Pto" icon={PtoIcon} />,
+  <IconDisplay title="Credit Score" icon={CreditScoreIcon} />,
+  <IconDisplay title="Money" icon={MoneyIcon} />,
+  <IconDisplay title="Deposit" icon={DepositIcon} />,
+  <IconDisplay title="Pay Bonus" icon={PayBonusIcon} />,
+  <IconDisplay title="Pay Raise" icon={PayRaiseIcon} />,
+  <IconDisplay title="Credit Card" icon={CardIcon} />,
+  <IconDisplay title="Wallet" icon={WalletIcon} />,
+  <IconDisplay title="Savings" icon={SavingsIcon} />,
+  <IconDisplay title="Plan" icon={PlanIcon} />,
+  <IconDisplay title="Snowball" icon={SnowballIcon} />,
+  <IconDisplay title="Mountain" icon={MountainIcon} />,
+  <IconDisplay title="Student" icon={StudentIcon} />,
+  <IconDisplay title="Add User" icon={AddUserIcon} />,
+  <IconDisplay title="User" icon={UserIcon} />,
+  <IconDisplay title="Coach" icon={CoachIcon} />,
+  <IconDisplay title="Like" icon={LikeIcon} />,
+  <IconDisplay title="Upload" icon={UploadIcon} />,
+  <IconDisplay title="Download" icon={DownloadIcon} />,
+  <IconDisplay title="External" icon={ExternalLinkIcon} />,
+  <IconDisplay title="Budge" icon={BudgeIcon} />,
+  <IconDisplay title="Graph" icon={GraphIcon} />,
+  <IconDisplay title="Burger" icon={BurgerIcon} />,
+  <IconDisplay title="Login" icon={LoginIcon} />,
+  <IconDisplay title="Logout" icon={LogoutIcon} />,
+  <IconDisplay title="Gift" icon={GiftIcon} />,
+  <IconDisplay title="Eye" icon={EyeIcon} />,
+  <IconDisplay title="Eye Close" icon={EyeCloseIcon} />,
+  <IconDisplay title="Lock" icon={LockIcon} />,
+  <IconDisplay title="Unlock" icon={UnLockIcon} />,
+  <IconDisplay title="Facebook" icon={FacebookIcon} />,
+  <IconDisplay title="Google" icon={GoogleIcon} />,
+  <IconDisplay title="Apple" icon={AppleIcon} />,
+  <IconDisplay title="Twitter" icon={TwitterIcon} />,
+  <IconDisplay title="Smiley" icon={SmileyIcon} />,
+  <IconDisplay title="Document" icon={DocumentIcon} />,
+  <IconDisplay title="Checkbox Checked" icon={CheckboxCheckedIcon} />,
+  <IconDisplay title="Checkbox Unchecked" icon={CheckboxUncheckedIcon} />,
+  <IconDisplay title="Bank" icon={BankIcon} />,
+  <IconDisplay title="Clock" icon={ClockIcon} />,
+];
+
+export const All = () => {
+  const chunks = chunkArray(iconList, 5);
+
+  return (
+    <Stack spacing="xl">
+      {chunks.map(chunk => (
+        <Row>{chunk}</Row>
+      ))}
+    </Stack>
+  );
+};
+
+function chunkArray(array: any[], chunkSize: number) {
+  const chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    const chunk = array.slice(i, i + chunkSize);
+    chunks.push(chunk);
+  }
+  return chunks;
+}

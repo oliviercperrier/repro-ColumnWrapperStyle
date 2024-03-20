@@ -9,7 +9,7 @@ import { Box } from "../Box";
 const ModalFooter = forwardRef<View, TModalFooterProps>(
   ({ onOk, onClose, okButtonProps, cancelButtonProps, footer }, ref) => (
     <Box ref={ref} shouldRender={footer !== null}>
-      <Stack.Horizontal mt="xl" px="xl" pb="xl" alignItems="center" justifyContent="end" fwrap="wrap">
+      <Stack.Horizontal mt="xl" px="xl" pb="xl" alignItems="center" justifyContent="flex-end" fwrap="wrap">
         {footer && footer !== true ? (
           footer
         ) : (

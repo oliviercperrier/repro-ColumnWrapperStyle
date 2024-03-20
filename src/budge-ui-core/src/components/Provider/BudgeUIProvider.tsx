@@ -1,8 +1,8 @@
+/* eslint-disable no-console */
 import { ConfigProvider, ConfigProviderProps, useTheme } from "@budgeinc/budge-ui-styling";
 import React, { PropsWithChildren } from "react";
-import { BPortalProvider } from "../Portal";
 import { PortalHost } from "@gorhom/portal";
-import { useBudgeTheme } from "@budgeinc/budge-ui-styling";
+import { BPortalProvider } from "../Portal";
 
 export type TBudgeUIProviderProps = PropsWithChildren<ConfigProviderProps>;
 
@@ -15,7 +15,7 @@ const BudgeUIProvider = ({ children, ...providerProps }: TBudgeUIProviderProps) 
 );
 
 const UIProviderContentWrapper = ({ children }: any) => {
-  const theme = useBudgeTheme();
+  const theme = useTheme();
 
   return (
     <>

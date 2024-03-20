@@ -1,26 +1,37 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
-import { Stack } from "../Stack";
-import { Box } from "../Box";
 
-const meta = {
+import React from "react";
+import { Box } from "../Box";
+import { TStackHorizontalProps } from "./Stack.types";
+import { Stack } from ".";
+
+type TStackPropsKeys = (keyof TStackHorizontalProps)[];
+
+const DefaultFields: TStackPropsKeys = ["spacing", "justifyContent"];
+
+const StackHorizontalMeta: ComponentMeta<typeof Stack.Horizontal> = {
   title: "Layout/Stack/Horizontal",
-  component: Stack.Horizontal,
+  component: Stack,
   args: {
     spacing: "sm",
+    justifyContent: "flex-start",
   },
-} satisfies Meta<typeof Stack.Horizontal>;
-
-export default meta;
-
-type Story = StoryFn<typeof meta>;
-
-export const Basic: Story = args => {
-  return (
-    <Stack.Horizontal {...args}>
-      <Box h={50} w={100} bg="black" />
-      <Box h={50} w={100} bg="black" />
-      <Box h={50} w={100} bg="black" />
-      <Box h={50} w={100} bg="black" />
-    </Stack.Horizontal>
-  );
+  parameters: {
+    controls: {
+      include: DefaultFields,
+    },
+  },
 };
+
+export default StackHorizontalMeta;
+
+type StackStory = ComponentStory<typeof Stack.Horizontal>;
+
+export const Default: StackStory = args => (
+  <Stack.Horizontal {...args}>
+    <Box h={50} w={100} bg="dark" />
+    <Box h={50} w={100} bg="dark" />
+    <Box h={50} w={100} bg="dark" />
+    <Box h={50} w={100} bg="dark" />
+    <Box h={50} w={100} bg="dark" />
+  </Stack.Horizontal>
+);

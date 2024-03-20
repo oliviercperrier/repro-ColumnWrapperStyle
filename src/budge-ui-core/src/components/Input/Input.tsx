@@ -1,155 +1,262 @@
-import { TextInput, NativeSyntheticEvent, TextInputFocusEventData, TextInputKeyPressEventData } from "react-native";
-import React, { useEffect, useRef } from "react";
-import { Box } from "../Box";
-import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { TColor, useComponentDefaultProps, useExtractSx, useTheme } from "@budgeinc/budge-ui-styling";
+import React, { forwardRef, memo, ReactNode, RefObject, useEffect, useRef, useState } from "react";
+import {
+  Animated,
+  NativeSyntheticEvent,
+  StyleProp,
+  StyleSheet,
+  TextInput,
+  TextInputFocusEventData,
+  TextInputKeyPressEventData,
+  TextInputProps,
+  TextStyle,
+  ViewStyle,
+} from "react-native";
+import { Box, TBoxProps } from "../Box";
+import { Dropdown } from "../Dropdown";
+import useFormikField from "../Form/useFormikField";
+import { InfoIcon } from "../Icons";
+import { Pressable } from "../Pressable";
 import { Text } from "../Text";
-import { useFocus } from "@budgeinc/budge-ui-hooks";
-import { extractViewVariantProps } from "@budgeinc/budge-ui-styling";
-import { inputVariant } from "./Input.variants";
-import { TInputProps } from "./Input.types";
+import { getValue, TInputVariant, useInputStyles } from "./Input.styles";
 
-export const LINE_HEIGHT = 18;
-export const INPUT_MARGIN_TOP = 30;
-export const INPUT_MARGIN_BOTTOM = 11;
+export type TInputOnKeyPress = (
+  e: NativeSyntheticEvent<TextInputKeyPressEventData>,
+  inputValue: string | undefined,
+  setInputValue: (value: string | undefined) => void
+) => void;
 
-const bluredLabelStyle = {
-  top: 19,
-  fontSize: 16,
+export type TInputOnBlur = (
+  e: NativeSyntheticEvent<TextInputFocusEventData>,
+  inputValue: string | undefined,
+  setInputValue: (value: string | undefined) => void
+) => void;
+
+export type TInputOnFocus = TInputOnBlur;
+
+export type TBaseInputProps = TBoxProps & {
+  inputRef?: RefObject<TextInput>;
+  value?: string;
+  style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  variant?: TInputVariant;
+  label?: string;
+  placeholder?: string;
+  leftSection?: ReactNode;
+  rightSection?: ReactNode;
+  disabled?: boolean;
+  multiline?: boolean;
+  ignoreFormContext?: boolean;
+  infoPopover?: {
+    text: string;
+    iconColor?: TColor;
+    overlayMaxWidth?: number;
+  };
+  centered?: boolean;
+  onBlur?: TInputOnBlur | undefined;
+  onKeyPress?: TInputOnKeyPress | undefined;
+  onFocus?: TInputOnFocus;
+  onChangeText?: (text: string) => false | void;
+  getDisplayValue?: (value: any) => any;
 };
 
-const focusedLabelStyle = {
-  top: 9,
-  fontSize: 12,
-};
+export type TInputProps = TBaseInputProps &
+  Omit<TextInputProps, "onBlur" | "onFocus" | "onKeyPress" | "onChangeText" | "style">;
 
-const AnimatedText = Animated.createAnimatedComponent(Text);
+const Input = forwardRef<TextInput, TInputProps>((props, ref) => {
+  const theme = useTheme();
 
-const Input = ({
-  inputRef,
-  className,
-  children,
-  label,
-  leftSection,
-  rightSection,
-  variant,
-  disabled = false,
-  editable = true,
-  errored = false,
-  value,
-  ...others
-}: TInputProps) => {
-  const hasError = false;
-  const { isFocused, focusProps } = useFocus();
-  const _inputRef = inputRef || useRef<TextInput>(null);
+  const {
+    style,
+    textStyle,
+    label,
+    placeholder,
+    variant = "default",
+    disabled = false,
+    ignoreFormContext = false,
+    centered = false,
+    leftSection,
+    rightSection,
+    value,
+    infoPopover,
+    inputRef,
+    sx,
+    onBlur,
+    onFocus,
+    onChangeText,
+    onKeyPress,
+    getDisplayValue = (valueToDisplay: any) => valueToDisplay,
+    ...rest
+  } = useComponentDefaultProps("Input", {}, props);
 
-  const { styleProps, viewVariantProps, rest } = extractViewVariantProps(others);
+  const localInputRef = inputRef || useRef<TextInput>(null);
 
-  const isTextarea = rest?.multiline || false;
-  const nbLines = rest?.numberOfLines || 1;
-  const inputRootHeight = nbLines * LINE_HEIGHT + (isTextarea && !label ? 24 : INPUT_MARGIN_TOP + INPUT_MARGIN_BOTTOM);
+  const { field, hasError, helpers } = useFormikField();
 
-  const variantStyles = inputVariant({
-    variant,
+  const isTextarea = rest.multiline || false;
+  const nbLines = rest.numberOfLines || 1;
+
+  const { rootStyle, inputStyle, labelStyle, labelInputWrapper } = useInputStyles({
+    hasError,
     disabled,
-    editable,
-    focused: isFocused,
-    errored: errored || hasError,
+    variant,
+    isTextarea,
+    nbLines,
+    hasLabel: !!label,
+    centered,
   });
 
-  const focusSv = useSharedValue(value ? true : false);
-  const labelAnimatedStyle = useAnimatedStyle(() => ({
-    top: withTiming(focusSv.value ? focusedLabelStyle.top : bluredLabelStyle.top, {
-      duration: 125,
-      easing: Easing.linear,
-    }),
-    fontSize: withTiming(focusSv.value ? focusedLabelStyle.fontSize : bluredLabelStyle.fontSize, {
-      duration: 125,
-      easing: Easing.linear,
-    }),
-  }));
+  const foundValue = ignoreFormContext ? value : getValue(field?.value, value);
+  const inputValue = getDisplayValue(foundValue) || "";
+
+  const position = useRef(new Animated.Value(inputValue ? 1 : 0));
+
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFieldActive, setIsFieldActive] = useState(false);
+  const [isInfoModalOpen, setInfoModalOpen] = useState(false);
+
+  const [localValue, setLocalValue] = useState<any>(inputValue);
 
   useEffect(() => {
-    // Focus animation with autoFocus dont work without this
-    if (isFocused) {
-      focusSv.value = true;
-    }
-  }, [isFocused]);
-
-  const _handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    if (!editable || disabled) {
-      return false;
+    if (!isFocused && localValue) {
+      _handleFocus();
     }
 
-    focusProps.onFocus();
-    rest?.onFocus?.(e);
+    if (!localValue && !isFocused) {
+      _handleBlur();
+    }
+  }, [localValue]);
+
+  useEffect(() => {
+    if (inputValue !== localValue) {
+      setLocalValue(inputValue);
+    }
+  }, [inputValue]);
+
+  const _handleFocus = () => {
+    setIsFocused(true);
+    if (!isFieldActive && !(disabled && !localValue)) {
+      setIsFieldActive(true);
+      Animated.timing(position.current, {
+        toValue: 1,
+        duration: 150,
+        useNativeDriver: false,
+      }).start();
+    }
   };
 
-  const _handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    focusProps.onBlur();
-    rest?.onBlur?.(e);
-
-    if (!e.nativeEvent.text) {
-      focusSv.value = false;
+  const _handleBlur = () => {
+    setIsFocused(false);
+    if (isFieldActive && !localValue) {
+      setIsFieldActive(false);
+      Animated.timing(position.current, {
+        toValue: 0,
+        duration: 150,
+        useNativeDriver: false,
+        delay: 100,
+      }).start();
     }
   };
 
-  const _handleChangeText = (text: string) => {
-    rest?.onChangeText?.(text);
+  const _returnAnimatedTitleStyles = () => ({
+    top: position.current.interpolate({
+      inputRange: [0, 2],
+      outputRange: [20, 0],
+    }),
+    fontSize: position.current.interpolate({
+      inputRange: [0, 1],
+      outputRange: [16, 12],
+    }),
+  });
+
+  const getPlaceHolderIfNeeded = (): Partial<TextInputProps> => ({
+    placeholder: !isFocused && !!label ? "" : placeholder || undefined,
+    placeholderTextColor: theme.palette.textColor.secondary,
+  });
+
+  const handleOnChangeText = (text: string) => {
+    if (onChangeText?.(text) === false) {
+      return;
+    }
+
+    setLocalValue(text);
+
+    if (!ignoreFormContext) {
+      helpers?.setValue(text);
+    }
+  };
+
+  const handleOnBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    _handleBlur();
+
+    // deliberately don't ignore this callback egardless of whether
+    // ignoreFormContext is true or false to keep validation working
+    if (field?.onBlur) {
+      field.onBlur(field.name)(e);
+    }
+
+    onBlur?.(e, localValue, setLocalValue);
   };
 
   const handleOnKeyPress = (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => {
-    rest?.onKeyPress?.(e);
-
     if (e.nativeEvent.key === "Escape") {
-      _inputRef.current?.blur();
+      localInputRef.current?.blur();
     }
+
+    onKeyPress?.(e, localValue, setLocalValue);
+  };
+
+  const handleOnFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    _handleFocus();
+    onFocus?.(e, localValue, setLocalValue);
   };
 
   return (
-    <Box h={inputRootHeight} style={styleProps} className={variantStyles.base({ className })} {...viewVariantProps}>
-      {leftSection && <Box mr="md">{leftSection}</Box>}
-      <Box f={1}>
-        <AnimatedText
-          className={variantStyles.label()}
-          style={{
-            lineHeight: LINE_HEIGHT,
-            ...labelAnimatedStyle,
-          }}
-          numberOfLines={1}
-          accessibilityLabel="label"
-        >
+    <Box ref={ref} sx={[rootStyle, StyleSheet.flatten(style as StyleProp<ViewStyle>), ...useExtractSx(sx)]} {...rest}>
+      <Box shouldRender={!!leftSection} mr="md">
+        {leftSection}
+      </Box>
+      <Box style={labelInputWrapper}>
+        <Animated.Text style={[labelStyle, _returnAnimatedTitleStyles()]} numberOfLines={1} accessibilityLabel={label}>
           {label}
-        </AnimatedText>
+        </Animated.Text>
         <TextInput
-          ref={_inputRef}
-          value={value}
-          className={variantStyles.input()}
-          style={{
-            fontSize: 16,
-            height: isTextarea ? nbLines * LINE_HEIGHT : undefined,
-            ...(isTextarea
-              ? {
-                  marginTop: !!label ? INPUT_MARGIN_TOP : undefined,
-                  marginBottom: !!label ? INPUT_MARGIN_BOTTOM : undefined,
-                }
-              : {
-                  paddingTop: !!label ? INPUT_MARGIN_TOP : (inputRootHeight - LINE_HEIGHT) / 2,
-                  paddingBottom: !!label ? INPUT_MARGIN_BOTTOM : (inputRootHeight - LINE_HEIGHT) / 2,
-                }),
-          }}
-          editable={editable && !disabled}
-          focusable={editable && !disabled}
-          pointerEvents={editable && !disabled ? "auto" : "none"}
-          {...rest}
-          onFocus={_handleFocus}
-          onBlur={_handleBlur}
-          onChangeText={_handleChangeText}
+          ref={localInputRef}
+          style={[inputStyle, textStyle]}
+          editable={!disabled}
+          pointerEvents={rest.editable === false || disabled ? "none" : "auto"}
+          onChangeText={handleOnChangeText}
+          onBlur={handleOnBlur}
           onKeyPress={handleOnKeyPress}
+          onFocus={handleOnFocus}
+          value={localValue ? localValue.toString() : ""}
+          {...getPlaceHolderIfNeeded()}
+          {...rest}
         />
       </Box>
-      {rightSection && <Box ml="md">{rightSection}</Box>}
+      <Box shouldRender={!!rightSection} ml="md">
+        {rightSection}
+      </Box>
+      {infoPopover && (
+        <Dropdown
+          visible={isInfoModalOpen}
+          onVisibleChange={setInfoModalOpen}
+          placement="bottom right"
+          anchor={
+            <Pressable ml="md" onPress={() => setInfoModalOpen(true)}>
+              <InfoIcon color={infoPopover.iconColor || "gray"} />
+            </Pressable>
+          }
+          overlayMaxWidth={infoPopover.overlayMaxWidth || 250}
+          overlay={
+            <Box p="lg">
+              <Text>{infoPopover.text}</Text>
+            </Box>
+          }
+        />
+      )}
     </Box>
   );
-};
+});
 
-export default Input;
+export default memo(Input);

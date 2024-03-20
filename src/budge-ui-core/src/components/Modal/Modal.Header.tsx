@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Box, TBoxProps } from "../Box";
 import { Stack } from "../Stack";
 import { Text } from "../Text";
+import { CloseButton } from "../CloseButton";
 import { TModalHeaderProps } from "./Modal.types";
 
 const ModalHeader = forwardRef<View, TModalHeaderProps & TBoxProps>(
@@ -10,9 +11,9 @@ const ModalHeader = forwardRef<View, TModalHeaderProps & TBoxProps>(
     <Box
       ref={ref}
       shouldRender={!!title || !!titleDescription || withCloseButton}
-      fdir="row"
+      fdirection="row"
       alignItems="center"
-      justifyContent="between"
+      justifyContent="space-between"
       px="xl"
       pt="xl"
       mb="lg"
@@ -20,7 +21,7 @@ const ModalHeader = forwardRef<View, TModalHeaderProps & TBoxProps>(
     >
       <Stack spacing={0} f={1}>
         {typeof title === "string" ? (
-          <Text size="lg" fw={600} numberOfLines={2} f={1}>
+          <Text variant="bodyLarge" fw="600" numberOfLines={2} f={1}>
             {title}
           </Text>
         ) : (
@@ -28,9 +29,7 @@ const ModalHeader = forwardRef<View, TModalHeaderProps & TBoxProps>(
         )}
         {typeof titleDescription === "string" ? <Text numberOfLines={1}>{titleDescription}</Text> : titleDescription}
       </Stack>
-      {/**
-       * {withCloseButton && <CloseButton size="xs" onPress={handleClose} />}
-       */}
+      {withCloseButton && <CloseButton size="xs" onPress={handleClose} />}
     </Box>
   )
 );

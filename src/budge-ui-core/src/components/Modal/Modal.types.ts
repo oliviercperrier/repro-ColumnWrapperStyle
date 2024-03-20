@@ -1,14 +1,15 @@
+import { TNumberSize } from "@budgeinc/budge-ui-styling";
 import { ForwardedRef, PropsWithChildren } from "react";
-import { ReactChild } from "../../utils";
-import { TButtonProps } from "../Button";
+import { TButtonProps } from "../Button/Button.types";
+import { ReactChild } from "../../utils/types";
 
-export type TModalProps = {
+export type TModalBaseProps = {
   id?: number | string;
   opened?: boolean;
   onOpened?: () => void;
   onClosed?: () => void;
   onClose?: () => void;
-  size?: number;
+  size?: TNumberSize;
   closeOnEscape?: boolean;
   closeOnOverlayTap?: boolean;
 };
@@ -20,16 +21,16 @@ export type TModalHeaderProps = {
   handleClose?: () => void;
 };
 
-export type TModalFooterProps = Pick<TModalProps, "onClose"> & {
+export type TModalFooterProps = Pick<TModalBaseProps, "onClose"> & {
   onOk?(): void;
   okButtonProps?: Partial<TButtonProps>;
   cancelButtonProps?: Partial<TButtonProps>;
   footer?: React.ReactNode[] | true | null;
 };
 
-export type TModalComponent = ((
-  props: PropsWithChildren<TModalProps & TModalHeaderProps & TModalFooterProps> & { ref?: ForwardedRef<any> }
-) => JSX.Element) & {
+export type TModalProps = PropsWithChildren<TModalBaseProps & TModalHeaderProps & TModalFooterProps>;
+
+export type TModalComponent = ((props: TModalProps & { ref?: ForwardedRef<any> }) => JSX.Element) & {
   Header: React.MemoExoticComponent<
     (
       props: TModalHeaderProps & {

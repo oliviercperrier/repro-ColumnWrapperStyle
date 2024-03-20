@@ -9,7 +9,7 @@ const meta = {
   args: {},
   decorators: [
     Story => (
-      <Box alignItems="start">
+      <Box alignItems="flex-start">
         <Story />
       </Box>
     ),
@@ -28,5 +28,5 @@ export const Basic: Story = {
     loading: false,
     disabled: false,
     size: "md",
-  }
+  },
 };

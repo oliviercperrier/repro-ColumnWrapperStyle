@@ -1,8 +1,7 @@
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import React from "react";
 import { Alert } from "../Alert";
-import { Text } from "../Text";
-import { InfoIcon } from "../Icon";
+import { InfoIcon } from "../Icons";
 
 const meta = {
   title: "Feedback/Alert",
@@ -12,7 +11,7 @@ const meta = {
     color: "primary",
     variant: "light",
     icon: InfoIcon,
-    maw: 500
+    maw: 500,
   },
 } satisfies Meta<typeof Alert>;
 

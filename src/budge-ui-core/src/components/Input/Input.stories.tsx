@@ -1,19 +1,21 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
-import { View } from "react-native";
+import React from "react";
+
 import Input from "./Input";
-import { Box } from "../Box";
+import { AddNewGoalIcon, StudentGoalIcon } from "../Icons";
+import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Data Entry/Input",
+  title: "Inputs/Input",
   component: Input,
   args: {
-    editable: true,
+    label: "Basic Input",
     disabled: false,
-    errored: false,
+    centered: false,
     variant: "default",
-    label: ""
-  }
+    style: {
+      maxWidth: 350,
+    },
+  },
 } satisfies Meta<typeof Input>;
 
 export default meta;
@@ -22,38 +24,76 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    maw: 500,
-    label: "Email",
+    label: "Basic Input",
+    disabled: false,
+    centered: false,
+    variant: "default",
+    style: {
+      maxWidth: 350,
+    },
   },
 };
 
-export const AutoFocus: Story = {
+export const WithFocus: Story = {
   args: {
-    maw: 500,
-    label: "Email",
     autoFocus: true,
+    label: "Basic Input",
+    disabled: false,
+    centered: false,
+    variant: "default",
+    style: {
+      maxWidth: 350,
+    },
   },
 };
 
-export const Textarea: Story = {
+export const Multiline: Story = {
   args: {
-    maw: 500,
-    label: "Html Shell",
-    value: `<!DOCTYPE html>
-    <html>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Hello!</title>
-        <meta name="description" content="description"/>
-        <meta name="author" content="author" />
-        <meta name="keywords" content="keywords" />
-        <link rel="stylesheet" href="./stylesheet.css" type="text/css" />
-        <style type="text/css">.body { width: auto; }</style>
-      </head>
-      <body>
-      </body>
-    </html>`,
     multiline: true,
-    numberOfLines: 12,
+    numberOfLines: 5,
+    label: "Html shell",
+    style: {
+      maxWidth: 500,
+    },
+    value: `<!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Hello!</title>
+      <meta name="description" content="description"/>
+      <meta name="author" content="author" />
+      <meta name="keywords" content="keywords" />
+      <link rel="stylesheet" href="./stylesheet.css" type="text/css" />
+      <style type="text/css">.body { width: auto; }</style>
+    </head>
+    <body>
+    </body>
+  </html>`,
+  },
+};
+
+export const WithRightIcon: Story = {
+  args: {
+    label: "Basic Input",
+    disabled: false,
+    centered: false,
+    variant: "default",
+    style: {
+      maxWidth: 350,
+    },
+    rightSection: <StudentGoalIcon />,
+  },
+};
+
+export const WithLeftIcon: Story = {
+  args: {
+    label: "Basic Input",
+    disabled: false,
+    centered: false,
+    variant: "default",
+    style: {
+      maxWidth: 350,
+    },
+    leftSection: <AddNewGoalIcon />,
   },
 };

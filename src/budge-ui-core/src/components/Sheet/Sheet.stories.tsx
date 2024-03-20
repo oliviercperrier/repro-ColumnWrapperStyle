@@ -1,40 +1,46 @@
-import type { Meta, StoryFn } from "@storybook/react";
+
 import React from "react";
-import Sheet, { useSheet } from "./Sheet";
+import { Box } from "../Box";
+import { BPortal } from "../Portal";
 import { Button } from "../Button";
-import { action } from "@storybook/addon-actions";
-import { Text } from "../Text";
+import { RoundIcon, UrgentIcon } from "../Icons";
 import { Stack } from "../Stack";
+import { Text } from "../Text";
+import BottomSheet, { useSheet } from "./Sheet";
 
-const meta = {
-  title: "Overlays/Sheet",
-  component: Sheet,
+const BottomSheetMeta: ComponentMeta<typeof BottomSheet> = {
+  title: "Overlays/Bottom Sheet",
+  component: BottomSheet,
   args: {},
-} satisfies Meta<typeof Sheet>;
+  parameters: {
+    controls: {},
+  },
+};
 
-export default meta;
+export default BottomSheetMeta;
 
-type Story = StoryFn<typeof meta>;
+type SelectableBoxStory = ComponentStory<typeof BottomSheet>;
 
-export const Basic: Story = () => {
-  const { ref, show } = useSheet();
+export const Default: SelectableBoxStory = args => {
+  const { ref, show, hide } = useSheet();
 
   return (
-    <>
-      <Button title="Open" alignSelf="start" onPress={show} />
-      <Sheet ref={ref} onClose={action("onClose")} onOpened={action("onOpened")} onClosed={action("onClosed")}>
-        <Stack p="xl" spacing="sm">
-          <Text size="2xl">Welcome to Budge</Text>
-          <Text>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-          </Text>
-        </Stack>
-      </Sheet>
-    </>
+    <Box>
+      <Button title="Open Bottom Sheet" alignSelf="flex-start" onPress={show} />
+      <BPortal>
+        <BottomSheet ref={ref}>
+          <Stack spacing="xl" p="xl">
+            <Stack spacing="lg">
+              <RoundIcon icon={UrgentIcon} color="red" />
+              <Text variant="titleH3">Are you sure you want to cancel?</Text>
+            </Stack>
+            <Stack>
+              <Button fullWidth title="Yes, cancel" onPress={hide} />
+              <Button fullWidth title="No, continue" color="dark" variant="filled" onPress={hide} />
+            </Stack>
+          </Stack>
+        </BottomSheet>
+      </BPortal>
+    </Box>
   );
 };

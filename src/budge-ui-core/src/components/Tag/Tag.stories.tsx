@@ -1,30 +1,50 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import Tag from "./Tag";
-import { Box } from "../Box";
-import { SuccessIcon } from "../Icon";
 
-const meta = {
+import React from "react";
+
+import { ArrowLeftIcon, CarIcon } from "../Icons";
+import { Stack } from "../Stack";
+import Tag, { TTagProps } from "./Tag";
+
+type TTagPropsKeys = (keyof TTagProps)[];
+
+const DefaultFields: TTagPropsKeys = ["color", "value", "variant", "color", "withIcon", "size", "radius"];
+
+const TagMeta: ComponentMeta<typeof Tag> = {
   title: "Data Display/Tag",
   component: Tag,
   args: {
-    value: "Success",
-    color: "green",
     variant: "light",
+    value: "fast car",
+    icon: CarIcon,
+    color: "water",
     size: "sm",
-    icon: SuccessIcon,
+    radius: "sm",
   },
-  decorators: [
-    Story => (
-      <Box alignItems="start">
-        <Story />
-      </Box>
-    ),
-  ],
-} satisfies Meta<typeof Tag>;
+  parameters: {
+    controls: {
+      include: DefaultFields,
+    },
+  },
+};
 
-export default meta;
+export default TagMeta;
 
-type Story = StoryObj<typeof meta>;
+type TagStory = ComponentStory<typeof Tag>;
 
-export const Basic: Story = {};
+export const All: TagStory = args => (
+  <Stack alignItems="flex-start">
+    <Tag {...args} />
+    <Tag variant={args.variant} value="ACTIVE" />
+    <Tag variant={args.variant} value="ENABLED" />
+    <Tag variant={args.variant} value="COMPLETED" />
+    <Tag variant={args.variant} value="PROCESSED" />
+    <Tag variant={args.variant} value="PARTIAL_COMPLETED" />
+    <Tag variant={args.variant} value="DRAFT" />
+    <Tag variant={args.variant} value="PENDING" />
+    <Tag variant={args.variant} value="SUBMITTED" />
+    <Tag variant={args.variant} value="DISABLED" />
+    <Tag variant={args.variant} value="INCOMPLETE" />
+    <Tag variant={args.variant} value="Coming soon" radius="lg" color="default" />
+    <Tag variant={args.variant} value="Icon Left" iconPosition="left" icon={ArrowLeftIcon} />
+  </Stack>
+);

@@ -1,32 +1,34 @@
-import { Text as RNText } from "react-native";
-import React, { forwardRef } from "react";
 import {
-  extractTextVariantProps,
-  TDefaultTextProps,
-  TTextVariantProps,
-  textVariant,
+  DefaultTextProps,
+  extractTextSystemStyles,
+  TTypographyVariant,
+  useComponentDefaultProps,
+  useTextSx,
 } from "@budgeinc/budge-ui-styling";
-import Animated from "react-native-reanimated";
+import React, { forwardRef, PropsWithChildren } from "react";
+import { Text as RNText, TextProps as BaseTextProps, TextStyle } from "react-native";
+import { TTextColor, useStyles } from "./Text.styles";
 
-export type TTextProps = TDefaultTextProps<TTextVariantProps>;
+export type TTextProps = PropsWithChildren<
+  Omit<DefaultTextProps<TextStyle>, "color"> &
+    BaseTextProps & {
+      variant?: TTypographyVariant;
+      color?: TTextColor;
+    }
+>;
 
-const Text = forwardRef<RNText, TTextProps>(
-  ({ className, children, ...others }, ref) => {
-    const { styleProps, textVariantProps, rest } =
-      extractTextVariantProps(others);
+const Text = forwardRef<RNText, TTextProps>((props, ref) => {
+  const {
+    color = "default",
+    variant = "bodyDefault",
+    style,
+    sx,
+    ...other
+  } = useComponentDefaultProps("Text", {}, props);
+  const { systemStyles, rest } = extractTextSystemStyles(other);
+  const { rootStyle } = useStyles({ variant: other.fz ? undefined : variant, color });
 
-    return (
-      <RNText
-        ref={ref}
-        style={styleProps}
-        className={textVariant({ ...textVariantProps, className })}
-        children={children}
-        {...rest}
-      />
-    );
-  }
-);
-
-export const AnimatedText = Animated.createAnimatedComponent(Text)
+  return <RNText ref={ref} style={[rootStyle, ...useTextSx(sx || [], systemStyles), style]} {...rest} />;
+});
 
 export default Text;

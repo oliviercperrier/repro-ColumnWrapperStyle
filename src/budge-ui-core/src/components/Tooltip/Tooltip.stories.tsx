@@ -1,31 +1,38 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React from "react";
-import { Tooltip } from "../Tooltip";
-import { Box } from "../Box";
-import { Text } from "../Text";
 
-const meta = {
+import React from "react";
+import { View } from "react-native";
+
+import { Button } from "../Button";
+import Tooltip, { TTooltipProps } from "./Tooltip";
+
+type TTooltipPropsKeys = (keyof TTooltipProps)[];
+
+const DefaultFields: TTooltipPropsKeys = ["title", "placement", "offset"];
+
+const TooltipMeta: ComponentMeta<typeof Tooltip> = {
   title: "Overlays/Tooltip",
   component: Tooltip,
-  args: {},
-  decorators: [
-    Story => (
-      <Box alignItems="center" justifyContent="center" f={1}>
-        <Story />
-      </Box>
-    ),
-  ],
-} satisfies Meta<typeof Tooltip>;
+  args: {
+    title:
+      "Hello from tooltip Hello from tooltipHello from tooltipHello from tooltip Hello from tooltip Hello from tooltip Hello from tooltip Hello from tooltip Hello from tooltip",
+    placement: "bottom",
+    offset: 8,
+  },
+  parameters: {
+    controls: {
+      include: DefaultFields,
+    },
+  },
+};
 
-export default meta;
+export default TooltipMeta;
 
-type Story = StoryFn<typeof meta>;
+type TooltipStory = ComponentStory<typeof Tooltip>;
 
-export const Basic: Story = args => (
-  <Tooltip {...args}>
-    <Tooltip.Trigger>
-      <Text>Hover Me!</Text>
-    </Tooltip.Trigger>
-    <Tooltip.Content>Tooltip Content</Tooltip.Content>
-  </Tooltip>
+export const Default: TooltipStory = args => (
+  <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", margin: 50 }}>
+    <Tooltip maw={250} {...args}>
+      <Button title="Hover me" alignSelf="flex-start" />
+    </Tooltip>
+  </View>
 );

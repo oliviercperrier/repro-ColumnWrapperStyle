@@ -1,48 +1,119 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import React, { useState } from "react";
-import Modal from "./Modal";
-import { Text } from "../Text";
-import { Button } from "../Button";
-import { BPortal } from "../Portal";
 import { action } from "@storybook/addon-actions";
+import React, { useEffect, useState } from "react";
+
+
+import Modal from "./Modal";
+import { Button } from "../Button";
 import { Stack } from "../Stack";
+import { Input } from "../Input";
+import { Box } from "../Box";
+import { TModalProps } from "./Modal.types";
 
-const meta = {
-  title: "Overlays/Modals",
+type TModalPropsKeys = (keyof TModalProps)[];
+
+const DefaultFields: TModalPropsKeys = ["size", "withCloseButton"];
+
+const ModalMeta: ComponentMeta<typeof Modal> = {
+  title: "Overlays/Modal",
   component: Modal,
-} satisfies Meta<typeof Modal>;
+  parameters: {
+    controls: {
+      include: DefaultFields,
+    },
+  },
+};
 
-export default meta;
+export default ModalMeta;
 
-type Story = StoryFn<typeof meta>;
+type ModalStory = ComponentStory<typeof Modal>;
 
-export const Basic: Story = () => {
-  const [opened, setOpened] = useState(false);
+export const Default: ModalStory = args => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(!!args.opened);
+  }, [args.opened]);
 
   return (
-    <>
-      <Button title="Open" alignSelf="start" onPress={() => setOpened(true)} />
+    <Box>
+      <Button title="Show modal" color="primary" onPress={() => setIsVisible(true)} />
       <Modal
-        opened={opened}
+        {...args}
+        opened={isVisible}
         onClose={() => {
+          setIsVisible(false);
           action("onClose")();
-          setOpened(false);
         }}
         onOpened={action("onOpened")}
         onClosed={action("onClosed")}
+        onOk={action("onOk")}
       >
-        <Stack p="xl" spacing="sm">
-          <Text size="2xl">Welcome to Budge</Text>
-          <Text>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-          </Text>
+        <Stack spacing="md" px="xl">
+          <Input label="First name" />
+          <Input label="Last name" />
+          <Input label="Other input" />
         </Stack>
       </Modal>
-    </>
+    </Box>
   );
+};
+Default.args = {
+  title: "Modal title",
+  titleDescription: "Modal title description",
+  withCloseButton: true,
+};
+Default.parameters = {
+  controls: {
+    include: ["title", "titleDescription", ...DefaultFields] as TModalPropsKeys,
+  },
+};
+
+export const CustomFooter: ModalStory = args => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(!!args.opened);
+  }, [args.opened]);
+
+  return (
+    <Box>
+      <Button title="Show modal" color="primary" onPress={() => setIsVisible(true)} />
+        <Modal
+          {...args}
+          opened={isVisible}
+          onClose={() => {
+            setIsVisible(false);
+            action("onClose")();
+          }}
+          onOpened={action("onOpened")}
+          onClosed={action("onClosed")}
+          onOk={action("onOk")}
+        >
+          <Stack spacing="md" px="xl">
+            <Input label="First name" />
+            <Input label="Last name" />
+            <Input label="Other input" />
+          </Stack>
+        </Modal>
+    </Box>
+  );
+};
+CustomFooter.args = {
+  title: "Modal title",
+  titleDescription: "Modal title description",
+  withCloseButton: true,
+  okButtonProps: {
+    title: "Custom ok",
+    color: "dark",
+  },
+  cancelButtonProps: {
+    title: "Custom Cancel",
+    color: "red",
+    variant: "filled",
+  },
+};
+CustomFooter.parameters = {
+  controls: {
+    include: ["title", "titleDescription", "cancelButtonProps", "okButtonProps", ...DefaultFields] as TModalPropsKeys,
+  },
 };

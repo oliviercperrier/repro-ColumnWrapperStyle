@@ -1,28 +1,45 @@
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
-import { Switch } from "../Switch";
-import { Box } from "../Box";
 
-const meta = {
+import React, { useState } from "react";
+
+import { action } from "@storybook/addon-actions";
+import { Switch } from "../Switch";
+import { TSwitchProps } from "./Switch.types";
+
+type TSwitchPropsKeys = (keyof TSwitchProps)[];
+
+const DefaultFields: TSwitchPropsKeys = ["disabled", "color", "size", "label"];
+
+const SwitchMeta: ComponentMeta<typeof Switch> = {
   title: "Inputs/Switch",
   component: Switch,
   args: {
     size: "md",
+    color: "primary",
     disabled: false,
+    label: "This is a switch",
   },
-} satisfies Meta<typeof Switch>;
+  parameters: {
+    controls: {
+      include: DefaultFields,
+    },
+  },
+};
 
-export default meta;
+export default SwitchMeta;
 
-type Story = StoryFn<typeof meta>;
+type SwitchStory = ComponentStory<typeof Switch>;
 
-export const Basic: Story = args => {
+export const Default: SwitchStory = args => {
   const [checked, setChecked] = useState(false);
 
   return (
     <Switch
+      {...args}
       checked={checked}
-      onChange={setChecked}
+      onValueChange={value => {
+        setChecked(value);
+        action("onValueChange")(value);
+      }}
     />
   );
 };
